@@ -1,0 +1,60 @@
+<div class="container">
+  <!-- Your content here -->
+  <div class="row">
+    <div>
+      <h1>Mes locations en cours</h1>
+    </div>
+    <div class="col-md-12 mes_locations">
+       <% @reservations.each do |reservation| %>
+       <div class="card" style="width: 18rem;">
+          <div class="card-body">
+           <h3 class="card-title"><%= reservation.property.title %></h3>
+           <h4><%= " Loué du #{reservation.start_date} au #{reservation.end_date}" %></h4>
+           <h5 class="card-subtitle mb-2"><%= "Loué par #{reservation.first_name} #{reservation.last_name}."%></h5>
+           <h5 class="card-subtitle"><%= "Telephone: #{reservation.phone}"%></h5>
+           <h5><%="Prix de la réservation: #{reservation.total_price}"  %></h5>
+        </div>
+        </div>
+       <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <h1>Mes demandes</h1>
+    </div>
+      <% if @reservations.empty? %>
+        <p>Vous n'avez pas de demandes en attente</p>
+      <% else %>
+      <div class="col-md-12 mes_demandes">
+         <% @reservations.each do |reservation| %>
+         <% if reservation.status == "en_attente" || reservation.status == "annulée" %>
+          <div class="card">
+            <div class="card-body d-flex justify-content-between">
+              <div>
+              <h4 class="card-title"><%= "Demande de Location par #{reservation.first_name} #{reservation.last_name} du #{reservation.start_date} au #{reservation.end_date}"%></h4>
+              <h4 class="card-subtitle"><%=  "Telephone = #{reservation.phone}"%></h4>
+              </div>
+              <% case reservation.status %>
+                <% when "en_attente" %>
+                <div style="width: 11rem;">
+                  <h4><%="En attente"%></h4>
+                  <div class="btn-group">
+                    <span class="btn btn-success"><%= link_to "Accepter" %></span>
+                    <span class="btn btn-danger"><%= link_to "Refuser" %></span>
+                  </div>
+                </div>
+                <% when "annulée"%>
+                <div class="text-center"style="width: 11rem;">
+                  <h4><%= "Refusée"%></h4>
+                </div>
+                <% end %>
+
+            </div>
+            </div>
+        <% end %>
+        <% end %>
+        <% end %>
+      </div>
+  </div>
+</div>
