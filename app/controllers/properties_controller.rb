@@ -2,15 +2,20 @@ class PropertiesController < ApplicationController
 
   def index
     @properties = Property.all
+
   end
 
   def show
     @property = Property.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def new
     @property = Property.new
   end
+
+
+
 
   def create
     @property = Property.new(property_params)

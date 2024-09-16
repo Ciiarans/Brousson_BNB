@@ -1,0 +1,160 @@
+<section>
+<div class="banner d-flex" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1562450254-3c4225aa1bcd?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+
+  <div class="row d-flex p-5">
+    <div class ="col-8 mt-5 mx-5 pt-auto">
+      <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+      <p>Change your life and learn to code at one of our campuses around the world.</p>
+      <a class="btn btn-primary rounded-5 mt-auto" href="#">Apply now</a>
+    </div>
+  </div>
+
+   <div class="col-6 banner-card mt-0">
+
+   </div>
+</div>
+</section>
+<section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="mt-5 text-center mb-4">Our latest properties</h2>
+      </div>
+    </div>
+    <div class="row">
+      <% @properties.each do |property| %>
+        <div class="col-4">
+          <div class="card rounded-5 mt-4 border-0">
+            <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', class: "card-img-top rounded-5"%>
+            <div class="card-body">
+              <h5 class="card-title"><%= property.title%></h5>
+              <p class="card-text"><%= property.description %></p>
+              <p class="card-text"><strong>Price:</strong> <%= property.price_per_night %></p>
+              <%= link_to "View", property_path(property), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+<!-- =======================
+Services START -->
+<section class="pt-0 pt-lg-5">
+	<div class="container">
+		<div class="row g-4 align-items-center">
+			<div class="col-lg-6">
+				<!-- Title -->
+				<h1 class ="title-font text-success mt-5">Nos services</h1>
+				<p>Book your hotel with us and don't forget to grab an awesome hotel deal to save massive on your stay.</p>
+				<!-- Button -->
+				<a href="#" class="btn btn-primary p-auto rounded-4 text-white mb-4 mt-2">Contactez nous</a>
+				<!-- Services -->
+				<div class="row g-sm-4 mt-2 ">
+					<div class="col-sm-6 mt-auto ">
+						<ul class="list-group list-group-borderless mt-2 mb-0">
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-wifi fa-fw text-primary me-2"></i>Free Wifi</h6>
+							</li>
+
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-person-swimming fa-fw text-primary me-2"></i>Swimming Pool</h6>
+							</li>
+
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-person-shelter fa-fw text-primary me-2"></i>Private Workshop</h6>
+							</li>
+
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-utensils fa-fw text-primary me-2"></i>Breakfast</h6>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-sm-6 mt-auto">
+						<ul class="list-group list-group-borderless">
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-bolt fa-fw text-primary me-2"></i>Free Electricity</h6>
+							</li>
+
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-dumbbell fa-fw text-primary me-2"></i>Gym Space</h6>
+							</li>
+
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-spa fa-fw text-primary me-2"></i>Spa</h6>
+							</li>
+
+							<li class="list-group-item border-0 bg-white">
+								<h6 class="fw-normal mb-0"><i class="fa-solid fa-ellipsis fa-fw text-primary me-2"></i>Other Services</a></h6>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+				<div class="bg-light rounded-4 h-100 p-4 mt-5">
+
+							<!-- Card START -->
+							<div class="card bg-transparent border-0 " >
+								<div class="row g-4  align-items-center m-auto">
+									<div class="col-sm-6 ">
+										<%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' shadow-lg  mt-1 w-100 h-100 rounded-5'; %>
+									</div>
+									<div class="col-sm-6 ">
+										<div class="card-body p-0">
+											<h6 class="fw-normal mb-3">Adventure Stay</h6>
+											<h4 class="card-title mb-3 "><a href="#" class="stretched-link  text-decoration-none">Golf & Spa Resort in New York</a></h4>
+											<a href="#" class="btn btn-link p-0">Explore Now <i class="bi bi-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Card END -->
+
+				</div>
+			</div>
+		</div> <!-- Row END -->
+	</div>
+</section>
+<!-- =======================
+Services END -->
+
+<section>
+<div class = "carousel-h">
+<h1 class="text-center mt-5 mb-5">Customers</h1>
+<div>
+<div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+
+      <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
+    </div>
+    <div class="carousel-item">
+
+      <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
+    </div>
+    <div class="carousel-item">
+
+      <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</section>
