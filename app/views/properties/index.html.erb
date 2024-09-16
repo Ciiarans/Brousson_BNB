@@ -124,18 +124,19 @@ Services START -->
 <!-- =======================
 Services END -->
 
-<section>
-<div class = "carousel-h">
+<section class ="carousel">
+<div class = "carousel-h ">
 <h1 class="text-center mt-5 mb-5">Customers</h1>
 <div>
-<div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+<div class = "custom-caroussel-size mb-5 ">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
+  <div class="carousel-inner ">
+    <div class="carousel-item active ">
 
       <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
     </div>
@@ -156,5 +157,6 @@ Services END -->
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+</div>
 </div>
 </section>

@@ -24,23 +24,64 @@ users = []
   )
 end
 
-# Créer des propriétés
 properties = []
-7.times do |i|
-  properties << Property.create!(
-    user: users.sample,
-    title: "Appartement #{i + 1} - #{Faker::Lorem.words(number: 3).join(' ')}",
-    description: Faker::Lorem.paragraph(sentence_count: 10),
-    capacity: rand(2..6),
-    bedrooms: rand(1..3),
-    bathrooms: rand(1..2),
-    price_per_night: rand(50..200),
-    address: Faker::Address.street_address,
-    equipments: %w[WiFi Cuisine Climatisation Chauffage Parking Animaux].sample(rand(2..6)).join(', '),
-    created_at: Time.now,
-    updated_at: Time.now
-  )
-end
+# Créer des propriétés
+ properties << Property.create!(
+  user: users.first,
+  title: 'T4 de standing vue ocean Biarritz',
+  description: "Appartement cosy niché dans un havre de paix !
+Situé au calme, à deux pas du centre ville, et 10min à pied de l'océan.
+La résidence est sécurisée, place de parking disponible, parc de 2ha.
+Salle de fitness et superette dans la résidence.
+Nombreux commerces, transports commun, et restaurants à proximité.
+L'appartement se compose de 2 chambres avec lits 160 + une annexe desservant un canapé lit de 160.
+Salon spacieux, cuisine fermée tout équipée avec une agréable terrasse.",
+  capacity: 6,
+  bedrooms: 3,
+  bathrooms: 2,
+  price_per_night: 210,
+  address: 'Biarritz, Nouvelle-Aquitaine, France',
+  equipments: "Vue sur l'océan, lave-linge, télévision, wifi, espace de travail dédié, wifi, cuisine, parking gratuit sur place, salle de sport, espace repas en plein air")
+
+  properties <<  Property.create!(
+    user: users.first,
+    title: "Superbe T4 2mn à pied de l'océan",
+    description: "Profitez en famille de ce fabuleux logement qui offre de bons moments en perspective.Superbe apt T4 en RDC avec jardin.
+Situation privilégiée, à 5min à pied de l'océan, des commerces des 5 cantons, et du phare de Biarritz.
+Transports en commun à proximité. Il se compose d'une cuisine ouverte sur salon et SAM, 4 chambres (dont une suite parentale avec salle de douche et wc), salle de bain.Terrasses couvertes et loggias aménagées. Parking privé dans la résidence",
+    capacity: 7,
+    bedrooms: 4,
+    bathrooms: 2,
+    price_per_night: 385,
+    address: 'Anglet, Nouvelle-Aquitaine, France',
+    equipments: 'Piscine, Climatisation, Wifi, Parking, Barbecue')
+
+    properties <<  Property.create!(
+      user: users.first,
+      title: 'Appartement de standing ocean Anglet/Biarritz',
+      description: "Appartement de standing tout proche de la plage du VVF et du phare de Biarritz Logement chic au décor raffiné doté d'un mobilier de haut de gamme.appartement très lumineux.
+trés belle terrasse donnant sur le parcours du golf le phare . Appartement proche de tous commerces et restaurants . IL possède 2 parkings gratuits.
+pour les amoureux du surf et de la cote basque",
+      capacity: 6,
+      bedrooms: 3,
+      bathrooms: 2,
+      price_per_night: 200,
+      address: 'Anglet, Nouvelle-Aquitaine, France',
+      equipments: 'Lave-linge, climatisation, détecteur de fumée, espace de travail dédié, wifi, cuisine, réfrigérateur, cafetière, parking, patio ou balcon, accès plage ou bord de mer')
+
+      properties <<    Property.create!(
+        user: users.first,
+        title: 'Appart de standing Biarritz Anglet plage',
+        description: 'Très bel appartement de standing de 94m², situation priviligiée sur Anglet : A deux pas de Biarritz, de la plage du VVF et de la place des 5 cantons.
+Nombreux commerces, lignes de bus, restaurants à proximité.
+Il se compose d’un spacieux salon desservant une cuisine américaine toute équipée ; deux agréables terrasse ; deux chambres dont une avec lit en 160 cm et l’autre 2 lits jumeaux en 80 avec rangements ; deux salles d’eau.
+Meublé de tourisme 3***',
+        capacity: 4,
+        bedrooms: 2,
+        bathrooms: 2,
+        price_per_night: 380,
+        address: 'Anglet, Nouvelle-Aquitaine, France',
+        equipments: 'Sèche-cheveux, lave-linge, sèche-linge, télévision, minigolf, lit pour bébé, détecteur de fumée, wifi, espace de travail dédié, cuisine, micro-ondes, accès à la plage, parking, logement de plein pied ')
 
 # Créer des réservations
 10.times do
