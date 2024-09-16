@@ -1,0 +1,419 @@
+
+<!-- =======================
+Main Title START -->
+<section class="py-0 pt-sm-5">
+	<div class="container position-relative">
+		<!-- Title and button START -->
+		<div class="row mb-3">
+			<div class="col-12">
+				<!-- Meta -->
+				<div class="d-lg-flex justify-content-lg-between mb-1">
+					<!-- Title -->
+					<div class="mb-2 mb-lg-0">
+						<h1 class="fs-2 mb-4 title-font text-success">Le <%= @property.title %> </h1>
+
+					</div>
+
+					<!-- Buttons -->
+					<ul class="list-inline text-end">
+						<!-- Heart icon -->
+						<li class="list-inline-item">
+							<a href="#" class="btn btn-sm btn-light px-2"><i class="fa-solid fa-fw fa-heart"></i></a>
+						</li>
+						<!-- Share icon -->
+						<li class="list-inline-item dropdown">
+							<!-- Share button -->
+							<a href="#" class="btn btn-sm btn-light px-2" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa-solid fa-fw fa-share-alt"></i>
+							</a>
+							<!-- dropdown button -->
+							<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare">
+								<li><a class="dropdown-item" href="#"><i class="fab fa-twitter-square me-2"></i>Twitter</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fa-solid fa-copy me-2"></i>Copy link</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- Title and button END -->
+
+
+	</div>
+</section>
+<!-- =======================
+Main Title END -->
+
+<!-- =======================
+Image gallery START -->
+<section class="card-grid pt-0 mb-5">
+	<div class="container">
+		<div class="row g-2 ">
+			<!-- Image -->
+			<div class="col-md-6  h-50 ">
+        <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' w-100 h-custom rounded-5 show-fit-cover' %>
+					<div class="card card-grid-lg border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/14.jpg); background-position: center left; background-size: cover;">
+						<!-- Card hover element -->
+						<div class="hover-element position-absolute w-100 h-100">
+							<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 ">
+				<!-- Card item START -->
+				<div class="row g-2">
+					<!-- Image -->
+					<div class="col-12  h-25 ">
+        <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5   w-100 h-custom-1  show-fit-cover' %>
+							<div class="card card-grid-sm border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/13.jpg); background-position: center left; background-size: cover;">
+								<!-- Card hover element -->
+								<div class="hover-element position-absolute w-100 h-100">
+									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<!-- Image -->
+					<div class="col-md-6 ">
+        <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5 w-100 h-custom-2 show-fit-cover' %>
+							<div class="card card-grid-sm border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/12.jpg); background-position: center left; background-size: cover;">
+								<!-- Card hover element -->
+								<div class="hover-element position-absolute w-100 h-100">
+									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<!-- Images -->
+					<div class="col-md-6">
+							<!-- Background overlay -->
+							<div class="bg-overlay bg-dark opacity-7"></div>
+
+							<!-- Popup Images -->
+              <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5 w-100 h-custom-2 show-fit-cover' %>
+
+
+
+						</div>
+					</div>
+				</div>
+				<!-- Card item END -->
+			</div>
+		</div>
+	</div>
+</section>
+<!-- =======================
+Image gallery END -->
+
+<!-- =======================
+About hotel START -->
+<section class="pt-0">
+	<div class="container" data-sticky-container>
+
+		<div class="row g-4 g-xl-5">
+			<!-- Content START -->
+			<div class="col-xl-7 order-1">
+				<div class="vstack gap-5">
+
+					<!-- About hotel START -->
+					<div class="card bg-transparent border-0">
+						<!-- Card header -->
+						<div class="card-header border-bottom bg-transparent px-0 pt-0">
+							<h3 class="mb-2 title-font text-success">Informations</h3>
+						</div>
+
+						<!-- Card body START -->
+						<div class="card-body pt-4 p-0">
+							<h5 class="fw-light mb-4">Les services</h5>
+
+							<!-- Highlights Icons -->
+							<div class="hstack gap-3 mb-3">
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free wifi">
+									<i class="fa-solid fa-wifi"></i>
+								</div>
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">
+									<i class="fa-solid fa-swimming-pool"></i>
+								</div>
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Central AC">
+									<i class="fa-solid fa-snowflake"></i>
+								</div>
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Service">
+									<i class="fa-solid fa-concierge-bell"></i>
+								</div>
+							</div>
+
+							<p class="mb-3"><%= @property.description %></b></p>
+
+							<div class="collapse" id="collapseContent">
+								<p class="my-3">Texte général 1</p>
+								<p class="mb-0">Text général 2</p>
+							</div>
+							<a class="p-0 mb-4 mt-2 btn-more d-flex align-items-center collapsed" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
+								See <span class="see-more ms-1">more</span><span class="see-less ms-1">less</span><i class="fa-solid fa-angle-down ms-2"></i>
+							</a>
+
+							<!-- List -->
+							<h5 class="fw-light mb-2">Avantages</h5>
+							<ul class="list-group list-group-borderless mb-0">
+								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Every hotel staff to have Proper PPT kit for COVID-19</li>
+								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Every staff member wears face masks and gloves at all service times.</li>
+								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Hotel staff ensures to maintain social distancing at all times.</li>
+								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>The hotel has In-Room Dining options available </li>
+							</ul>
+						</div>
+						<!-- Card body END -->
+					</div>
+					<!-- About hotel START -->
+
+					<!-- Amenities START -->
+					<div class="card bg-transparent border-0">
+						<!-- Card header -->
+						<div class="card-header border-bottom bg-transparent px-0 pt-0">
+							<h3 class="card-title mb-2 title-font text-success mb-0">Equipements</h3>
+						</div>
+
+						<!-- Card body START -->
+						<div class="card-body pt-4 p-0">
+							<div class="row g-4">
+								<!-- Activities -->
+								<div class="col-sm-6">
+									<h6><i class="fa-solid fa-biking me-2"></i>Activités</h6>
+									<!-- List -->
+									<ul class="list-group  list-group-borderless mt-2 mb-0">
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Swimming pool
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Spa
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Kids' play area
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Gym
+										</li>
+									</ul>
+								</div>
+
+								<!-- Payment Method -->
+								<div class="col-sm-6">
+									<h6><i class="fa-solid fa-credit-card me-2"></i>Payment Method</h6>
+									<!-- List -->
+									<ul class="list-group list-group-borderless mt-2 mb-0">
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Credit card (Visa, Master card)
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Cash
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Debit Card
+										</li>
+									</ul>
+								</div>
+
+								<!-- Services -->
+								<div class="col-sm-6">
+									<h6><i class="fa-solid fa-concierge-bell me-2"></i>Services</h6>
+									<!-- List -->
+									<ul class="list-group list-group-borderless mt-2 mb-0">
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Dry cleaning
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Room Service
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Special service
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Waiting Area
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Secrete smoking area
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Concierge
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Laundry facilities
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Ironing Service
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Lift
+										</li>
+									</ul>
+								</div>
+
+								<!-- Safety & Security -->
+								<div class="col-sm-6">
+									<h6><i class="bi bi-shield-fill-check me-2"></i>Safety & Security</h6>
+									<!-- List -->
+									<ul class="list-group list-group-borderless mt-2 mb-4 mb-sm-5">
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Doctor on Call
+										</li>
+									</ul>
+
+									<h6><i class="fa-solid fa-volume-up me-2"></i>Staff Language</h6>
+									<!-- List -->
+									<ul class="list-group list-group-borderless mt-2 mb-0">
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>English
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Spanish
+										</li>
+										<li class="list-group-item bg-white border-0 pb-0">
+											<i class="fa-solid fa-check-circle text-success me-2"></i>Hindi
+										</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+						<!-- Card body END -->
+					</div>
+					<!-- Amenities END -->
+
+
+
+					<!-- Hotel Policies START -->
+					<div class="card bg-transparent border-0">
+						<!-- Card header -->
+						<div class="card-header border-bottom bg-transparent px-0 pt-0">
+							<h3 class="mb-0 title-font text-success">Nos Rêgles</h3>
+						</div>
+
+						<!-- Card body START -->
+						<div class="card-body pt-4 p-0">
+							<!-- List -->
+							<ul class="list-group list-group-borderless mb-2">
+								<li class="list-group-item border-0 bg-white d-flex">
+									<i class="bi bi-check-circle-fill me-2"></i>This is a family farmhouse, hence we request you to not indulge.
+								</li>
+								<li class="list-group-item border-0 bg-white d-flex">
+									<i class="bi bi-check-circle-fill me-2"></i>Drinking and smoking within controlled limits are permitted at the farmhouse but please do not create a mess or ruckus at the house.
+								</li>
+								<li class="list-group-item border-0 bg-white d-flex">
+									<i class="bi bi-check-circle-fill me-2"></i>Drugs and intoxicating illegal products are banned and not to be brought to the house or consumed.
+								</li>
+								<li class="list-group-item border-0 bg-white d-flex">
+									<i class="bi bi-x-circle-fill me-2"></i>For any update, the customer shall pay applicable cancellation/modification charges.
+								</li>
+							</ul>
+
+							<!-- List -->
+							<ul class="list-group list-group-borderless mb-2">
+								<li class="list-group-item border-0 bg-white h6 fw-light d-flex mb-0">
+									<i class="bi bi-arrow-right me-2"></i>Check-in: 1:00 pm - 9:00 pm
+								</li>
+								<li class="list-group-item border-0 bg-white h6 fw-light d-flex mb-0">
+									<i class="bi bi-arrow-right me-2"></i>Check out: 11:00 am
+								</li>
+								<li class="list-group-item border-0 bg-white h6 fw-light d-flex mb-0">
+									<i class="bi bi-arrow-right me-2"></i>Self-check-in with building staff
+								</li>
+								<li class="list-group-item border-0 bg-white h6 fw-light d-flex mb-0">
+									<i class="bi bi-arrow-right me-2"></i>No pets
+								</li>
+								<li class="list-group-item border-0 bg-white h6 fw-light d-flex mb-0">
+									<i class="bi bi-arrow-right me-2"></i>No parties or events
+								</li>
+								<li class="list-group-item border-0 bg-white h6 fw-light d-flex mb-0">
+									<i class="bi bi-arrow-right me-2"></i>Smoking is allowed
+								</li>
+							</ul>
+
+							<!-- Important note -->
+							<div class="bg-danger bg-opacity-10 rounded-2 p-3 mb-3">
+								<p class="mb-0 text-danger">During the COVID-19 pandemic, all hosts and guests must review and follow Booking social distancing and other COVID-19-related guidelines.</p>
+							</div>
+							<div class="bg-danger bg-opacity-10 rounded-2 p-3">
+								<p class="mb-0 text-danger">Smoke alarm not reported — The host hasn't reported a smoke alarm on the property. We suggest bringing a portable detector for your trip.</p>
+							</div>
+						</div>
+						<!-- Card body END -->
+					</div>
+					<!-- Hotel Policies START -->
+				</div>
+			</div>
+			<!-- Content END -->
+
+					<!-- Right side content START -->
+			<aside class="col-xl-5  d-xl-block  ">
+				<div class="card bg-transparent border rounded-5 sticky-top z-sticky-card " style="top: 120px;">
+					<!-- Card header START -->
+					<div class="card-header bg-transparent border-bottom">
+						<!-- Title -->
+						<h4 class="card-title mb-2 mt-2 title-font text-success">Aperçu du séjour</h4>
+					</div>
+
+					<!-- Card body START -->
+					<div class="card-body " >
+               <%= simple_form_for([@property, @reservation]) do |f| %>
+
+
+
+
+            <div class="row g-4 mb-3" data-controller="datepicker">
+              <!-- Item -->
+              <div class="col-md-12 d-flex">
+                <div class="bg-light py-3 px-4 rounded-5 me-2">
+                  <h5 class="fw-light small mb-1"><i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Check-in </h5>
+                  <%= f.input :start_date, label: false,  as: :string, input_html: { class: 'rounded-5 mt-3', data: { target: "datepicker.startInput" } } %>
+                </div>
+                <div class="bg-light py-3 px-4 rounded-5">
+                  <h5 class="fw-light small mb-1"><i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Check-out </h5>
+                  <%= f.input :end_date, label: false, as: :string, input_html: { class: 'rounded-5 mt-3', data: { target: "datepicker.endInput" } } %>
+                </div>
+              </div>
+            </div>
+
+						<!-- List -->
+						<ul class="list-group list-group-borderless mb-3">
+							<li class="list-group-item px-2 d-flex border-0 bg-white justify-content-between">
+								<span class="h6 fw-light mb-0">$6,100 x 2 Nights</span>
+								<span class="h6 fw-light mb-0">$13,200</span>
+							</li>
+							<li class="list-group-item px-2 d-flex border-0 bg-white justify-content-between">
+								<span class="h6 fw-light mb-0">10% campaign discount</span>
+								<span class="h6 fw-light mb-0">-$500</span>
+							</li>
+							<li class="list-group-item px-2 d-flex border-0 bg-white justify-content-between">
+								<span class="h6 fw-light mb-0">Services Fee</span>
+								<span class="h6 fw-light mb-0">$100</span>
+							<li class="list-group-item bg-light rounded-4 d-flex justify-content-between px-2 mt-3">
+								<span class="h5 fw-normal mb-0 ps-1">Total</span>
+								<span class="h5 fw-normal mb-0">$13,500</span>
+							</li>
+						</ul>
+
+						<!-- Button -->
+						<div class="d-grid gap-2">
+               <!--<%= f.button :submit, class: 'btn btn-primary rounded-3 text-white custom-font-btn-show-1' %>-->
+              <%= link_to "Je réserve", new_property_reservation_path(property_id: @property.id), class: "btn btn-primary rounded-4 text white custom-font-btn-show-2 text-white" %>
+            <%= link_to 'Choisir un autre gite', "#{properties_path}#section-target", class: 'btn btn-primary rounded-4 text white custom-font-btn-show-2 text-white' %>
+             <% end %>
+            </div>
+					</div>
+					<!-- Card body END -->
+				</div>
+			</aside>
+			<!-- Right side content END -->
+		</div> <!-- Row END -->
+	</div>
+</section>
+<!-- =======================
+About hotel END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
