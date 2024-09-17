@@ -14,27 +14,7 @@ Main Title START -->
 
 					</div>
 
-					<!-- Buttons -->
-					<ul class="list-inline text-end">
-						<!-- Heart icon -->
-						<li class="list-inline-item">
-							<a href="#" class="btn btn-sm btn-light px-2"><i class="fa-solid fa-fw fa-heart"></i></a>
-						</li>
-						<!-- Share icon -->
-						<li class="list-inline-item dropdown">
-							<!-- Share button -->
-							<a href="#" class="btn btn-sm btn-light px-2" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa-solid fa-fw fa-share-alt"></i>
-							</a>
-							<!-- dropdown button -->
-							<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare">
-								<li><a class="dropdown-item" href="#"><i class="fab fa-twitter-square me-2"></i>Twitter</a></li>
-								<li><a class="dropdown-item" href="#"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
-								<li><a class="dropdown-item" href="#"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></li>
-								<li><a class="dropdown-item" href="#"><i class="fa-solid fa-copy me-2"></i>Copy link</a></li>
-							</ul>
-						</li>
-					</ul>
+
 				</div>
 			</div>
 		</div>
@@ -46,70 +26,41 @@ Main Title START -->
 <!-- =======================
 Main Title END -->
 
-<!-- =======================
-Image gallery START -->
-<section class="card-grid pt-0 mb-5">
-	<div class="container">
-		<div class="row g-2 ">
-			<!-- Image -->
-			<div class="col-md-6  h-50 ">
-        <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' w-100 h-custom rounded-5 show-fit-cover' %>
-					<div class="card card-grid-lg border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/14.jpg); background-position: center left; background-size: cover;">
-						<!-- Card hover element -->
-						<div class="hover-element position-absolute w-100 h-100">
-							<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-						</div>
-					</div>
-				</a>
-			</div>
+<
+<section class ="carousel">
 
-			<div class="col-md-6 ">
-				<!-- Card item START -->
-				<div class="row g-2">
-					<!-- Image -->
-					<div class="col-12  h-25 ">
-        <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5   w-100 h-custom-1  show-fit-cover' %>
-							<div class="card card-grid-sm border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/13.jpg); background-position: center left; background-size: cover;">
-								<!-- Card hover element -->
-								<div class="hover-element position-absolute w-100 h-100">
-									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-								</div>
-							</div>
-						</a>
-					</div>
+<div class = "custom-caroussel-size mb-5 ">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner ">
+    <div class="carousel-item active ">
 
-					<!-- Image -->
-					<div class="col-md-6 ">
-        <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5 w-100 h-custom-2 show-fit-cover' %>
-							<div class="card card-grid-sm border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/12.jpg); background-position: center left; background-size: cover;">
-								<!-- Card hover element -->
-								<div class="hover-element position-absolute w-100 h-100">
-									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-								</div>
-							</div>
-						</a>
-					</div>
+      <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
+    </div>
+    <div class="carousel-item">
 
-					<!-- Images -->
-					<div class="col-md-6">
-							<!-- Background overlay -->
-							<div class="bg-overlay bg-dark opacity-7"></div>
+      <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
+    </div>
+    <div class="carousel-item">
 
-							<!-- Popup Images -->
-              <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5 w-100 h-custom-2 show-fit-cover' %>
-
-
-
-						</div>
-					</div>
-				</div>
-				<!-- Card item END -->
-			</div>
-		</div>
-	</div>
+      <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', alt: 'Description of the image', class: ' d-block object-fit-cover-slider-home'; %>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
 </section>
-<!-- =======================
-Image gallery END -->
 
 <!-- =======================
 About hotel START -->
@@ -118,7 +69,7 @@ About hotel START -->
 
 		<div class="row g-4 g-xl-5">
 			<!-- Content START -->
-			<div class="col-xl-7 order-1">
+			<div class="col-xl-7 col-lg-12 order-2 order-xl-1">
 				<div class="vstack gap-5">
 
 					<!-- About hotel START -->
@@ -130,42 +81,12 @@ About hotel START -->
 
 						<!-- Card body START -->
 						<div class="card-body pt-4 p-0">
-							<h5 class="fw-light mb-4">Les services</h5>
 
-							<!-- Highlights Icons -->
-							<div class="hstack gap-3 mb-3">
-								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free wifi">
-									<i class="fa-solid fa-wifi"></i>
-								</div>
-								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">
-									<i class="fa-solid fa-swimming-pool"></i>
-								</div>
-								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Central AC">
-									<i class="fa-solid fa-snowflake"></i>
-								</div>
-								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Service">
-									<i class="fa-solid fa-concierge-bell"></i>
-								</div>
-							</div>
 
 							<p class="mb-3"><%= @property.description %></b></p>
 
-							<div class="collapse" id="collapseContent">
-								<p class="my-3">Texte général 1</p>
-								<p class="mb-0">Text général 2</p>
-							</div>
-							<a class="p-0 mb-4 mt-2 btn-more d-flex align-items-center collapsed" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
-								See <span class="see-more ms-1">more</span><span class="see-less ms-1">less</span><i class="fa-solid fa-angle-down ms-2"></i>
-							</a>
 
-							<!-- List -->
-							<h5 class="fw-light mb-2">Avantages</h5>
-							<ul class="list-group list-group-borderless mb-0">
-								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Every hotel staff to have Proper PPT kit for COVID-19</li>
-								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Every staff member wears face masks and gloves at all service times.</li>
-								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>Hotel staff ensures to maintain social distancing at all times.</li>
-								<li class="list-group-item h6 bg-white border-0 fw-light d-flex mb-0"><i class="bi bi-patch-check-fill text-success me-2"></i>The hotel has In-Room Dining options available </li>
-							</ul>
+
 						</div>
 						<!-- Card body END -->
 					</div>
@@ -333,13 +254,7 @@ About hotel START -->
 								</li>
 							</ul>
 
-							<!-- Important note -->
-							<div class="bg-danger bg-opacity-10 rounded-2 p-3 mb-3">
-								<p class="mb-0 text-danger">During the COVID-19 pandemic, all hosts and guests must review and follow Booking social distancing and other COVID-19-related guidelines.</p>
-							</div>
-							<div class="bg-danger bg-opacity-10 rounded-2 p-3">
-								<p class="mb-0 text-danger">Smoke alarm not reported — The host hasn't reported a smoke alarm on the property. We suggest bringing a portable detector for your trip.</p>
-							</div>
+
 						</div>
 						<!-- Card body END -->
 					</div>
@@ -349,7 +264,7 @@ About hotel START -->
 			<!-- Content END -->
 
 					<!-- Right side content START -->
-			<aside class="col-xl-5  d-xl-block  ">
+			<aside class="col-xl-5 col-lg-12 order-1 order-xl-2 d-xl-block">
 				<div class="card bg-transparent border rounded-5 sticky-top z-sticky-card " style="top: 120px;">
 					<!-- Card header START -->
 					<div class="card-header bg-transparent border-bottom">
@@ -399,8 +314,15 @@ About hotel START -->
 
 						<!-- Button -->
 						<div class="d-grid gap-2">
-               <!--<%= f.button :submit, class: 'btn btn-primary rounded-3 text-white custom-font-btn-show-1' %>-->
-              <%= link_to "Je réserve", new_property_reservation_path(property_id: @property.id), class: "btn btn-primary rounded-4 text white custom-font-btn-show-2 text-white" %>
+              <!-- Button trigger modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+
+            <!-- Button trigger modal -->
+
             <%= link_to 'Choisir un autre gite', "#{properties_path}#section-target", class: 'btn btn-primary rounded-4 text white custom-font-btn-show-2 text-white' %>
              <% end %>
             </div>
@@ -411,9 +333,29 @@ About hotel START -->
 			<!-- Right side content END -->
 		</div> <!-- Row END -->
 	</div>
+
 </section>
 <!-- =======================
 About hotel END -->
+<!-- Modal -->
+<div class="modal fade " id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
