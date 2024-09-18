@@ -29,7 +29,7 @@ properties = []
 7.times do |i|
   properties << Property.create!(
     user: users.sample,
-    title: "Appartement #{i + 1} - #{Faker::Lorem.words(number: 3).join(' ')}",
+    title: " #{Faker::Lorem.words(number: 3).join(' ')}",
     description: Faker::Lorem.paragraph(sentence_count: 10),
     capacity: rand(2..6),
     bedrooms: rand(1..3),
