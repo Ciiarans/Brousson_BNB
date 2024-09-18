@@ -1,10 +1,70 @@
-.mes_locations{
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+.btn-outline-custom-success,
+.btn-outline-custom-danger {
+  border: 1px solid transparent;  // Transparent border initially
+  border-radius: $border-radius-sm;  // Slightly rounded corners
+  font-size: 0.875rem;  // Slightly smaller font size
+  padding: 0.5rem 1rem;  // Adequate padding for readability
+  text-transform: uppercase;  // Uppercase text for a clean appearance
+  font-weight: 400;  // Slightly bolder text
+  background-color: transparent;  // Transparent background
+  color: $body-color;  // Text color matches body color
+  transition: border-color 0.3s ease, color 0.3s ease;  // Smooth transition
+
+  // Remove focus outline to avoid default browser style
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &:focus {
+    color: $white;  // Change text color on hover/focus
+  }
 }
-.mes_demandes{
-  display: row;
-  gap: 1rem;
-  flex-wrap: wrap;
+
+// Success button outline
+.btn-outline-custom-success {
+  border-color: $green;
+  color: $green;
+
+  &:hover,
+  &:focus {
+    border-color: darken($green, 10%);
+    color: darken($green, 10%);
+  }
+
+  &:active {
+    border-color: darken($green, 15%);
+    color: darken($green, 15%);
+  }
+}
+
+// Danger button outline
+.btn-outline-custom-danger {
+  border-color: $danger;
+  color: $danger;
+
+  &:hover,
+  &:focus {
+    border-color: darken($danger, 10%);
+    color: darken($danger, 10%);
+  }
+
+  &:active {
+    border-color: darken($danger, 15%);
+    color: darken($danger, 15%);
+  }
+}
+
+// Add spacing between buttons
+.btn-group .btn {
+  margin-right: 0.5rem;  // Space between buttons
+}
+
+.btn-group .btn:last-child {
+  margin-right: 0;  // Remove margin from the last button
+}
+.separator {
+  border: none;  // Remove default border
+  border-top: 2px solid $body-color;  // Use the body color for the line
+  margin: 2rem 0;  // Add vertical spacing around the line
 }

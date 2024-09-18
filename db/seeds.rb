@@ -23,7 +23,6 @@ users = []
     password_confirmation: 'password'
   )
 end
-
 properties = []
 # Créer des propriétés
  properties << Property.create!(
