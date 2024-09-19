@@ -3,14 +3,17 @@
 
   <div class="row d-flex p-5">
     <div class ="col-8 mt-5 mx-5 pt-auto">
-      <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-      <p>Change your life and learn to code at one of our campuses around the world.</p>
-      <a class="btn btn-primary rounded-5 mt-auto" href="#">Apply now</a>
+      <h1>Votre séjour <strong>de rêve</strong> avec <strong>brousson bnb</strong> !</h1>
+      <p>Logements de charmes en côte basque</p>
+      <a class="btn btn-primary rounded-5 mt-auto" href="#">Nos locations</a>
     </div>
   </div>
 
    <div class="col-6 banner-card mt-0">
-
+    <div style="width: 100%; height: 100%;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
    </div>
 </div>
 </section>
@@ -19,7 +22,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="mt-5 text-center mb-4">Our latest properties</h2>
+        <h2 class="mt-5 text-center mb-4">Nos locations </h2>
       </div>
     </div>
     <div class="row">
