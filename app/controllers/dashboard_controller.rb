@@ -5,4 +5,5 @@ class DashboardController < ApplicationController
     @properties = Property.where(user: @user)
     @reservations = Reservation.where(property: @properties)
   end
+  
 end

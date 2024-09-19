@@ -1,26 +1,28 @@
 <div class="container bg-white py-4 rounded-2">
   <!-- Section: Mes locations en cours -->
-  <h2 class=" mb-4 text-primary">Mes locations en cours</h2>
+  <h2 class="mb-4 text-primary">Mes locations en cours</h2>
   <div class="container py-5">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
       <% @reservations.each do |reservation| %>
-        <div class="col">
-          <div class="card h-100 bg-white  shadow-sm border-0 rounded-4">
-            <div class="card-header border-0 pb-0 text-center">
-              <h4 class="text-primary"><%= "#{reservation.property.title}" %></h4>
-            </div>
-            <div class="card-body">
-              <ul class="list-unstyled mb-4">
-                <li><i class="bi bi-calendar-check me-2"></i> <%= "#{reservation.start_date} / #{reservation.end_date}" %></li>
-                <li><i class="bi bi-person-circle me-2"></i> <%= "#{reservation.first_name} #{reservation.last_name}" %></li>
-                <li><i class="bi bi-telephone-fill me-2"></i> <%= "#{reservation.phone}" %></li>
-              </ul>
-            </div>
-            <div class="card-footer text-center">
-              <small class="text-muted"><%= "#{reservation.total_price} €" %></small>
+        <% if reservation.status == "confirmée" %>
+          <div class="col">
+            <div class="card h-100 bg-white shadow-sm border-0 rounded-4">
+              <div class="card-header border-0 pb-0 text-center">
+                <h4 class="text-primary"><%= "#{reservation.property.title}" %></h4>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-4">
+                  <li><i class="bi bi-calendar-check me-2"></i> <%= "#{reservation.start_date} / #{reservation.end_date}" %></li>
+                  <li><i class="bi bi-person-circle me-2"></i> <%= "#{reservation.first_name} #{reservation.last_name}" %></li>
+                  <li><i class="bi bi-telephone-fill me-2"></i> <%= "#{reservation.phone}" %></li>
+                </ul>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-muted"><%= "#{reservation.total_price} €" %></small>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -30,7 +32,7 @@
   <!-- Section: Mes demandes -->
   <div class="row p-3">
     <div class="col-12">
-      <h2 class=" mb-4 text-primary">Mes demandes</h2>
+      <h2 class="mb-4 text-primary">Mes demandes</h2>
     </div>
 
     <% if @reservations.empty? %>
@@ -38,22 +40,45 @@
     <% else %>
       <div class="col-md-12 mes_demandes">
         <% @reservations.each do |reservation| %>
-          <% if reservation.status == "en_attente"  %>
-            <div class="card  bg-white mb-4 shadow-sm border-0 rounded-3">
+          <% if reservation.status == "en_attente" %>
+            <div class="card bg-white mb-4 shadow-sm border-0 rounded-3">
               <div class="card-body d-flex justify-content-between align-items-center">
                 <div>
-                  <h5 class="card-title mb-2  text-primary">
+                  <h5 class="card-title mb-2 text-primary">
                     <%= "Demande de location par #{reservation.first_name} #{reservation.last_name}" %>
                   </h5>
                   <p class="card-text mb-1"><i class="bi bi-calendar-event me-2"></i><%= "Du #{reservation.start_date} au #{reservation.end_date}" %></p>
                   <p class="card-text"><i class="bi bi-telephone me-2"></i><%= "Téléphone : #{reservation.phone}" %></p>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Demande_<%= reservation.id %>">
+                    Voir la demande
+                  </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="Demande_<%= reservation.id %>" tabindex="-1" aria-labelledby="ModalDemande_<%= reservation.id %>" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="ModalDemande_<%= reservation.id %>"><%= "Demande de location par #{reservation.first_name} #{reservation.last_name}" %></h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Contenu de la modale -->
+                          <p><i class="bi bi-calendar-event me-2"></i><%= "Du #{reservation.start_date} au #{reservation.end_date}" %></p>
+                          <p><i class="bi bi-telephone me-2"></i><%= "Téléphone : #{reservation.phone}" %></p>
+                          <!-- Ajoute d'autres informations si nécessaire -->
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="text-end" style="width: 11rem;">
-                  <h6 class="text-success  mb-3">En attente</h6>
-               <div class="btn-group">
-                  <%= link_to "Accepter", "#", class: "btn btn-outline-custom-success" %>
-                  <%= link_to "Refuser", "#", class: "btn btn-outline-custom-danger" %>
-               </div>
+                  <h6 class="text-success mb-3">En attente</h6>
+                  <div class="btn-group">
+                    <%= button_to "Accepter", reservation_path(reservation, reservation: { status: 'confirmée' }), method: :patch, class: "btn btn-outline-custom-success", data: { confirm: "Êtes-vous sûr de vouloir confirmer la réservation ?" } %>
+                    <%= button_to "Refuser", reservation_path(reservation, reservation: { status: 'annulée' }), method: :patch, class: "btn btn-outline-custom-danger", data: { confirm: "Êtes-vous sûr de vouloir refuser la réservation ?" } %>
+                  </div>
                 </div>
               </div>
             </div>
