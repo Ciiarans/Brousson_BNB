@@ -225,7 +225,7 @@ About hotel START -->
 			<!-- Content END -->
 
 					<!-- Right side content START -->
-			<aside class="col-xl-5 col-lg-12 order-1 order-xl-2 d-xl-block">
+			<aside class="col-xl-5 col-lg-12 order-1 order-xl-2 d-xl-block" data-controller="total-price"   data-total-price-priceperday-value="<%= @property.price_per_night %>">
 				<div class="card bg-transparent border rounded-5 sticky-top z-sticky-card " style="top: 120px;">
 					<!-- Card header START -->
 					<div class="card-header bg-transparent border-bottom">
@@ -234,22 +234,22 @@ About hotel START -->
 					</div>
 
 					<!-- Card body START -->
-					<div class="card-body " >
+					<div class="card-body  ">
                <%= simple_form_for([@property, @reservation]) do |f| %>
 
 
 
 
-            <div class="row g-4 mb-3" data-controller="datepicker">
+            <div class="row g-4 mb-3" data-controller ="datepicker">
               <!-- Item -->
               <div class="col-md-12 d-flex">
                 <div class="bg-light py-3 px-4 rounded-5 me-2">
                   <h5 class="fw-light small mb-1"><i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Check-in </h5>
-                  <%= f.input :start_date, label: false,  as: :string, input_html: { class: 'rounded-5 mt-3', data: { target: "datepicker.startInput" } } %>
+                  <%= f.input :start_date, label: false,  as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "startInput" , total_price_target: 'startDate' } } %>
                 </div>
                 <div class="bg-light py-3 px-4 rounded-5">
                   <h5 class="fw-light small mb-1"><i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Check-out </h5>
-                  <%= f.input :end_date, label: false, as: :string, input_html: { class: 'rounded-5 mt-3', data: { target: "datepicker.endInput" } } %>
+                  <%= f.input :end_date, label: false, as: :string, input_html: { class: 'rounded-5 mt-3', data: { datepicker_target: "endInput", total_price_target: "endDate", action: 'change->total-price#calculPrice' } } %>
                 </div>
               </div>
             </div>
@@ -260,19 +260,13 @@ About hotel START -->
 								<span class="h6 fw-light mb-0">$6,100 x 2 Nights</span>
 								<span class="h6 fw-light mb-0">$13,200</span>
 							</li>
-							<li class="list-group-item px-2 d-flex border-0 bg-white justify-content-between">
-								<span class="h6 fw-light mb-0">10% campaign discount</span>
-								<span class="h6 fw-light mb-0">-$500</span>
-							</li>
-							<li class="list-group-item px-2 d-flex border-0 bg-white justify-content-between">
-								<span class="h6 fw-light mb-0">Services Fee</span>
-								<span class="h6 fw-light mb-0">$100</span>
-							<li class="list-group-item bg-light rounded-4 d-flex justify-content-between px-2 mt-3">
-								<span class="h5 fw-normal mb-0 ps-1">Total</span>
-								<span class="h5 fw-normal mb-0">$13,500</span>
-							</li>
-						</ul>
 
+						</ul>
+              <div class="d-flex justify-content-between align-items-center">
+									<span class="h5 mb-0 title-font text-success">Prix total HT</span>
+                  <%= f.input :total_price, label: false, as: :decimal, input_html: { readonly: true, class: 'w-50 p-0 fs-5 mt-4 text-center bg-white border-0 title-font text-success', data: {'total-price-target' => 'totalPrice'} } %>
+                  <span class="h5 mb-0 title-font text-success" > € </span>
+								</div>
 						<!-- Button -->
 						<div class="d-grid gap-2">
               <!-- Button trigger modal -->
@@ -289,6 +283,7 @@ About hotel START -->
             </div>
 					</div>
 					<!-- Card body END -->
+
 				</div>
 			</aside>
 			<!-- Right side content END -->
