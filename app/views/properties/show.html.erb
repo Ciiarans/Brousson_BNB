@@ -150,9 +150,22 @@ About hotel START -->
 							</div>
 						</div>
 						<!-- Card body END -->
+            <!-- app/views/locations/show.html.erb -->
+
 					</div>
 					<!-- Amenities END -->
 
+<div class="google-map-frame">
+  <iframe class ="rounded-5"
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://maps.google.com/maps?q=<%= CGI.escape(@address) %>&output=embed">
+  </iframe>
+</div>
 
 
 					<!-- Hotel Policies START -->
