@@ -1,0 +1,71 @@
+<div class="container">
+  <%= simple_form_for @property do |f| %>
+    <div class="form-group">
+      <%= f.input :title, required: true, label: "Titre *", input_html: { class: "form-control" } %>
+      <%= f.input :description, required: true, label: "Description *", input_html: { class: "form-control" } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :capacity, "Capacité *" %>
+      <div class="form-check-inline">
+        <%= f.input :capacity, as: :radio_buttons, collection: (1..10).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bedrooms, "Chambres *" %>
+      <div class="form-check-inline">
+        <%= f.input :bedrooms, as: :radio_buttons, collection: (1..5).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bathrooms, "Salles de bain *" %>
+      <div class="form-check-inline">
+        <%= f.input :bathrooms, as: :radio_buttons, collection: (1..5).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :price_per_night, label: "Prix par nuit *", input_html: { type: 'number', step: '0.01', class: "form-control" } %>
+      <%= f.input :address, label: "Adresse *", input_html: { class: "form-control" } %>
+    </div>
+
+    <div data-controller="equipments">
+      <h3>Ce que propose ce logement</h3>
+      <div data-equipments-target="list" class="row">
+        <% @equipment_categories.each do |category, equipments| %>
+          <h4 class="col-12"><%= category %></h4>
+          <div class="col-6">
+            <% equipments.each_with_index do |equipment, index| %>
+              <% if index.even? %>
+                <div class="form-check">
+                  <%= check_box_tag "property[equipments][]", equipment, false, id: "equipment_#{equipment}", class: "form-check-input" %>
+                  <%= label_tag "equipment_#{equipment}", equipment, class: "form-check-label" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-6">
+            <% equipments.each_with_index do |equipment, index| %>
+              <% if index.odd? %>
+                <div class="form-check">
+                  <%= check_box_tag "property[equipments][]", equipment, false, id: "equipment_#{equipment}", class: "form-check-input" %>
+                  <%= label_tag "equipment_#{equipment}", equipment, class: "form-check-label" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div>
+            <%= text_field_tag "property[new_equipment_#{category.downcase.gsub(' ', '_')}]", nil, placeholder: "Ajouter un équipement", class: "form-control" %>
+            <%= button_tag "Ajouter", type: "button", data: { action: "equipments#add" }, class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Créer le logement", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

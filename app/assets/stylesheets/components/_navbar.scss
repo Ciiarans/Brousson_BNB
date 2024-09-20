@@ -1,12 +1,10 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar-sticky {
+  position: sticky;
+  top: -100px; /* Cache la navbar lors du scroll vers le bas */
+  transition: top 0.3s;
+  z-index: 1030;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-visible {
+  top: 0; /* Affiche la navbar lorsqu'on remonte */
 }

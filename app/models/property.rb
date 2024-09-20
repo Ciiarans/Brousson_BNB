@@ -1,4 +1,5 @@
 class Property < ApplicationRecord
+  has_one_attached :image
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   belongs_to :user
@@ -10,6 +11,7 @@ class Property < ApplicationRecord
   validates :title, length: { minimum: 5 }
   validates :description, length: { minimum: 10 }
   validates :equipments, length: { minimum: 10 }
+  validates :address, uniqueness: true
 
   # validate :price_per_night_is_multiple_of_5
   # validate :address_is_valid
