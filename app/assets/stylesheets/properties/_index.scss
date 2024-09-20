@@ -9,3 +9,10 @@
   width: 100%;
 
 }
+
+.card-img-top:hover {
+
+  transform: scale(1.02);
+  transition: transform 0.5s;
+
+}
