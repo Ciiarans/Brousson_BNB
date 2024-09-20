@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
     @markers = @properties.geocoded.map do |property|
       {
         lat: property.latitude,
-        lng: property.longitude
+        lng: property.longitude,
       }
     end
   end
@@ -13,6 +13,7 @@ class PropertiesController < ApplicationController
   def show
     @property = Property.find(params[:id])
     @reservation = Reservation.new
+    @address = @property.address
   end
   def new
       @property = Property.new
