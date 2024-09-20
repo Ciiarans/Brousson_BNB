@@ -1,38 +1,33 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon shadow-sm">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <h4 class ="text-primary">Brousson BNB</h4>
+<nav data-controller="navbar" data-navbar-target="navbar" class="navbar navbar-expand-sm navbar-light bg-white shadow-sm py-3 navbar-sticky">
+  <div class="container">
+    <!-- Logo -->
+    <%= link_to root_path, class: "navbar-brand text-primary fw-bold d-flex align-items-center" do %>
+      <h4>Brousson BNB</h4>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Hamburger Menu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+          <li class="nav-item me-3">
+            <%= link_to "Ajouter un logement", new_property_path, class: "btn btn-outline-primary" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
+            <%= link_to profile_path do %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar rounded-circle", alt: "Profile" %>
+            <% end %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Accès admin", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Accès admin", new_user_session_path, class: "btn btn-primary" %>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
-</div>
+</nav>
