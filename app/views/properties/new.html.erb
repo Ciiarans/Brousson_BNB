@@ -1,4 +1,15 @@
 <div class="container">
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "erreur") %> empêchent la sauvegarde :</h2>
+      <ul>
+        <% @property.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= simple_form_for @property do |f| %>
     <div class="form-group">
       <%= f.input :title, required: true, label: "Titre *", input_html: { class: "form-control" } %>
@@ -55,10 +66,6 @@
                 </div>
               <% end %>
             <% end %>
-          </div>
-          <div>
-            <%= text_field_tag "property[new_equipment_#{category.downcase.gsub(' ', '_')}]", nil, placeholder: "Ajouter un équipement", class: "form-control" %>
-            <%= button_tag "Ajouter", type: "button", data: { action: "equipments#add" }, class: "btn btn-secondary" %>
           </div>
         <% end %>
       </div>

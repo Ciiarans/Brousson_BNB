@@ -39,8 +39,8 @@ Salon spacieux, cuisine fermée tout équipée avec une agréable terrasse.",
   bedrooms: 3,
   bathrooms: 2,
   price_per_night: 210,
-  address: '16 Villa Gaudelet, Paris',
-  equipments: "Vue sur l'océan, lave-linge, télévision, wifi, espace de travail dédié, wifi, cuisine, parking gratuit sur place, salle de sport, espace repas en plein air")
+  address: 'Biarritz, Nouvelle-Aquitaine, France',
+  equipments: ["Vue sur l'océan, lave-linge, télévision, wifi, espace de travail dédié, wifi, cuisine, parking gratuit sur place, salle de sport, espace repas en plein air"])
 
   properties <<  Property.create!(
     user: users.first,
@@ -52,8 +52,8 @@ Transports en commun à proximité. Il se compose d'une cuisine ouverte sur salo
     bedrooms: 4,
     bathrooms: 2,
     price_per_night: 385,
-    address: '16 Villa Gaudelet, Paris',
-    equipments: 'Piscine, Climatisation, Wifi, Parking, Barbecue')
+    address: 'Anglet, Nouvelle-Aquitaine, France',
+    equipments: ['Piscine, Climatisation, Wifi, Parking, Barbecue'])
 
     properties <<  Property.create!(
       user: users.first,
@@ -65,8 +65,8 @@ pour les amoureux du surf et de la cote basque",
       bedrooms: 3,
       bathrooms: 2,
       price_per_night: 200,
-      address: 'rue de la république, Anglet, Nouvelle-Aquitaine, France',
-      equipments: 'Lave-linge, climatisation, détecteur de fumée, espace de travail dédié, wifi, cuisine, réfrigérateur, cafetière, parking, patio ou balcon, accès plage ou bord de mer')
+      address: '16, Anglet, Nouvelle-Aquitaine, France',
+      equipments: ['Lave-linge, climatisation, détecteur de fumée, espace de travail dédié, wifi, cuisine, réfrigérateur, cafetière, parking, patio ou balcon, accès plage ou bord de mer'])
 
       properties <<    Property.create!(
         user: users.first,
@@ -79,8 +79,8 @@ Meublé de tourisme 3***',
         bedrooms: 2,
         bathrooms: 2,
         price_per_night: 380,
-        address: '16 Villa Gaudelet, Paris',
-        equipments: 'Sèche-cheveux, lave-linge, sèche-linge, télévision, minigolf, lit pour bébé, détecteur de fumée, wifi, espace de travail dédié, cuisine, micro-ondes, accès à la plage, parking, logement de plein pied ')
+        address: '18, Anglet, Nouvelle-Aquitaine, France',
+        equipments: ['Sèche-cheveux, lave-linge, sèche-linge, télévision, minigolf, lit pour bébé, détecteur de fumée, wifi, espace de travail dédié, cuisine, micro-ondes, accès à la plage, parking, logement de plein pied '])
 
 # Créer des réservations
 10.times do
