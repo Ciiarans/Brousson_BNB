@@ -9,32 +9,28 @@
     </div>
   </div>
 
-   <div class="col-6 banner-card mt-0">
-    <div style="width: 100%; height: 100%;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-   </div>
+
 </div>
 </section>
 <section>
-
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="mt-5 text-center mb-4">Nos locations </h2>
+        <h2 class="mt-5 text-center mb-4">Nos locations</h2>
       </div>
     </div>
     <div class="row">
       <% @properties.each do |property| %>
         <div class="col-4">
           <div class="card rounded-5 mt-4 border-0">
-            <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', class: "card-img-top rounded-5"%>
+            <%= link_to property_path(property) do %>
+              <%= image_tag 'andri-klopfenstein-c5XrSx7WlPk-unsplash.jpg', class: "card-img-top rounded-5" %>
+            <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= property.title%></h5>
-              <p class="card-text"><%= property.description %></p>
-              <p class="card-text"><strong>Price:</strong> <%= property.price_per_night %></p>
-              <%= link_to "View", property_path(property), class: "btn btn-primary" %>
+              <h5 class="card-title"><%= property.title %></h5>
+              <p class="card-text"><%= property.description.split(".").first %></p>
+              <p class="card-text"><strong>Prix par nuit :</strong> <%= property.price_per_night.to_i %> €</p>
+              <%= link_to "Découvrir", property_path(property), class: "btn btn-primary" %>
             </div>
           </div>
         </div>
@@ -42,6 +38,7 @@
     </div>
   </div>
 </section>
+
 
 
 <!-- =======================
@@ -129,7 +126,7 @@ Services END -->
 
 <section class ="carousel">
 <div class = "carousel-h ">
-<h1 class="text-center mt-5 mb-5">Customers</h1>
+<h1 class="text-center mt-5 mb-5">Avis clients</h1>
 <div>
 <div class = "custom-caroussel-size mb-5 ">
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
