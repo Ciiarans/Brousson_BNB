@@ -4,19 +4,24 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+
   end
 
 
   def create
-    @reservation = Reservation.new(reservation_params)
+
+    @reservation = @property.reservations.build(reservation_params)
+
     @reservation.property = @property
-    @reservation.total_price = @property.price * (@reservation.end_date - @reservation.start_date).to_i
-    @reservation.status = "pending"
+
+    @reservation.status = "en_attente"
+    @reservation.total_price = @property.price_per_night * (@reservation.end_date - @reservation.start_date).to_i
     if @reservation.save
-      redirect_to properties_path flash[:notice] = "Votre réservation a bien été prise en compte. Un mail vous sera envoyé pour confirmer votre réservation"
+
+      redirect_to property_path(@property), notice: "Votre réservation a bien été prise en compte. Un mail vous sera envoyé pour confirmer votre réservation"
     else
-      render :new
-      flash[:alert] = "Votre réservation n'a pas pu être prise en compte"
+      redirect_to property_path(@property), alert: "Votre réservation n'a pas pu être prise en compte"
+
     end
   end
 
@@ -36,7 +41,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :first_name, :last_name, :phone, :email, :number_of_guests, :status, :civility, :message)
+    params.require(:reservation).permit(:start_date, :end_date, :first_name, :last_name, :phone, :email, :number_of_guests, :status, :civility, :message, :total_price)
   end
 
   def set_reservation

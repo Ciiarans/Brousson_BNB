@@ -11,12 +11,15 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id])
     @reservation = Reservation.new
+    @property = Property.find(params[:id])
+
     @address = @property.address
+
   end
   def new
       @property = Property.new
+
       @equipment_categories = {
         "Chambre et linge" => ["Salle de bain", "Sèche-cheveux", "Eau chaude", "Chambre et linge", "Lave-linge (Gratuit) dans le logement", "Sèche-linge (Gratuit)", "Équipements de base", "Serviettes, draps, savon et papier toilette", "Cintres", "Draps", "Linge de lit en coton", "Oreillers et couvertures supplémentaires", "Stores", "Fer à repasser", "Étendoir à linge", "Espace de rangement pour les vêtements : dressing"],
         "Divertissement" => ["Télévision", "Livres et de quoi lire", "Minigolf"],
