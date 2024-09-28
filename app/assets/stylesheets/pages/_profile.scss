@@ -68,3 +68,7 @@
   border-top: 2px solid $body-color;  // Use the body color for the line
   margin: 2rem 0;  // Add vertical spacing around the line
 }
+.separator--small {
+  border-top-width: 1px;  // Use a thinner line
+  margin: 1rem 0;  // Reduce vertical spacing
+}
