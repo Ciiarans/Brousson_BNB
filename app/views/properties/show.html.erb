@@ -294,24 +294,73 @@ About hotel START -->
 <!-- =======================
 About hotel END -->
 <!-- Modal -->
-<div class="modal fade " id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<%= simple_form_for [@property, @reservation] do |f| %>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-controller="datepicker" data-controller="total-price" data-total-price-priceperday-value="<%= @property.price_per_night %>">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Demande de réservation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+
+        <div class="container ">
+          <div class="form-group">
+            <h4 class="fs-5">Arrivée</h4>
+                    <%= f.input :start_date, label: false, as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "startInput", total_price_target: 'startDate' } } %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Départ</h4>
+                    <%= f.input :end_date, label: false, as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "endInput", total_price_target: "endDate", action: 'change->total-price#calculPrice' } } %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Civilité</h4>
+            <%= f.input :civility, collection: ['Mr', 'Mme', 'Mlle'], label: false %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Prénom</h4>
+            <%= f.input :first_name, label: false %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Nom</h4>
+            <%= f.input :last_name, label: false %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Email</h4>
+            <%= f.input :email, label: false %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Téléphone</h4>
+            <%= f.input :phone, label: false %>
+          </div>
+
+          <div class="form-group">
+            <h4 class="fs-5">Nombre de personnes</h4>
+            <%= f.input :number_of_guests, label: false %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Message</h4>
+            <%= f.input :message, label: false %>
+          </div>
+          <div class="form-group">
+            <h4 class="fs-5">Pièce d'identité</h4>
+            <%= f.input :photo, as: :file, label: false %>
+          </div>
+          <div class="form-group" >
+            <h4 class="fs-5">Prix total</h4>
+            <%= f.input :total_price, label: false, as: :decimal, input_html: { readonly: true, class: 'w-50 p-0 fs-5 mt-4 text-center bg-white border-0 title-font text-success', data: { 'total-price-target' => 'totalPrice' } } %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Envoyer ma demande", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
     </div>
   </div>
-</div>
-
-
+   <%end%>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
