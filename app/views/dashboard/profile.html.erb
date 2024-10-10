@@ -57,13 +57,16 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="ModalDemande_<%= reservation.id %>"><%= "Demande de location par #{reservation.first_name} #{reservation.last_name}" %></h1>
+                          <h1 class="modal-title fs-5" id="ModalDemande_<%= reservation.id %>"><%= "Demande de location par #{reservation.civility} #{reservation.first_name} #{reservation.last_name}" %></h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           <!-- Contenu de la modale -->
                           <p><i class="bi bi-calendar-event me-2"></i><%= "Du #{reservation.start_date} au #{reservation.end_date}" %></p>
                           <p><i class="bi bi-telephone me-2"></i><%= "Téléphone : #{reservation.phone}" %></p>
+                          <p><i class="bi bi-envelope me-2"></i><%= "Email : #{reservation.email}" %></p>
+                          <p><i class="bi bi-people me-2"></i><%= "Nombre de voyageurs : #{reservation.number_of_guests}" %></p>
+                          <p><i class="bi bi-person me-2"></i><%= "Présentation : " %></p>
                           <!-- Ajoute d'autres informations si nécessaire -->
                         </div>
                         <div class="modal-footer">
