@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-white pt-3">
   <% if @property.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@property.errors.count, "erreur") %> empêchent la sauvegarde :</h2>
@@ -10,7 +10,12 @@
     </div>
   <% end %>
 
+  <h1 class="text-primary text-center pt-2">Créer un logement</h1>
+  <hr class="separator--small">
+
   <%= simple_form_for @property do |f| %>
+  <div class="mx-5">
+
     <div class="form-group">
       <%= f.input :title, required: true, label: "Titre *", input_html: { class: "form-control" } %>
       <%= f.input :description, required: true, label: "Description *", input_html: { class: "form-control" } %>
@@ -42,15 +47,17 @@
       <%= f.input :address, label: "Adresse *", input_html: { class: "form-control" } %>
     </div>
 
-    <div data-controller="equipments">
-      <h3>Ce que propose ce logement</h3>
-      <div data-equipments-target="list" class="row">
+<hr class="separator">
+
+    <div data-controller="equipments" class="pt-2">
+      <h2>Ce que propose ce logement</h2>
+      <div data-equipments-target="list" class="row justify-content-space-around">
         <% @equipment_categories.each do |category, equipments| %>
-          <h4 class="col-12"><%= category %></h4>
-          <div class="col-6">
+          <h4 class="col-12 pt-2 m-2"><%= category %></h4>
+          <div class="col-6 ">
             <% equipments.each_with_index do |equipment, index| %>
               <% if index.even? %>
-                <div class="form-check">
+                <div class="form-check ">
                   <%= check_box_tag "property[equipments][]", equipment, false, id: "equipment_#{equipment}", class: "form-check-input" %>
                   <%= label_tag "equipment_#{equipment}", equipment, class: "form-check-label" %>
                 </div>
@@ -70,9 +77,11 @@
         <% end %>
       </div>
     </div>
+    <%# <div> place pour les images </div> %>
 
-    <div class="actions">
+    <div class="actions pt-5 d-flex justify-content-end pb-5">
       <%= f.submit "Créer le logement", class: "btn btn-primary" %>
     </div>
   <% end %>
+  </div>
 </div>
