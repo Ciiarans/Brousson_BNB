@@ -53,7 +53,7 @@ Transports en commun à proximité. Il se compose d'une cuisine ouverte sur salo
     bathrooms: 2,
     price_per_night: 385,
     address: 'Anglet, Nouvelle-Aquitaine, France',
-    equipments: ['Piscine, Climatisation, Wifi, Parking, Barbecue'])
+    equipments: ["Piscine, Climatisation, Wifi, Parking, Barbecue"])
 
     properties <<  Property.create!(
       user: users.first,
@@ -66,7 +66,7 @@ pour les amoureux du surf et de la cote basque",
       bathrooms: 2,
       price_per_night: 200,
       address: '16, Anglet, Nouvelle-Aquitaine, France',
-      equipments: ['Lave-linge, climatisation, détecteur de fumée, espace de travail dédié, wifi, cuisine, réfrigérateur, cafetière, parking, patio ou balcon, accès plage ou bord de mer'])
+      equipments: ["Lave-linge, climatisation, détecteur de fumée, espace de travail dédié, wifi, cuisine, réfrigérateur, cafetière, parking, patio ou balcon, accès plage ou bord de mer"])
 
       properties <<    Property.create!(
         user: users.first,
@@ -80,7 +80,7 @@ Meublé de tourisme 3***',
         bathrooms: 2,
         price_per_night: 380,
         address: '18, Anglet, Nouvelle-Aquitaine, France',
-        equipments: ['Sèche-cheveux, lave-linge, sèche-linge, télévision, minigolf, lit pour bébé, détecteur de fumée, wifi, espace de travail dédié, cuisine, micro-ondes, accès à la plage, parking, logement de plein pied '])
+        equipments: ["Sèche-cheveux, lave-linge, sèche-linge, télévision, minigolf, lit pour bébé, détecteur de fumée, wifi, espace de travail dédié, cuisine, micro-ondes, accès à la plage, parking, logement de plein pied "])
 
 # Créer des réservations
 10.times do
