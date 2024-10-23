@@ -1,0 +1,20 @@
+<nav data-controller="navbar" data-navbar-target="navbar" class="navbar-home navbar-expand-sm navbar-light py-3 navbar-sticky">
+  <div class="container d-flex justify-content-center align-items-center">
+
+    <!-- Lien vers les appartements -->
+    <%= link_to '#locations', class: "text-decoration-none mx-3" do %>
+      <p class="mb-0">Tout nos logements</p>
+    <% end %>
+
+    <!-- Logo au centre avec marge autour -->
+    <%= link_to root_path, class: "text-decoration-none fw-bold d-flex align-items-center mx-5" do %>
+      <h4 class="mb-0">Logo Immobilier</h4>
+    <% end %>
+
+    <!-- Lien vers formulaire de contact -->
+    <%= link_to '#contact', class: "text-decoration-none mx-3" do %>
+      <p class="mb-0">Nous contacter</p>
+    <% end %>
+
+  </div>
+</nav>

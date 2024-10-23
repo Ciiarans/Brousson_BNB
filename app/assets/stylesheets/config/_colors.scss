@@ -1,19 +1,20 @@
-// Define variables for your color scheme
-
-// For example:
-// Color palette for chic oceanfront apartment rentals
-
 // Primary colors
-$primary-blue: #3a5872;      // Bleu Océan Profond
-$accent-blue: #B5EAEA;       // Bleu Ciel
-$gold-detail: #D4AF37; // Or Fin
-$red: red;
-$green: #03b848;
+$primary-blue: #2C3E50;      // Bleu Marine Profond
+$accent-blue: #5DADE2;       // Bleu Pâle Raffiné
+$gold-detail: hsl(34, 43%, 43%);       // Mauve métallisé (élégant et moderne)
+$red: #E74C3C;               // Rouge Coral
+$green: #27AE60;             // Vert Émeraude
 
 // Neutrals
-$sand: #F4E1D2;              // Sable Doux
-$grey-stone: #6C757D;        // Gris Galet
-$white-shell: #fff7f1;       // Blanc Coquillage
+$sand: #EBEDEF;              // Gris Sable Doux
+$grey-stone: #34495E;        // Gris Charbon Raffiné
+$white-shell: #F8F9F9;       // Blanc Neige Subtil
+
+$color-black: #000000;
+$color-white: #ffffff;
+$color-gray-light: #f0f0f0; // Pour les arrière-plans légers
+$color-gray-dark: #333333;   // Pour le texte sombre ou les éléments sur fond clair
+$color-gray-medium: #7f7f7f;
 
 // Typography colors
 $text-color: $grey-stone;

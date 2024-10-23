@@ -8,3 +8,39 @@
 .navbar-visible {
   top: 0; /* Affiche la navbar lorsqu'on remonte */
 }
+
+// NAVBAR CLASSIC
+.navbar {
+  height: 60px; /* Ajustez selon vos préférences */
+  background: $white-shell; /* Couleur de fond de la navbar */
+  transition: background-color 0.3s, color 0.3s;
+  color: $primary-blue; /* Couleur du texte */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une petite ombre */
+}
+
+.navbar.scrolled {
+  background-color: white; /* Changez selon la couleur de fond souhaitée */
+}
+
+.navbar.scrolled h4, .navbar.scrolled a {
+  color: $primary-blue !important; /* Couleur du texte après le scroll */
+}
+
+
+
+// NAVBAR DE LA PAGE D'ACCUEIL
+.navbar-home {
+  height: 60px; /* Ajustez selon vos préférences */
+  background: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.navbar-home h4, .navbar-home a {
+  color: $white-shell !important; /* Couleur du texte par défaut */
+}
+.navbar-home.scrolled {
+  background-color: white; /* Changez selon la couleur de fond souhaitée */
+}
+
+.navbar-home.scrolled h4, .navbar-home.scrolled a {
+  color: $primary-blue !important; /* Couleur du texte après le scroll */
+}

@@ -16,6 +16,13 @@ export default class extends Controller {
   handleScroll() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+        // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
+        if (scrollTop > 50) {
+          this.navbarTarget.classList.add("scrolled");
+        } else {
+          this.navbarTarget.classList.remove("scrolled");
+        }
+
     if (scrollTop > this.lastScrollTop) {
       // Scroll vers le bas, on cache la navbar
       this.navbarTarget.classList.remove("navbar-visible");

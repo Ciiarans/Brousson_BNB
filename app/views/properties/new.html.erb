@@ -17,34 +17,31 @@
   <div class="mx-5">
 
     <div class="form-group">
-      <%= f.input :title, required: true, label: "Titre *", input_html: { class: "form-control" } %>
-      <%= f.input :description, required: true, label: "Description *", input_html: { class: "form-control" } %>
+      <%= f.input :title, required: true, label: "Titre", input_html: { class: "form-control" } %>
+      <%= f.input :description, required: true, label: "Description", input_html: { class: "form-control" } %>
     </div>
 
     <div class="form-group">
-      <%= f.label :capacity, "Capacité *" %>
       <div class="form-check-inline">
-        <%= f.input :capacity, as: :radio_buttons, collection: (1..10).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
+        <%= f.input :capacity,label:"Capacité", as: :radio_buttons, collection: (1..10).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :bedrooms, "Chambres *" %>
       <div class="form-check-inline">
-        <%= f.input :bedrooms, as: :radio_buttons, collection: (1..5).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
+        <%= f.input :bedrooms, label:"Chambres", as: :radio_buttons, collection: (1..5).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :bathrooms, "Salles de bain *" %>
       <div class="form-check-inline">
-        <%= f.input :bathrooms, as: :radio_buttons, collection: (1..5).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
+        <%= f.input :bathrooms, label:"Salles de bain", as: :radio_buttons, collection: (1..5).to_a, required: true, item_wrapper_class: "form-check form-check-inline" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.input :price_per_night, label: "Prix par nuit *", input_html: { type: 'number', step: '0.01', class: "form-control" } %>
-      <%= f.input :address, label: "Adresse *", input_html: { class: "form-control" } %>
+      <%= f.input :price_per_night, label: "Prix par nuit ", input_html: { type: 'number', step: '0.01', class: "form-control" } %>
+      <%= f.input :address, label: "Adresse ", input_html: { class: "form-control" } %>
     </div>
 
 <hr class="separator">
@@ -77,7 +74,18 @@
         <% end %>
       </div>
     </div>
-    <%# <div> place pour les images </div> %>
+
+<hr class="separator">
+
+ <div class="form-group mb-3">
+  <%= f.label :first_image, "Ajouter l'image principale" %>
+  <%= f.file_field :first_image, accept: 'image/*', class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :photos, "Ajouter d'autres photos" %>
+  <%= f.file_field :photos, multiple: true, accept: 'image/*', class: "form-control" %>
+</div>
 
     <div class="actions pt-5 d-flex justify-content-end pb-5">
       <%= f.submit "Créer le logement", class: "btn btn-primary" %>

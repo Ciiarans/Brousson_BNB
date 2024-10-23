@@ -1,18 +1,47 @@
-.object-fit-cover-slider-home{
+.object-fit-cover-slider-home {
   object-fit: cover;
   width: 100%;
   height: 450px;
-
 }
 
-.slider-size{
+.slider-size {
   width: 100%;
-
 }
 
 .card-img-top:hover {
-
   transform: scale(1.02);
   transition: transform 0.5s;
+}
+// Utilisation des couleurs de ta palette
+body {
+  background-color: $background-light; // Couleur de fond de la page
+}
 
+.btn-primary {
+  background-color: $btn-primary-bg;
+  color: $btn-primary-color;
+
+  &:hover {
+    background-color: $btn-primary-hover-bg;
+  }
+}
+
+.card {
+  border: 1px solid $card-border; // Bordure de la carte
+  box-shadow: $card-shadow; // Ombre de la carte
+}
+
+.card-title {
+  color: $text-heading; // Couleur des titres de la carte
+}
+
+.card-text {
+  color: $text-color; // Couleur du texte des cartes
+}
+
+.link {
+  color: $link-color; // Couleur des liens
+  &:hover {
+    color: $link-hover-color; // Couleur des liens au survol
+  }
 }
