@@ -1,27 +1,56 @@
 .banner {
-  background-size: cover;
-  background-position: center;
-  height: 650px;
+  position: relative;
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  overflow: hidden; /* Masque tout débordement */
+  margin-top: -60px; /* Ajuste la position selon tes préférences */
 }
 
-.banner h1 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw; /* Prend toute la largeur de la fenêtre */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  object-fit: cover; /* S'assure que la vidéo couvre toute la bannière */
+  transform: translate(-50%, -50%); /* Centre la vidéo */
+  z-index: 1; /* Pour que la vidéo soit en arrière-plan */
 }
 
-.banner p {
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Assombrir la vidéo si nécessaire */
+  z-index: 2; /* Assure que le texte soit au-dessus de la vidéo */
+}
+
+.content {
+  position: relative;
+  z-index: 3; /* Assure que le contenu est au-dessus de l'overlay */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement */
+  height: 100%; /* Prend toute la hauteur de la bannière */
+  text-align: center; /* Centre le texte */
+  padding: 20px; /* Ajoute un peu de rembourrage pour le texte */
+}
+
+.scroll-down {
+  position: absolute; /* Positionne l'icône de défilement */
+  bottom: 20px; /* Ajuste selon tes préférences */
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer; /* Change le curseur pour indiquer qu'il est cliquable */
+  color: $white-shell; /* Couleur de l'icône */
+  text-decoration: none; /* Supprime le soulignement */
   font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, transform 0.3s, color 0.3s;
 }
-
-.banner-card {
-  background: white;
-  padding: 100px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-
+.scroll-down:hover {
+  background-color: transparent; /* Change la couleur au survol */
+  transform: translateX(-50%) scale(1.1); /* Agrandit le bouton au survol */
+  color: $white-shell; /* garde la couleur au survol */
 }

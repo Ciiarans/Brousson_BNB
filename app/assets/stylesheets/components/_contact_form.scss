@@ -1,0 +1,71 @@
+.contact-section {
+  padding: 50px 0;
+  background-color: $white-shell; // Fond principal de la section
+
+  .contact-info {
+    background: $background-dark;
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-details {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+
+        i {
+          margin-right: 10px;
+          color: $accent-blue;
+        }
+      }
+    }
+
+    .custom-svg {
+      margin-top: 30px;
+    }
+  }
+
+  .contact-form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    .form-label {
+      font-weight: bold;
+      color: $text-color; // Couleur du texte des labels
+    }
+
+    .form-control {
+      border: 1px solid $accent-blue;
+      border-radius: 5px;
+
+      &:focus {
+        border-color: $background-dark;
+        box-shadow: 0 0 5px rgba($accent-blue, 0.5);
+      }
+    }
+
+    .btn {
+      background-color: $background-dark;
+      color: #fff;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: $accent-blue;
+      }
+    }
+  }
+}

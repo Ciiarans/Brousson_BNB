@@ -1,33 +1,20 @@
-<nav data-controller="navbar" data-navbar-target="navbar" class="navbar navbar-expand-sm navbar-light bg-white shadow-sm py-3 navbar-sticky">
-  <div class="container">
-    <!-- Logo -->
-    <%= link_to root_path, class: "navbar-brand text-primary fw-bold d-flex align-items-center" do %>
-      <h4>Brousson BNB</h4>
+<nav data-controller="navbar" data-navbar-target="navbar" class="navbar navbar-expand-sm navbar-light py-3 navbar-sticky">
+  <div class="container d-flex justify-content-center align-items-center">
+
+    <!-- Lien vers les appartements -->
+    <%= link_to '#locations', class: "text-decoration-none mx-3" do %>
+      <p class="mb-0">Tout nos logements</p>
     <% end %>
 
-    <!-- Hamburger Menu -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Logo au centre avec marge autour -->
+    <%= link_to root_path, class: "text-decoration-none fw-bold d-flex align-items-center mx-5" do %>
+      <h4 class="mb-0">Logo Immobilier</h4>
+    <% end %>
 
-    <!-- Navbar Links -->
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item me-3">
-            <%= link_to "Ajouter un logement", new_property_path, class: "btn btn-outline-primary" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to profile_path do %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar rounded-circle", alt: "Profile" %>
-            <% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Accès admin", new_user_session_path, class: "btn btn-primary" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <!-- Lien vers formulaire de contact -->
+    <%= link_to '#contact', class: "text-decoration-none mx-3" do %>
+      <p class="mb-0">Nous contacter</p>
+    <% end %>
+
   </div>
 </nav>
