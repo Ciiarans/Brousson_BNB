@@ -47,8 +47,10 @@
   color: $white-shell; /* Couleur de l'icône */
   text-decoration: none; /* Supprime le soulignement */
   font-size: 20px;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s;
 }
 .scroll-down:hover {
   background-color: transparent; /* Change la couleur au survol */
-  color: $gold-detail; /* Change la couleur au survol */
+  transform: translateX(-50%) scale(1.1); /* Agrandit le bouton au survol */
+  color: $white-shell; /* garde la couleur au survol */
 }

@@ -1,51 +1,71 @@
-/* Styles spécifiques pour le formulaire de contact */
-.contact-form {
-  color: #fff; /* Couleur du texte blanche pour le contraste */
-}
+.contact-section {
+  padding: 50px 0;
+  background-color: $white-shell; // Fond principal de la section
 
-.contact-form .card {
-  background-color: rgba(255, 255, 255, 0.9); /* Fond blanc légèrement transparent */
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Ombre douce autour de la carte */
-}
+  .contact-info {
+    background: $background-dark;
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
 
-.contact-form h2 {
-  color: #2C3E50; /* Couleur principale pour le titre */
-}
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
 
-.contact-form .form-label {
-  font-weight: bold; /* Gras pour les étiquettes */
-}
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
 
-.contact-form .form-control {
-  border: 1px solid #5DADE2; /* Bordure colorée */
-  border-radius: 5px; /* Coins arrondis */
-}
+    .contact-details {
+      list-style: none;
+      padding: 0;
 
-.contact-form .form-control:focus {
-  border-color: #2C3E50; /* Changer la couleur de la bordure au focus */
-  box-shadow: 0 0 5px rgba(93, 173, 226, 0.5); /* Légère ombre au focus */
-}
+      li {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
 
-.contact-form .btn {
-  background-color: #2C3E50; /* Couleur du bouton */
-  color: #fff; /* Couleur du texte du bouton */
-  border-radius: 5px; /* Coins arrondis pour le bouton */
-}
+        i {
+          margin-right: 10px;
+          color: $accent-blue;
+        }
+      }
+    }
 
-.contact-form .btn:hover {
-  background-color: #5DADE2; /* Couleur au survol du bouton */
-}
-.overlay-form {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8); /* Ajustez la couleur et l'opacité ici */
-  z-index: 1; /* S'assurer que la couche de couleur est derrière le contenu */
-}
-.contact-form {
-  position: relative;
-  z-index: 2; /* S'assurer que le contenu est au-dessus de la couche */
+    .custom-svg {
+      margin-top: 30px;
+    }
+  }
+
+  .contact-form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    .form-label {
+      font-weight: bold;
+      color: $text-color; // Couleur du texte des labels
+    }
+
+    .form-control {
+      border: 1px solid $accent-blue;
+      border-radius: 5px;
+
+      &:focus {
+        border-color: $background-dark;
+        box-shadow: 0 0 5px rgba($accent-blue, 0.5);
+      }
+    }
+
+    .btn {
+      background-color: $background-dark;
+      color: #fff;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: $accent-blue;
+      }
+    }
+  }
 }

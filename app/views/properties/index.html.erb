@@ -16,6 +16,8 @@
   </div>
 </div>
 
+
+<%# Section de présentation des locations %>
 <section class="mt-5">
   <div class="container">
     <div class="row">
@@ -41,35 +43,78 @@
     </div>
   </div>
 </section>
-
-<%# formulaire de contact %>
-<section class="container-fluid position-relative mt-5" style="background: url('<%= asset_path('background-form.jpg') %>') no-repeat center fixed; background-size: cover;">
-    <div class="overlay-form"></div> <!-- Ajout de la couche de couleur -->
-    <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
-        <div class="col-md-8 contact-form">
-            <div class="card shadow p-4">
-                <h2 class="text-center mb-4">Contactez-Nous</h2>
-                <form action="/contact" method="post">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
-                </form>
-            </div>
-        </div>
+<%# Fin de la section de présentation des locations %>
+<section class="why-choose-us mt-5 py-4" style="background-color: #F8F9F9; border: 1px solid #E0E0E0; border-radius: 10px; padding: 20px;">
+  <div class="container text-center">
+    <h2 class="mb-3" style="color: #2C3E50; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 1.5rem;">Pourquoi nous choisir ?</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <i class="fas fa-user-check fa-2x mb-2" style="color: #5DADE2;"></i>
+        <h4 style="color: #2C3E50; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Service personnalisé</h4>
+        <p style="color: #34495E; font-size: 0.9rem;">Profitez d'un service sur-mesure adapté à vos besoins.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-star fa-2x mb-2" style="color: #5DADE2;"></i>
+        <h4 style="color: #2C3E50; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Confort & Qualité</h4>
+        <p style="color: #34495E; font-size: 0.9rem;">Des appartements tout confort dans les meilleures localisations.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-lock fa-2x mb-2" style="color: #5DADE2;"></i>
+        <h4 style="color: #2C3E50; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Réservation sécurisée</h4>
+        <p style="color: #34495E; font-size: 0.9rem;">Votre sécurité et tranquillité d'esprit sont nos priorités.</p>
+      </div>
     </div>
+  </div>
 </section>
+
+<section class="separator-index">
+  <svg viewBox="0 0 1440 320">
+    <path fill="$color-primary" fill-opacity="1" d="M0,256L40,234.7C80,213,160,171,240,165.3C320,160,400,192,480,192C560,192,640,160,720,165.3C800,171,880,213,960,224C1040,235,1120,213,1200,186.7C1280,160,1360,128,1400,112L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+  </svg>
+</section>
+
+      <!-- Formulaire de contact -->
+<section class="contact-section">
+  <div class="container">
+    <div class="row">
+      <!-- Section des informations de contact -->
+      <div class="col-md-6 contact-info">
+        <h2>Contactez-nous</h2>
+        <p>Vous pouvez nous joindre à ces coordonnées :</p>
+        <ul class="contact-details">
+          <li><i class="fa fa-phone"></i> +33 6 12 34 56 78</li>
+          <li><i class="fa fa-envelope"></i> pat.immo@example.com</li>
+          <li><i class="fa fa-map-marker"></i> 123 Rue de la Plage, Côte Basque, France</li>
+        </ul>
+      </div>
+
+      <!-- Formulaire de contact -->
+      <div class="col-md-6">
+        <div class="contact-form card p-4">
+          <form action="/contact" method="post">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nom</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div id="form-contact" class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%# fin du formulaire de contact %>
 
+<%# Avis client carousel %>
 <section class="carousel">
   <div class="carousel-h">
     <div class="custom-caroussel-size mb-5">
@@ -98,3 +143,4 @@
     </div>
   </div>
 </section>
+<%# fin carousel avis client %>

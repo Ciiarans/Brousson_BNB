@@ -1,7 +1,7 @@
 // Primary colors
 $primary-blue: #2C3E50;      // Bleu Marine Profond
 $accent-blue: #5DADE2;       // Bleu Pâle Raffiné
-$gold-detail: hsl(34, 43%, 43%);       // Mauve métallisé (élégant et moderne)
+$gold-detail: #ffd700;       // Or pour les hover (élégant et moderne)
 $red: #E74C3C;               // Rouge Coral
 $green: #27AE60;             // Vert Émeraude
 
@@ -37,7 +37,6 @@ $btn-outline-hover-color: $white-shell;
 
 // Links
 $link-color: $primary-blue;
-$link-hover-color: $gold-detail;
 
 // Card colors
 $card-border: $sand;
