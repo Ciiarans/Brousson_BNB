@@ -1,27 +1,21 @@
-
 <!-- =======================
 Main Title START -->
 <section class="py-0 pt-sm-5">
-	<div class="container position-relative">
-		<!-- Title and button START -->
-		<div class="row mb-3">
-			<div class="col-12">
-				<!-- Meta -->
-				<div class="d-lg-flex justify-content-lg-between mb-1">
-					<!-- Title -->
-					<div class="mb-2 mb-lg-0">
-						<h1 class="fs-2 mb-4 title-font text-success">Le <%= @property.title %> </h1>
-
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-		<!-- Title and button END -->
-
-
-	</div>
+  <div class="container position-relative">
+    <!-- Title and button START -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <!-- Meta -->
+        <div class="d-lg-flex justify-content-lg-between mb-1">
+          <!-- Title -->
+          <div class="mb-2 mb-lg-0">
+            <h1 class="fs-2 mb-4 title-font text-primary">Le <%= @property.title %></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Title and button END -->
+  </div>
 </section>
 <!-- =======================
 Main Title END -->
@@ -29,64 +23,70 @@ Main Title END -->
 <!-- =======================
 Image gallery START -->
 <section class="card-grid pt-0 mb-5">
-	<div class="container">
-		<div class="row g-2 ">
-			<!-- Image -->
-			<div class="col-md-6  h-50 ">
-        <%= image_tag 'pierre-archi-pBo19ZxU9qE-unsplash.jpg', alt: 'Description of the image', class: ' w-100 h-custom rounded-5 show-fit-cover' %>
-					<div class="card card-grid-lg border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/14.jpg); background-position: center left; background-size: cover;">
-						<!-- Card hover element -->
-						<div class="hover-element position-absolute w-100 h-100">
-							<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-						</div>
-					</div>
-				</a>
-			</div>
+  <div class="container">
+    <div class="row g-2">
+      <!-- Image de profil (grande image à gauche) -->
+      <div class="col-md-6">
+        <% if @property.first_image.attached? %>
+          <%= cl_image_tag @property.first_image.key, width: 600, height: 800, crop: :fill, class: "w-100 h-auto rounded-5" %>
+        <% else %>
+          <%= image_tag 'fallback-image.png', alt: 'Aucune image de profil disponible', class: 'w-100 h-auto rounded-5' %>
+        <% end %>
+      </div>
 
-			<div class="col-md-6 ">
-				<!-- Card item START -->
-				<div class="row g-2">
-					<!-- Image -->
-					<div class="col-12  h-25 ">
-        <%= image_tag 'pierre-archi-pBo19ZxU9qE-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5   w-100 h-custom-1  show-fit-cover' %>
-							<div class="card card-grid-sm border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/13.jpg); background-position: center left; background-size: cover;">
-								<!-- Card hover element -->
-								<div class="hover-element position-absolute w-100 h-100">
-									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-								</div>
-							</div>
-						</a>
-					</div>
+      <!-- Section des petites images à droite (2x2) -->
+      <div class="col-md-6">
+        <div class="row">
+          <% (0..3).each do |index| %> <!-- Affiche jusqu'à 4 images -->
+            <div class="col-6 mb-2 position-relative">
+              <% if @property.photos.attached? && @property.photos[index].present? %>
+                <%= cl_image_tag @property.photos[index].key, class: 'w-100 h-auto rounded-5' %>
+              <% else %>
+                <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'w-100 h-auto rounded-5' %>
+              <% end %>
 
-					<!-- Image -->
-					<div class="col-md-6 ">
-        <%= image_tag 'pierre-archi-pBo19ZxU9qE-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5 w-100 h-custom-2 show-fit-cover' %>
-							<div class="card card-grid-sm border-0 card-element-hover card-overlay-hover overflow-hidden" style="background-image:url(assets/images/gallery/12.jpg); background-position: center left; background-size: cover;">
-								<!-- Card hover element -->
-								<div class="hover-element position-absolute w-100 h-100">
-									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-								</div>
-							</div>
-						</a>
-					</div>
+              <!-- Bouton sur la 4ème image -->
+              <% if index == 3 %>
+                <div class="position-absolute bottom-0 end-0 m-4">
+                  <button type="button" class="btn btn-light border border-dark rounded-pill px-4 py-2 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                    <i class="bi bi-images me-2"></i> Voir la galerie complète
+                  </button>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-					<!-- Images -->
-					<div class="col-md-6">
-							<!-- Background overlay -->
-							<div class="bg-overlay bg-dark opacity-7"></div>
-
-							<!-- Popup Images -->
-              <%= image_tag 'pierre-archi-pBo19ZxU9qE-unsplash.jpg', alt: 'Description of the image', class: 'rounded-5 w-100 h-custom-2 show-fit-cover' %>
-
-
-
-						</div>
-					</div>
-				</div>
-				<!-- Card item END -->
-			</div>
-		</div>
-	</div>
+  <!-- Modale pour la galerie d'images -->
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="galleryModalLabel">Galerie complète</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <% @property.photos.each do |photo| %>
+              <div class="col-md-4 mb-2">
+                <% if photo.attached? %>
+                  <%= cl_image_tag photo.key, class: 'img-fluid rounded' %>
+                <% else %>
+                  <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'img-fluid rounded' %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- =======================
 Image gallery END -->
@@ -94,39 +94,33 @@ Image gallery END -->
 <!-- =======================
 About hotel START -->
 <section class="pt-0">
-	<div class="container" data-sticky-container>
+  <div class="container" data-sticky-container>
+    <div class="row g-4 g-xl-5">
+      <!-- Content START -->
+      <div class="col-xl-7 col-lg-12 order-2 order-xl-1">
+        <div class="vstack gap-5">
+          <!-- About hotel START -->
+          <div class="card bg-transparent border-0">
+            <!-- Card header -->
+            <div class="card-header border-bottom bg-transparent px-0 pt-0">
+              <h3 class="mb-2 title-font text-primary">Informations</h3>
+            </div>
 
-		<div class="row g-4 g-xl-5">
-			<!-- Content START -->
-			<div class="col-xl-7 col-lg-12 order-2 order-xl-1">
-				<div class="vstack gap-5">
+            <!-- Card body START -->
+            <div class="card-body pt-4 p-0">
+              <p class="mb-3"><%= @property.description %></p>
+            </div>
+            <!-- Card body END -->
+          </div>
+          <!-- About hotel END -->
 
-					<!-- About hotel START -->
-					<div class="card bg-transparent border-0">
-						<!-- Card header -->
-						<div class="card-header border-bottom bg-transparent px-0 pt-0">
-							<h3 class="mb-2 title-font text-success">Informations</h3>
-						</div>
+          <!-- Amenities START -->
+          <div class="card bg-transparent border-0">
+            <!-- Card header -->
+            <div class="card-header border-bottom bg-transparent px-0 pt-0">
+              <h3 class="card-title mb-2 title-font text-primary mb-0">Equipements</h3>
+            </div>
 
-						<!-- Card body START -->
-						<div class="card-body pt-4 p-0">
-
-
-							<p class="mb-3"><%= @property.description %></b></p>
-
-
-
-						</div>
-						<!-- Card body END -->
-					</div>
-					<!-- About hotel START -->
-
-					<!-- Amenities START -->
-					<div class="card bg-transparent border-0">
-						<!-- Card header -->
-						<div class="card-header border-bottom bg-transparent px-0 pt-0">
-							<h3 class="card-title mb-2 title-font text-success mb-0">Equipements</h3>
-						</div>
 
 						<!-- Card body START -->
 						<div class="card-body pt-4 p-0">
@@ -350,6 +344,7 @@ About hotel START -->
           <div class="form-group">
             <%= f.submit "Envoyer ma demande", class: "btn btn-primary" %>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+
           </div>
         </div>
       </div>
@@ -357,5 +352,7 @@ About hotel START -->
   </div>
 <% end %>
 
+
 </main>
+
 <!-- **************** MAIN CONTENT END **************** -->

@@ -1,0 +1,28 @@
+.footer {
+  background-color: #34495E; /* Utiliser le gris charbon raffiné */
+  color: #ffffff; /* Couleur du texte blanc */
+}
+
+.footer a {
+  color: #5DADE2; /* Couleur des liens */
+  text-decoration: none; /* Pas de soulignement */
+}
+
+.footer a:hover {
+  text-decoration: underline; /* Soulignement au survol */
+}
+
+.icon-login {
+  position: fixed; /* Rendre l'icône fixe */
+  top: 20px; /* Ajuste la position verticale */
+  right: 20px; /* Ajuste la position horizontale */
+  background: none; /* Pas de fond */
+  border: none; /* Pas de bordure */
+  color: #5DADE2; /* Couleur discrète */
+  font-size: 18px; /* Taille de l'icône */
+  transition: color 0.3s; /* Effet de transition */
+}
+
+.icon-login:hover {
+  color: #2C3E50; /* Couleur au survol */
+}
