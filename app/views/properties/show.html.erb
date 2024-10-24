@@ -9,7 +9,7 @@ Main Title START -->
         <div class="d-lg-flex justify-content-lg-between mb-1">
           <!-- Title -->
           <div class="mb-2 mb-lg-0">
-            <h1 class="fs-2 mb-4 title-font text-success">Le <%= @property.title %></h1>
+            <h1 class="fs-2 mb-4 title-font text-primary">Le <%= @property.title %></h1>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@ About hotel START -->
           <div class="card bg-transparent border-0">
             <!-- Card header -->
             <div class="card-header border-bottom bg-transparent px-0 pt-0">
-              <h3 class="mb-2 title-font text-success">Informations</h3>
+              <h3 class="mb-2 title-font text-primary">Informations</h3>
             </div>
 
             <!-- Card body START -->
@@ -118,7 +118,7 @@ About hotel START -->
           <div class="card bg-transparent border-0">
             <!-- Card header -->
             <div class="card-header border-bottom bg-transparent px-0 pt-0">
-              <h3 class="card-title mb-2 title-font text-success mb-0">Equipements</h3>
+              <h3 class="card-title mb-2 title-font text-primary mb-0">Equipements</h3>
             </div>
 
             <!-- Card body START -->
@@ -160,7 +160,7 @@ About hotel START -->
           <!-- Card header START -->
           <div class="card-header bg-transparent border-bottom">
             <!-- Title -->
-            <h4 class="card-title mb-2 mt-2 title-font text-success">Aperçu du séjour</h4>
+            <h4 class="card-title mb-2 mt-2 title-font text-primary">Aperçu du séjour</h4>
           </div>
 
           <!-- Card body START -->
@@ -181,9 +181,9 @@ About hotel START -->
               </div>
               <!-- List -->
               <div class="d-flex  align-items-center gap-2">
-                <span class="h5 mb-0 title-font text-success ">Prix total:</span>
-                <%= f.input :total_price, label: false, as: :decimal, input_html: { readonly: true, class: 'w-50 p-0 fs-5 mt-4 text-center border-1 title-font text-success bg-white', data: { 'total-price-target' => 'totalPrice' } } %>
-                <span class="h5 mb-0 title-font text-success">€</span>
+                <span class="h5 mb-0 title-font text-primary ">Prix total:</span>
+                <%= f.input :total_price, label: false, as: :decimal, input_html: { readonly: true, class: 'w-50 p-0 fs-5 mt-4 text-center border-1 title-font text-primary bg-white', data: { 'total-price-target' => 'totalPrice' } } %>
+                <span class="h5 mb-0 title-font text-primary">€</span>
               </div>
               <!-- Button -->
               <div class="d-grid gap-2">
@@ -207,7 +207,7 @@ About hotel START -->
     <div class="card bg-transparent border-0">
       <!-- Card header -->
       <div class="card-header border-bottom bg-transparent px-0 pt-0 text-center">
-        <h3 class="mb-0 title-font text-success">Rêglement</h3>
+        <h3 class="mb-0 title-font text-primary">Rêglement</h3>
       </div>
 
 <div class="pt-4 container d-flex">
@@ -313,7 +313,7 @@ About hotel END -->
             </div>
             <div class="form-group">
               <h4 class="fs-5">Prix total</h4>
-              <%= f.input :total_price, label: false, as: :decimal, input_html: { readonly: true, class: 'w-50 p-0 fs-5 mt-4 text-center bg-white border-0 title-font text-success', data: { 'total-price-target' => 'totalPrice' } } %>
+              <%= f.input :total_price, label: false, as: :decimal, input_html: { readonly: true, class: 'w-50 p-0 fs-5 mt-4 text-center bg-white border-0 title-font text-primary', data: { 'total-price-target' => 'totalPrice' } } %>
             </div>
             <div class="form-group">
               <%= f.submit "Envoyer ma demande", class: "btn btn-primary" %>
