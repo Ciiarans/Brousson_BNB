@@ -1,38 +1,42 @@
 <div class="container bg-white mt-4 py-4 rounded-2">
   <!-- Section: Mes locations en cours -->
-  <h2 class="mb-4 text-primary">Mes locations en cours</h2>
+  <h3 class="mb-4 text-primary">Mes locations en cours</h3>
   <div class="container py-5">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-      <% @reservations.each do |reservation| %>
-        <% if reservation.status == "confirmée" %>
-          <div class="col">
-            <div class="card h-100 bg-white shadow-sm border-0 rounded-4">
-              <div class="card-header border-0 pb-0 text-center">
-                <h4 class="text-primary"><%= reservation.property.title %></h4>
-              </div>
-              <div class="card-body">
-                <ul class="list-unstyled mb-4">
-                  <li><i class="bi bi-calendar-check me-2"></i> <%= "#{reservation.start_date} / #{reservation.end_date}" %></li>
-                  <li><i class="bi bi-person-circle me-2"></i> <%= "#{reservation.first_name} #{reservation.last_name}" %></li>
-                  <li><i class="bi bi-telephone-fill me-2"></i> <%= reservation.phone %></li>
-                </ul>
-              </div>
-              <div class="card-footer text-center">
-                <small class="text-muted"><%= "#{reservation.total_price} €" %></small>
-              </div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    <% @reservations.each do |reservation| %>
+      <% if reservation.status == "confirmée" %>
+        <div class="col">
+          <div class="card h-100 bg-white shadow-sm border-0 rounded-4 position-relative">
+            <div class="position-absolute top-0 start-0 ">
+              <%= link_to '❌', [reservation.property, reservation], method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette réservation?' }, class: 'btn btn-link text-danger btn-sm text-decoration-none' %>
+            </div>
+            <div class="card-header border-0 pb-0 text-center">
+              <h5 class="text-primary"><%= reservation.property.title %></h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled mb-4">
+                <li><i class="bi bi-calendar-check me-2"></i> <%= "#{reservation.start_date} / #{reservation.end_date}" %></li>
+                <li><i class="bi bi-person-circle me-2"></i> <%= "#{reservation.first_name} #{reservation.last_name}" %></li>
+                <li><i class="bi bi-telephone-fill me-2"></i> <%= reservation.phone %></li>
+              </ul>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-muted"><%= "#{reservation.total_price} €" %></small>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
+
 
   <hr class="separator">
 
   <!-- Section: Mes demandes -->
   <div class="row p-3">
     <div class="col-12">
-      <h2 class="mb-4 text-primary">Mes demandes</h2>
+      <h3 class="mb-4 text-primary">Mes demandes</h3>
     </div>
 
     <% if @reservations.none? { |reservation| reservation.status == "en_attente" } %>
@@ -87,5 +91,40 @@
         <% end %>
       </div>
     <% end %>
+  </div>
+  <hr class="separator">
+  </div>
+  <!-- Section: Mes annonces -->
+<div class="container bg-white py-4">
+  <h3 class="text-primary my-4">Gestion des propriétés</h3>
+
+  <table class="table table-striped table-responsive">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Adresse</th>
+        <th>Capacité</th>
+        <th>Prix</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @properties.each do |property| %>
+        <tr>
+          <td><%= property.title %></td>
+          <td><%= property.address %></td>
+          <td><%= property.capacity %></td>
+          <td><%= property.price_per_night %></td>
+          <td>
+            <%= link_to 'Modifier', edit_property_path(property), class: 'btn btn-outline-success btn-sm' %>
+            <%= link_to 'Supprimer', property, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette propriété?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-end">
+    <%= link_to 'Ajouter une nouvelle propriété', new_property_path, class: 'btn btn-primary' %>
   </div>
 </div>

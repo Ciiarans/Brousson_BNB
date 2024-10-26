@@ -27,8 +27,9 @@ class ReservationsController < ApplicationController
       @reservation.photo_url = photo_url
     end
 
+    # Envoi des confirmations
     if @reservation.save
-      flash[:notice] = "Votre réservation a bien été prise en compte."
+      flash[:notice] = "Votre réservation a bien été prise en compte. Nous vous recontacterons dans les plus brefs délais."
       redirect_to properties_path
     else
       flash[:alert] = "Votre réservation n'a pas pu être prise en compte : #{@reservation.errors.full_messages.join(", ")}"
@@ -46,6 +47,12 @@ class ReservationsController < ApplicationController
       redirect_to profile_path, alert: 'Erreur lors de la mise à jour de la réservation.'
     end
 
+  end
+
+  def destroy
+      @reservation = Reservation.find(params[:id]) # Assurez-vous que l'ID est bien celui de la réservation
+      @reservation.destroy
+    redirect_to profile_path
   end
 
   private
