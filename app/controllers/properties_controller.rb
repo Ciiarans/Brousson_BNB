@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  before_action :load_equipment_categories, only: [:new, :create, :show]
 
   def index
     @properties = Property.all
@@ -13,17 +14,15 @@ class PropertiesController < ApplicationController
   def show
     @property = Property.find(params[:id])
     @reservation = Reservation.new
-    load_equipment_categories
-    @address = @property.address
+        @address = @property.address
   end
 
   def new
       @property = Property.new
-      load_equipment_categories
   end
 
   def create
-    @property = Property.new(property_params)
+        @property = Property.new(property_params)
     @property.user = current_user
     if @property.save
       redirect_to property_path(@property)

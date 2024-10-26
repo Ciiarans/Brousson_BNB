@@ -5,29 +5,27 @@
   </video>
   <div class="overlay"></div>
   <div class="content">
-    <h1 class="text-light">Votre séjour <strong>de rêve</strong> avec <strong>Pat' Immo</strong></h1>
-    <p class="text-light">Gestion locative en Côte Basque</p>
-    <div class=" text-center">
+    <h1 class="text-light">Découvrez votre séjour <strong>de rêve</strong> sur les Côtes Basque</h1>
+    <p class="text-light">Des logements uniques, des expériences mémorables, et un service personnalisé à votre disposition.</p>
+    <div class="text-center">
       <a href="#locations" class="scroll-down btn btn-outline-light p-3 rounded-4">
-      <p>Voir nos locations</p>
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        <p>Explorez nos locations</p>
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
       </a>
     </div>
   </div>
 </div>
 
-
-<%# Section de présentation des locations %>
-<section class="mt-5">
-  <div class="container">
+<section class="mb-5">
+  <div class="container py-5">
     <div class="row">
       <div class="col-12">
-        <h2 class="text-center mb-4" style="color: $text-heading;">Nos locations</h2>
+        <h2 class="text-center p-4" style="color: $text-heading;">Nos Locations de Vacances</h2>
       </div>
     </div>
     <div class="row">
       <% @properties.each do |property| %>
-        <div id="locations"class="col-4">
+        <div id="locations" class="col-4">
           <div class="card rounded-5 mt-4 border-0 h-100" style="border: 1px solid $card-border;">
             <%= link_to image_tag('fallback-image.png', class: "card-img-top rounded-5"), property_path(property) %>
             <div class="card-body d-flex flex-column justify-content-between h-100">
@@ -43,52 +41,41 @@
     </div>
   </div>
 </section>
-<%# Fin de la section de présentation des locations %>
-<section class="why-choose-us mt-5 py-4" style="background-color: #F8F9F9; border: 1px solid #E0E0E0; border-radius: 10px; padding: 20px;">
+
+<section class="why-choose-us mt-5 pb-2 pt-4" style="background-color: #2C3E50; padding: 20px;">
   <div class="container text-center">
-    <h2 class="mb-3" style="color: #2C3E50; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 1.5rem;">Pourquoi nous choisir ?</h2>
     <div class="row">
       <div class="col-md-4">
-        <i class="fas fa-user-check fa-2x mb-2" style="color: #5DADE2;"></i>
-        <h4 style="color: #2C3E50; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Service personnalisé</h4>
-        <p style="color: #34495E; font-size: 0.9rem;">Profitez d'un service sur-mesure adapté à vos besoins.</p>
+        <i class="fas fa-user-check fa-2x mb-2" style="color: #F8F9F9;"></i>
+        <h4 style="color: #F8F9F9; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Service Personnalisé</h4>
+        <p style="color: #EBEDEF; font-size: 0.9rem;">Bénéficiez d'un service sur-mesure, adapté à vos attentes et vos besoins spécifiques.</p>
       </div>
       <div class="col-md-4">
-        <i class="fas fa-star fa-2x mb-2" style="color: #5DADE2;"></i>
-        <h4 style="color: #2C3E50; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Confort & Qualité</h4>
-        <p style="color: #34495E; font-size: 0.9rem;">Des appartements tout confort dans les meilleures localisations.</p>
+        <i class="fas fa-star fa-2x mb-2" style="color: #F8F9F9;"></i>
+        <h4 style="color: #F8F9F9; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Confort & Qualité</h4>
+        <p style="color: #EBEDEF; font-size: 0.9rem;">Séjournez dans des appartements premium situés dans les meilleures localisations des Côtes Basque.</p>
       </div>
       <div class="col-md-4">
-        <i class="fas fa-lock fa-2x mb-2" style="color: #5DADE2;"></i>
-        <h4 style="color: #2C3E50; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Réservation sécurisée</h4>
-        <p style="color: #34495E; font-size: 0.9rem;">Votre sécurité et tranquillité d'esprit sont nos priorités.</p>
+        <i class="fas fa-lock fa-2x mb-2" style="color: #F8F9F9;"></i>
+        <h4 style="color: #F8F9F9; font-family: 'Noto Serif', serif; font-weight: 500; font-size: 1.2rem;">Réservation Sécurisée</h4>
+        <p style="color: #EBEDEF; font-size: 0.9rem;">Votre sécurité et tranquillité d'esprit sont notre priorité absolue lors de votre réservation.</p>
       </div>
     </div>
   </div>
 </section>
 
-<%# <section class="separator-index">
-  <svg viewBox="0 0 1440 320">
-    <path fill="$color-primary" fill-opacity="1" d="M0,256L40,234.7C80,213,160,171,240,165.3C320,160,400,192,480,192C560,192,640,160,720,165.3C800,171,880,213,960,224C1040,235,1120,213,1200,186.7C1280,160,1360,128,1400,112L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
-  </svg>
-</section> %>
-
-      <!-- Formulaire de contact -->
 <section class="contact-section">
   <div class="container">
     <div class="row">
-      <!-- Section des informations de contact -->
       <div class="col-md-6 contact-info">
-        <h2>Contactez-nous</h2>
-        <p>Vous pouvez nous joindre à ces coordonnées :</p>
+        <h2>Contactez-nous :</h2>
+        <p>Pour toute question ou demande, n'hésitez pas à nous joindre :</p>
         <ul class="contact-details">
           <li><i class="fa fa-phone"></i> +33 6 12 34 56 78</li>
           <li><i class="fa fa-envelope"></i> pat.immo@example.com</li>
           <li><i class="fa fa-map-marker"></i> 123 Rue de la Plage, Côte Basque, France</li>
         </ul>
       </div>
-
-      <!-- Formulaire de contact -->
       <div class="col-md-6">
         <div class="contact-form card p-4">
           <form action="/contact" method="post">
@@ -115,6 +102,7 @@
 <%# fin du formulaire de contact %>
 
 <%# Avis client carousel %>
+<!-- Carousel avis client
 <section class="carousel">
   <div class="carousel-h">
     <div class="custom-caroussel-size mb-5">
@@ -144,3 +132,4 @@
   </div>
 </section>
 <%# fin carousel avis client %>
+-->
