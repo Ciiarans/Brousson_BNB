@@ -9,9 +9,10 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.property = @property
-    @reservation.total_price = @property.price_per_night * (@reservation.end_date - @reservation.start_date).to_i
+    @reservation.start_date = Date.parse(params[:start_date])
+    @reservation.end_date = Date.parse(params[:end_date])
+    @reservation.total_price = params[:total_price]
     @reservation.status = "en_attente"
-
     # Upload de la photo si elle est présente
     if params[:reservation][:photo]
       uploaded_file = params[:reservation][:photo]
@@ -23,13 +24,14 @@ class ReservationsController < ApplicationController
         flash[:alert] = "L'upload de la photo a échoué : #{e.message}"
         redirect_to property_path(@property) and return
       end
+      @reservation.photo_url = photo_url
     end
 
     if @reservation.save
-      flash[:notice] = "Votre réservation a bien été prise en compte. Un mail vous sera envoyé pour confirmer votre réservation"
+      flash[:notice] = "Votre réservation a bien été prise en compte."
       redirect_to properties_path
     else
-      flash[:alert] = "Votre réservation n'a pas pu être prise en compte"
+      flash[:alert] = "Votre réservation n'a pas pu être prise en compte : #{@reservation.errors.full_messages.join(", ")}"
       redirect_to property_path(@property)
     end
   end

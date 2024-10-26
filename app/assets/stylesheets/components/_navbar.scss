@@ -48,6 +48,9 @@
   h4:hover, a:hover {
     transform: scale(1.1);
   }
+  .dropdown-text a{
+  color: $primary-blue !important;
+}
 }
 .navbar-home h4, .navbar-home a {
   color: $white-shell !important; /* Couleur du texte par défaut */
@@ -57,5 +60,5 @@
 }
 
 .navbar-home.scrolled h4, .navbar-home.scrolled a {
-  color: $primary-blue !important; /* Couleur du texte après le scroll */
+  color: $primary-blue !important;/* Couleur du texte après le scroll */
 }
