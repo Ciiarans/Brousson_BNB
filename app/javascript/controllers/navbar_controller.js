@@ -19,14 +19,8 @@ export default class extends Controller {
         // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
         if (scrollTop > 50) {
           this.navbarTarget.classList.add("scrolled");
-          const btn = document.getElementById("dropdownMenuButton1"); // Assurez-vous que votre bouton a l'ID "btn"
-          btn.classList.add("btn-outline-primary");
-          btn.classList.remove("btn-outline-light");
         } else {
           this.navbarTarget.classList.remove("scrolled");
-          const btn = document.getElementById("dropdownMenuButton1");
-          btn.classList.remove("btn-outline-primary");
-          btn.classList.add("btn-outline-light");
         }
 
         if (scrollTop > this.lastScrollTop) {

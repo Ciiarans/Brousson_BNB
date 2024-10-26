@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :load_equipment_categories, only: [:new, :create, :show]
+  before_action :load_equipment_categories, only: [:new, :create, :show, :edit, :update]
 
   def index
     @properties = Property.all
@@ -9,6 +9,15 @@ class PropertiesController < ApplicationController
         lng: property.longitude,
       }
     end
+  end
+
+  def edit
+    @property = Property.find(params[:id])
+  end
+  def update
+    @property = Property.find(params[:id])
+    @property.update(property_params)
+    redirect_to property_path(@property)
   end
 
   def show
@@ -29,6 +38,12 @@ class PropertiesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    redirect_to profile_path
   end
 
   private
@@ -53,4 +68,5 @@ class PropertiesController < ApplicationController
   def property_params
     params.require(:property).permit(:title, :address, :description, :price_per_night, :capacity, :bedrooms, :bathrooms, :image, equipments: [], photos: [])
   end
+
 end
