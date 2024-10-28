@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <p>&copy; <span id="currentYear"></span> Ossau Design. Tous droits réservés. | <a href="/mentions-legales" class="text-white">Mentions Légales</a></p>
+        <p>&copy; <span id="currentYear"></span> Ossau Design. Tous droits réservés. | <a href="#mentionsLegalesModal" class="text-white" data-bs-toggle="modal">Mentions Légales</a></p>
       </div>
       <div class="col-md-6">
         <a href="<%= new_user_session_path %>" class="text-white" title="Connexion Admin">
@@ -12,6 +12,23 @@
     </div>
   </div>
 </footer>
+<!-- Modale pour afficher les mentions légales -->
+<div class="modal fade" id="mentionsLegalesModal" tabindex="-1" aria-labelledby="mentionsLegalesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mentionsLegalesLabel">Mentions Légales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'shared/mentions' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   // Mettre à jour l'année actuelle
