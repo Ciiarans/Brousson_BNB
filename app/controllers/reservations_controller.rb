@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_property, only: [:new, :create]
   before_action :set_reservation, only: [:update]
+  before_action :authenticate_user!, only: [:destroy]
 
   def new
     @reservation = Reservation.new

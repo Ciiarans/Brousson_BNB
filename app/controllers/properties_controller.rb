@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :load_equipment_categories, only: [:new, :create, :show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @properties = Property.all
@@ -37,6 +38,14 @@ class PropertiesController < ApplicationController
       redirect_to property_path(@property)
     else
       render :new
+    end
+    # Envoi des confirmations
+    if @property.save
+      flash[:notice] = "Votre logement a bien été ajouté."
+      redirect_to property_path(@property)
+    else
+      flash[:alert] = "Votre logement n'a pas pu être ajouté : #{@property.errors.full_messages.join(", ")}"
+      redirect_to new_property_path
     end
   end
 

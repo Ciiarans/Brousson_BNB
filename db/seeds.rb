@@ -95,7 +95,7 @@ Meublé de tourisme 3***',
     email: Faker::Internet.email,
     number_of_guests: rand(1..6),
     status: %w[confirmée annulée en_attente].sample,
-    civility: %w[M. Mme Mlle].sample,
+    civility: %w[M Mme Mlle].sample,
     message: Faker::Lorem.paragraph(sentence_count: 3),
     created_at: Time.now,
     updated_at: Time.now
