@@ -252,6 +252,7 @@ About hotel START -->
       <!-- Modal de réservation -->
       <%= simple_form_for([@property, @reservation]) do |f| %>
 
+
         <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true"
              data-controller="modal" data-total-price-priceperday-value="<%= @property.price_per_night %>">
           <div class="modal-dialog modal-dialog-centered">
