@@ -5,6 +5,7 @@ class Reservation < ApplicationRecord
   validates :number_of_guests, numericality: { only_integer: true, greater_than: 0 }
   validates :status, inclusion: { in: %w(en_attente confirmée annulée) }
   validates :civility, inclusion: { in: %w(Mme Mr Mlle) }
+
   # validate :end_date_after_start_date
   # validate :start_date_not_in_past
   # validate :end_date_not_in_past
