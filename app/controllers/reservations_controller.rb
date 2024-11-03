@@ -8,29 +8,30 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    @property = Property.find(params[:property_id]) # Assurez-vous que vous avez accès à @property
     @reservation = Reservation.new(reservation_params)
     @reservation.property = @property
-    @reservation.start_date = Date.parse(params[:start_date])
-    @reservation.end_date = Date.parse(params[:end_date])
-    @reservation.total_price = params[:total_price]
-    @reservation.status = "en_attente"
-    # Upload de la photo si elle est présente
-    if params[:reservation][:photo]
-      uploaded_file = params[:reservation][:photo]
-      begin
-        # Uploader la photo vers Cloudinary
-        upload_response = Cloudinary::Uploader.upload(uploaded_file.tempfile.path, resource_type: :raw)
-        photo_url = upload_response['secure_url'] # Récupérer l'URL sécurisée
-      rescue => e
-        flash[:alert] = "L'upload de la photo a échoué : #{e.message}"
-        redirect_to property_path(@property) and return
-      end
-      @reservation.photo_url = photo_url
+    @reservation.start_date = Date.strptime(params[:start_date], '%Y-%m-%d') rescue nil
+    @reservation.end_date = Date.strptime(params[:end_date], '%Y-%m-%d') rescue nil
+
+    # Gestion du ménage
+    if params[:reservation][:add_cleaning] == '1' # '1' si coché
+      @reservation.total_price = params[:total_price].to_f + @cleaning # Ajout du prix de ménage au prix total
+      @reservation.add_cleaning = true
+    else
+      @reservation.total_price = params[:total_price].to_f
+      @reservation.add_cleaning = false
     end
 
-    # Envoi des confirmations
+    @reservation.status = "en_attente"
+
+    # Upload de la photo si elle est présente
+    if params[:reservation][:photo]
+      # ... (le reste de ton code pour uploader la photo)
+    end
+
     if @reservation.save
-      flash[:notice] = "Votre réservation a bien été prise en compte. Nous vous recontacterons dans les plus brefs délais."
+      flash[:notice] = "Votre réservation a bien été prise en compte."
       redirect_to properties_path
     else
       flash[:alert] = "Votre réservation n'a pas pu être prise en compte : #{@reservation.errors.full_messages.join(", ")}. Veuillez vérifier les champs manquants et réessayer."
@@ -63,7 +64,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :first_name, :last_name, :phone, :email, :number_of_guests, :status, :civility, :message, :photo, :total_price)
+    params.require(:reservation).permit(:start_date, :end_date, :first_name, :last_name, :phone, :email, :number_of_guests, :status, :civility, :message, :photo, :total_price, :add_cleaning)
   end
 
   def set_reservation
