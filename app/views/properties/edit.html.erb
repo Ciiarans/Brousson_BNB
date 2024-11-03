@@ -40,9 +40,19 @@
     </div>
 
     <div class="form-group">
-      <%= f.input :price_per_night, label: "Prix par nuit", input_html: { type: 'number', step: '0.01', class: "form-control" } %>
-      <%= f.input :address, label: "Adresse", input_html: { class: "form-control" } %>
+      <%= f.input :price_per_night, label: "Prix par nuit", as: :decimal, input_html: { step: 1 } %>
+      <%= f.input :address, label: "Adresse" %>
     </div>
+
+
+    <div class="form-group">
+      <%= f.input :square_meters, label: "Mètres carrés", input_html: { type: 'number' }, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :cleaning_price, label: "Prix du ménage par m²", input_html: { type: 'number', step: 1 }, required: true %>
+    </div>
+
 
     <hr class="separator">
 

@@ -1,40 +1,39 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="total-price"
 export default class extends Controller {
-  static values = { priceperday: Number }
-  static targets = ["startDate", "endDate", "totalPrice"]
+  static values = { priceperday: Number, cleaningprice: Number };
+  static targets = ["startDate", "endDate", "totalPrice", "addCleaning"]
 
   connect() {
     console.log("total_price_controller connected");
+    this.cleaningprice = parseFloat(this.element.getAttribute("data-total-price-cleaningprice-value")) || 0;
+    console.log("Cleaning price:", this.cleaningprice); // Vérifie si la valeur est correcte
   }
 
   calculPrice() {
-    console.log("Calculating price...");
-
     const startDate = new Date(this.startDateTarget.value);
     const endDate = new Date(this.endDateTarget.value);
 
-    if (startDate instanceof Date && !isNaN(startDate) && endDate instanceof Date && !isNaN(endDate) && startDate < endDate) {
-        const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        const pricePerDay = this.priceperdayValue;
-        const totalPrice = diffDays * pricePerDay;
+    if (!isNaN(startDate) && !isNaN(endDate) && startDate < endDate) {
+      const diffDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+      const pricePerDay = this.priceperdayValue;
+      const cleaningPrice = this.addCleaningTarget.checked ? this.cleaningprice : 0; // Utiliser this.cleaningPrice ici
+      const totalPrice = (diffDays * pricePerDay) + cleaningPrice;
 
-        this.totalPriceTarget.textContent = totalPrice.toFixed(2) + " €"; // Assurez-vous que ceci est textContent
-        this.updateModalPrice(totalPrice);
+      this.totalPriceTarget.textContent = totalPrice.toFixed(2) + " €";
+      this.updateModalPrice(totalPrice);
     } else {
-        console.error("Invalid dates or order");
+      console.error("Invalid dates or order");
     }
   }
 
   updateModalPrice(totalPrice) {
     const modalTotalPrice = document.getElementById("modalTotalPrice");
-    const hiddenTotalPrice = document.getElementById("hiddenTotalPrice"); // Ajouté pour input caché
+    const hiddenTotalPrice = document.getElementById("hiddenTotalPrice");
 
     if (modalTotalPrice) {
       modalTotalPrice.textContent = totalPrice.toFixed(2) + " €";
-      hiddenTotalPrice.value = totalPrice.toFixed(2); // Mise à jour de l'input caché
+      hiddenTotalPrice.value = totalPrice.toFixed(2);
     }
   }
 }
