@@ -257,6 +257,8 @@ About hotel START -->
       <!-- Right side content END -->
       <!-- Modal de réservation -->
       <%= simple_form_for([@property, @reservation]) do |f| %>
+
+
         <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true"
              data-controller="modal" data-total-price-priceperday-value="<%= @property.price_per_night %>">
           <div class="modal-dialog modal-dialog-centered">
@@ -287,34 +289,34 @@ About hotel START -->
                   <!-- Formulaire de réservation -->
                   <div class="form-group mb-3">
                     <div class="d-flex">
-                    <h6 class="fs-5">Civilité</h6>
-                    <p> (Mr,Mme,Mlle)</p>
+
+
                     </div>
                     <%= f.input :civility, collection: ['M', 'Mme', 'Mlle'], label: false, input_html: { class: 'form-select' } %>
                   </div>
                   <div class="form-group mb-3">
-                    <h6 class="fs-5">Prénom</h6>
-                    <%= f.input :first_name, label: false, input_html: { class: 'form-control' } %>
+
+                    <%= f.input :first_name,required: true, label: 'Prénom', input_html: { class: 'form-control', required: true  } %>
                   </div>
                   <div class="form-group mb-3">
-                    <h6 class="fs-5">Nom</h6>
-                    <%= f.input :last_name, label: false, input_html: { class: 'form-control' } %>
+
+                    <%= f.input :last_name, label: 'Nom', required: true, input_html: { class: 'form-control' } %>
                   </div>
                   <div class="form-group mb-3">
-                    <h6 class="fs-5">Email</h6>
-                    <%= f.input :email, label: false, input_html: { class: 'form-control' } %>
+
+                    <%= f.input :email, label: 'Email', input_html: { class: 'form-control', required: true  } %>
                   </div>
                   <div class="form-group mb-3">
-                    <h6 class="fs-5">Téléphone</h6>
-                    <%= f.input :phone, label: false, input_html: { class: 'form-control' } %>
+
+                    <%= f.input :phone,label: 'Téléphone', input_html: { class: 'form-control', required: true  } %>
                   </div>
                   <div class="form-group mb-3">
-                    <h6 class="fs-5">Nombre de personnes</h6>
-                    <%= f.input :number_of_guests, label: false, input_html: { class: 'form-control' } %>
+
+                    <%= f.input :number_of_guests, label: 'Nombre de personnes', input_html: { class: 'form-control', min: 1, max: @property.capacity , required: true } %>
                   </div>
                   <div class="form-group mb-3">
-                    <h6 class="fs-5">Petite présentation</h6>
-                    <%= f.input :message, label: false, placeholder:"Une petite présentation pour vous connaitre un peu plus :) ." , input_html: { class: 'form-control' } %>
+
+                    <%= f.input :message, label: 'Petite présentation', placeholder:"Une petite présentation pour vous connaitre un peu plus :) ." , input_html: { class: 'form-control', required: true  } %>
                   </div>
                 </div>
               </div>

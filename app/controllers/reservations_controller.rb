@@ -34,8 +34,8 @@ class ReservationsController < ApplicationController
       flash[:notice] = "Votre réservation a bien été prise en compte."
       redirect_to properties_path
     else
-      flash[:alert] = "Votre réservation n'a pas pu être prise en compte : #{@reservation.errors.full_messages.join(", ")}"
-      redirect_to property_path(@property)
+      flash[:alert] = "Votre réservation n'a pas pu être prise en compte : #{@reservation.errors.full_messages.join(", ")}. Veuillez vérifier les champs manquants et réessayer."
+      redirect_to new_property_reservation_path(@property)
     end
   end
 
