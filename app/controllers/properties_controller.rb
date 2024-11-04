@@ -24,11 +24,15 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    if @property.cleaning_price && @property.square_meters > 0
+      @cleaning = @property.cleaning_price * @property.square_meters
+    end
     @reserved_ranges = @property.reservations.map do |reservation|
       { from: reservation.start_date.to_s, to: reservation.end_date.to_s }
     end
     @reserved_ranges = @reserved_ranges.to_json
     @reservation = Reservation.new
+    @address = @property.address
     @address = @property.address
   end
 
@@ -37,20 +41,14 @@ class PropertiesController < ApplicationController
   end
 
   def create
-        @property = Property.new(property_params)
+    @property = Property.new(property_params)
     @property.user = current_user
-    if @property.save
-      redirect_to property_path(@property)
-    else
-      render :new
-    end
-    # Envoi des confirmations
     if @property.save
       flash[:notice] = "Votre logement a bien été ajouté."
       redirect_to property_path(@property)
     else
       flash[:alert] = "Votre logement n'a pas pu être ajouté : #{@property.errors.full_messages.join(", ")}"
-      redirect_to new_property_path
+      render :new
     end
   end
 
@@ -80,7 +78,8 @@ class PropertiesController < ApplicationController
 
 
   def property_params
-    params.require(:property).permit(:title, :address, :description, :price_per_night, :capacity, :bedrooms, :bathrooms, :image, equipments: [], photos: [])
+    params.require(:property).permit(:title, :address, :description, :price_per_night, :capacity, :bedrooms, :bathrooms, :image, :square_meters, :cleaning_price, equipments: [], photos: [])
   end
+
 
 end

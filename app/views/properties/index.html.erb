@@ -5,7 +5,7 @@
   </video>
   <div class="overlay"></div>
   <div class="content">
-    <h1 class="text-light">Vivez un <strong>séjour de rêve</strong> sur la Côtes Basque</h1>
+    <h1 class="text-light">Vivez un <strong>séjour de rêve</strong> sur la Côte Basque</h1>
     <p class="text-light">Des logements uniques, des expériences mémorables, et un service personnalisé à votre disposition.</p>
     <div class="text-center">
       <a href="#locations" class="scroll-down btn btn-outline-light p-3 rounded-4">
@@ -80,28 +80,30 @@
         <h2>Contactez-nous :</h2>
         <p>Pour toute question ou demande, n'hésitez pas à nous joindre :</p>
         <ul class="contact-details">
-          <li><i class="fa fa-phone"></i> +33 6 12 34 56 78</li>
-          <li><i class="fa fa-envelope"></i> pat.immo@example.com</li>
+          <li><i class="fa fa-phone"></i><a href="tel:+33 6 12 34 56 7"  class="text-decoration-none text-light">+33 6 12 34 56 78</a></li>
+          <li><i class="fa fa-envelope"></i>
+            <a href="mailto:pat.immo@example.com?subject=Demande%20de%20renseignements&body=Votre%20message%20ici" class="text-decoration-none text-light">pat.immo@example.com</a>
+          </li>
           <li><i class="fa fa-map-marker"></i> 123 Rue de la Plage, Côte Basque, France</li>
         </ul>
       </div>
       <div class="col-md-6">
         <div class="contact-form card p-4">
-          <form action="/contact" method="post">
+          <%= form_with(url: contact_path, method: :post, local: true) do |form| %>
             <div class="mb-3">
-              <label for="name" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div id="form-contact" class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" required>
+              <%= form.label :name, 'Nom', class: 'form-label' %>
+              <%= form.text_field :name, class: 'form-control', required: true %>
             </div>
             <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+              <%= form.label :email, 'Email', class: 'form-label' %>
+              <%= form.email_field :email, class: 'form-control', required: true %>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
-          </form>
+            <div class="mb-3">
+              <%= form.label :message, 'Message', class: 'form-label' %>
+              <%= form.text_area :message, rows: 5, class: 'form-control', required: true %>
+            </div>
+            <%= form.submit 'Envoyer', class: 'btn btn-primary btn-block' %>
+          <% end %>
         </div>
       </div>
     </div>

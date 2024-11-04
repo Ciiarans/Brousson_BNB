@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :reservations, only: %i[new create destroy]
   end
   resources :reservations, only: %i[show update]
-
+post "/contact", to: "contacts#contact"
 get "/profile", to: "dashboard#profile"
 end

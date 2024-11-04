@@ -193,7 +193,8 @@ About hotel START -->
       <!-- Right side content START -->
       <aside class="col-xl-5 col-lg-12 order-1 order-xl-2 d-xl-block"
              data-controller="total-price"
-             data-total-price-priceperday-value="<%= @property.price_per_night %>">
+             data-total-price-priceperday-value="<%= @property.price_per_night %>"
+             data-total-price-cleaningPrice-value="<%= @cleaning %>">
         <div class="card bg-transparent border rounded-5 sticky-top z-sticky-card" style="top: 120px;">
           <!-- Card header START -->
           <div class="card-header bg-transparent border-bottom">
@@ -221,6 +222,10 @@ About hotel START -->
                     <%= f.input :end_date, label: false,placeholder:"selectionnez une date", as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "endInput", total_price_target: "endDate", action: 'change->total-price#calculPrice' } } %>
                   </div>
                 </div>
+                <%= f.input :add_cleaning,
+                as: :boolean,
+                label: "Ajouter le ménage pour le logement:#{@cleaning}€",
+                input_html: { data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice" } } %>
               </div>
 
               <!-- Aperçu du prix -->
@@ -233,9 +238,10 @@ About hotel START -->
 
               <!-- Prix total -->
               <div class="d-flex justify-content-end align-items-center">
-                <span class="h5 mb-0 title-font text-danger me-3">Prix total TTC:</span>
-                <h5 class="mb-0 title-font text-danger" data-total-price-target="totalPrice">0,00 €</h5>
+                <span class="h5 mb-0 title-font text-danger me-3">Prix total (hors taxe de séjour*):</span>
+                <h5 class="mb-0 title-font text-danger" data-total-price-target="totalPrice"></h5>
               </div>
+              <!-- Prix de ménage en tant que donnée dans un div caché -->
 
               <!-- Boutons d'action -->
               <div class="d-grid gap-2 mt-3">
@@ -279,7 +285,7 @@ About hotel START -->
                   </div>
 
                   <div class="form-group mb-4">
-                    <h6 class="fs-5">Prix total TTC</h6>
+                    <h6 class="fs-5">Prix total (hors taxe de séjour & frais de ménages)</h6>
                     <p id="modalTotalPrice" class="fs-5 text-danger">0.00 €</p>
                     <input type="hidden" id="hiddenTotalPrice" name="total_price" value="0.00">
                   </div>
@@ -289,7 +295,7 @@ About hotel START -->
 
 
                     </div>
-                    <%= f.input :civility, collection: ['Mr', 'Mme', 'Mlle'], label: 'Civilité (Mr,Mme,Mlle)', input_html: { class: 'form-select', required: true } %>
+                    <%= f.input :civility, collection: ['M', 'Mme', 'Mlle'], label: false, input_html: { class: 'form-select' } %>
                   </div>
                   <div class="form-group mb-3">
 
