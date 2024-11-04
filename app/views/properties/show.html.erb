@@ -204,14 +204,17 @@ About hotel START -->
           <!-- Card body START -->
           <div class="card-body">
             <%= simple_form_for([@property, @reservation]) do |f| %>
-              <div class="row g-4 mb-3" data-controller="datepicker">
+              <div class="row g-4 mb-3" data-controller="datepicker" data-datepicker-reserved-ranges-value="<%= @reserved_ranges%>">
+
                 <div class="col-md-12 d-flex">
                   <div class="bg-light py-3 px-4 rounded-5 me-2">
                     <h5 class="fw-light small mb-1">
+
                       <i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Arrivée
                     </h5>
                     <%= f.input :start_date, label: false, placeholder:"selectionnez une date", as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "startInput", total_price_target: 'startDate', action: 'change->total-price#calculPrice' } } %>
                   </div>
+
                   <div class="bg-light py-3 px-4 rounded-5">
                     <h5 class="fw-light small mb-1">
                       <i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Départ

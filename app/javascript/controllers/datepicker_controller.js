@@ -4,26 +4,31 @@ import flatpickr from "flatpickr";
 // Connects to data-controller="datepicker"
 export default class extends Controller {
   static targets = ["startInput", "endInput"];
+  static values = { reservedRanges: Array };
 
   connect() {
+
     this.initFlatpickr();
   }
 
   initFlatpickr() {
-    flatpickr(this.startInputTarget, {
-      dateFormat: "d/m/Y",
+    const options = {
+      dateFormat: "Y-m-d",
       mode: "range",
       minDate: "today",
       monthSelectorType: "short",
-      onChange: this.handleDateChange.bind(this),
-    });
+      disable: this.reservedRangesValue,
+      onChange: this.handleDateChange.bind(this)
+    };
+    console.log("Dates désactivées pour Flatpickr :", this.reservedRangesValue);
+    flatpickr(this.startInputTarget, options);
+    flatpickr(this.endInputTarget, options);
+  }
 
-    flatpickr(this.endInputTarget, {
-      dateFormat: "d/m/Y",
-      mode: "range",
-      minDate: "today",
-      monthSelectorType: "short",
-      onChange: this.handleDateChange.bind(this),
+  formatReservedRanges(reservedRanges) {
+    // Formate les plages réservées pour le format attendu par Flatpickr
+    return reservedRanges.map(range => {
+      return { from: range.from, to: range.to }; // Assurez-vous que 'from' et 'to' existent
     });
   }
 
@@ -74,4 +79,6 @@ export default class extends Controller {
       modalEndDate.textContent = endDate;
     }
   }
+
+
 }
