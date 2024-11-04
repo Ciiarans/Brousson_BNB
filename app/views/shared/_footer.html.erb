@@ -1,15 +1,17 @@
-<footer class="footer text-center pt-4" style="background-color: #333333; color: #F8F9F9;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <p>&copy; <span id="currentYear"></span> Ossau Design. Tous droits réservés. | <a href="#mentionsLegalesModal" class="text-white" data-bs-toggle="modal">Mentions Légales</a></p>
-      </div>
-      <div class="col-md-6">
-        <a href="<%= new_user_session_path %>" class="text-white" title="Connexion Admin">
-          <i class="fa fa-user-circle fa-lg"></i>
-        </a>
-      </div>
+<footer class="footer text-center pt-2" style="background-color: #333333; color: #F8F9F9;">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div>
+      <img src="<%= asset_path('logo.svg') %>" alt="Logo" class="img-fluid mb-2">
     </div>
+    <div>
+      <p>&copy; <span id="currentYear"></span> Ossau Design. Tous droits réservés. | <a href="#mentionsLegalesModal" class="text-white" data-bs-toggle="modal">Mentions Légales</a></p>
+    </div>
+    <div>
+      <a href="<%= new_user_session_path %>" class="text-white" title="Connexion Admin">
+        <i class="fa fa-user-circle fa-lg"></i>
+      </a>
+    </div>
+  </div>
   </div>
 </footer>
 <!-- Modale pour afficher les mentions légales -->

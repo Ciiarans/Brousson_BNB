@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["navbar"]
+  static targets = ["navbar", "logo"]
 
   connect() {
     this.lastScrollTop = 0;
@@ -19,8 +19,10 @@ export default class extends Controller {
         // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
         if (scrollTop > 30) {
           this.navbarTarget.classList.add("scrolled");
+          this.logoTarget.src = "/assets/texte-logo.svg"
         } else {
           this.navbarTarget.classList.remove("scrolled");
+          this.logoTarget.src = "/assets/logo-blanc.svg"
         }
 
         if (scrollTop > this.lastScrollTop) {
