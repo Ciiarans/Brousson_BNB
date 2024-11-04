@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
   before_action :load_equipment_categories, only: [:new, :create, :show, :edit, :update]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
+  require 'json'
   def index
     @properties = Property.all
     @markers = @properties.geocoded.map do |property|
@@ -15,6 +15,7 @@ class PropertiesController < ApplicationController
   def edit
     @property = Property.find(params[:id])
   end
+
   def update
     @property = Property.find(params[:id])
     @property.update(property_params)
@@ -23,8 +24,12 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    @reserved_ranges = @property.reservations.map do |reservation|
+      { from: reservation.start_date.to_s, to: reservation.end_date.to_s }
+    end
+    @reserved_ranges = @reserved_ranges.to_json
     @reservation = Reservation.new
-        @address = @property.address
+    @address = @property.address
   end
 
   def new

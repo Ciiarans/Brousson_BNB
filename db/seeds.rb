@@ -83,23 +83,6 @@ Meublé de tourisme 3***',
         equipments: ["Sèche-cheveux, lave-linge, sèche-linge, télévision, minigolf, lit pour bébé, détecteur de fumée, wifi, espace de travail dédié, cuisine, micro-ondes, accès à la plage, parking, logement de plein pied "])
 
 # Créer des réservations
-10.times do
-  Reservation.create!(
-    property: properties.sample,
-    start_date: Faker::Date.between(from: '2024-09-01', to: '2024-12-31'),
-    end_date: Faker::Date.between(from: '2024-10-01', to: '2025-01-31'),
-    total_price: rand(300..1500),
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    phone: Faker::PhoneNumber.cell_phone,
-    email: Faker::Internet.email,
-    number_of_guests: rand(1..6),
-    status: %w[confirmée annulée en_attente].sample,
-    civility: %w[M Mme Mlle].sample,
-    message: Faker::Lorem.paragraph(sentence_count: 3),
-    created_at: Time.now,
-    updated_at: Time.now
-  )
-end
+
 
 puts "Seed terminée avec succès ! #{User.count} utilisateurs, #{Property.count} propriétés, et #{Reservation.count} réservations créés."
