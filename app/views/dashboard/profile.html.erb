@@ -51,6 +51,9 @@
                   <h5 class="card-title mb-2 text-primary">
                     <%= "Demande de location par #{reservation.first_name} #{reservation.last_name}" %>
                   </h5>
+                  <h6 class="card-title mb-1 text-h7rimary">
+                    <%= reservation.property.address %>
+                  </h6>
                   <p class="card-text mb-1"><i class="bi bi-calendar-event me-2"></i><%= "Du #{reservation.start_date} au #{reservation.end_date}" %></p>
                   <p class="card-text"><i class="bi bi-telephone me-2"></i><%= "Téléphone : #{reservation.phone}" %></p>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Demande_<%= reservation.id %>">
@@ -70,6 +73,12 @@
                           <p><i class="bi bi-envelope me-2"></i><%= "Email : #{reservation.email}" %></p>
                           <p><i class="bi bi-people me-2"></i><%= "Nombre de voyageurs : #{reservation.number_of_guests}" %></p>
                           <p><i class="bi bi-person me-2"></i><%= "Présentation : #{reservation.message} " %></p>
+                          <%= reservation.add_cleaning %>
+                          <% if reservation.add_cleaning? %>
+                            <p><i class="bi bi-check-circle-fill me-2"></i> Ménage inclus</p>
+                          <% else %>
+                            <p><i class="bi bi-x-circle-fill me-2"></i> Ménage non inclus</p>
+                          <% end %>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -82,7 +91,7 @@
                   <h6 class="text-success mb-3">En attente</h6>
                   <div class="btn-group">
                     <%= button_to "Accepter", reservation_path(reservation, reservation: { status: 'confirmée' }), method: :patch, class: "btn btn-outline-warning", data: { confirm: "Êtes-vous sûr de vouloir confirmer la réservation ?" } %>
-                    <%= button_to "Refuser", reservation_path(reservation, reservation: { status: 'annulée' }), method: :patch, class: "btn btn-outline-danger", data: { confirm: "Êtes-vous sûr de vouloir refuser la réservation ?" } %>
+                    <%= button_to "Refuser", property_reservation_path(reservation.property, reservation), method: :delete, class: "btn btn-outline-danger", data: { confirm: "Êtes-vous sûr de vouloir refuser la réservation ?" } %>
                   </div>
                 </div>
               </div>
