@@ -13,12 +13,23 @@ export default class extends Controller {
 
   initFlatpickr() {
     const options = {
-      dateFormat: "Y-m-d",
+      dateFormat: "d-m-Y",
       mode: "range",
       minDate: "today",
-      monthSelectorType: "short",
+      longhandCurrentMonth: true,
       disable: this.reservedRangesValue,
-      onChange: this.handleDateChange.bind(this)
+      onChange: this.handleDateChange.bind(this),
+      locale: {
+        firstDayOfWeek: 1,
+        weekdays: {
+          shorthand: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+          longhand: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+        },
+        months: {
+          shorthand: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
+          longhand: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        },
+      },
     };
     console.log("Dates désactivées pour Flatpickr :", this.reservedRangesValue);
     flatpickr(this.startInputTarget, options);
@@ -34,8 +45,10 @@ export default class extends Controller {
 
   handleDateChange(selectedDates) {
     if (selectedDates.length === 2) {
-      const startDate = selectedDates[0].toISOString().split('T')[0];
-      const endDate = selectedDates[1].toISOString().split('T')[0];
+      const startDate = selectedDates[0].toLocaleDateString();
+      const endDate = selectedDates[1].toLocaleDateString();
+      console.log("Start date:", startDate);
+      console.log("End date:", endDate);
 
       this.startInputTarget.value = startDate;
       this.endInputTarget.value = endDate;
@@ -65,8 +78,8 @@ export default class extends Controller {
 
   setInitialDates(selectedDates) {
     if (selectedDates.length === 2) {
-      const startDate = selectedDates[0].toISOString().split('T')[0];
-      const endDate = selectedDates[1].toISOString().split('T')[0];
+      const startDate = selectedDates[0].toLocaleDateString();
+      const endDate = selectedDates[1].toLocaleDateString();
 
       this.startInputTarget.value = startDate;
       this.endInputTarget.value = endDate;
