@@ -4,6 +4,7 @@
     Your browser does not support the video tag.
   </video>
   <div class="overlay"></div>
+
   <div class="content">
     <h1 class="text-light">Vivez un <strong>séjour de rêve</strong> sur la Côte Basque</h1>
     <p class="text-light">Des logements uniques, des expériences mémorables, et un service personnalisé à votre disposition.</p>
@@ -80,14 +81,14 @@
         <h2>Contactez-nous :</h2>
         <p>Pour toute question ou demande, n'hésitez pas à nous joindre :</p>
         <ul class="contact-details">
-          <li><i class="fa fa-phone"></i><a href="tel:+33 6 12 34 56 7"  class="text-decoration-none text-light">+33 6 12 34 56 78</a></li>
+          <li><i class="fa fa-phone"></i><a href="tel:+33 6 12 34 56 7"  class="text-decoration-none text-light">+33 6 23 81 82 03</a></li>
           <li><i class="fa fa-envelope"></i>
-            <a href="mailto:pat.immo@example.com?subject=Demande%20de%20renseignements&body=Votre%20message%20ici" class="text-decoration-none text-light">pat.immo@example.com</a>
+            <a href="mailto:contact.pat.immo@gmail.com?subject=Demande%20de%20renseignements&body=Votre%20message%20ici" class="text-decoration-none text-light">contact.pat.immo@gmail.com</a>
           </li>
           <li><i class="fa fa-map-marker"></i> 123 Rue de la Plage, Côte Basque, France</li>
         </ul>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" id="form-contact">
         <div class="contact-form card p-4">
           <%= form_with(url: contact_path, method: :post, local: true) do |form| %>
             <div class="mb-3">
@@ -109,38 +110,3 @@
     </div>
   </div>
 </section>
-
-<%# fin du formulaire de contact %>
-
-<%# Avis client carousel %>
-<!-- Carousel avis client
-<section class="carousel">
-  <div class="carousel-h">
-    <div class="custom-caroussel-size mb-5">
-    <h1 class="text-center mt-5 mb-5" style="color: $text-heading;">Avis clients</h1>
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <%= image_tag 'fallback-image.png', alt: 'Description de l\'image', class: 'd-block object-fit-cover-slider-home'; %>
-          </div>
-          <div class="carousel-item">
-            <%= image_tag 'fallback-image.png', alt: 'Description de l\'image', class: 'd-block object-fit-cover-slider-home'; %>
-          </div>
-          <div class="carousel-item">
-            <%= image_tag 'fallback-image.png', alt: 'Description de l\'image', class: 'd-block object-fit-cover-slider-home'; %>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Précédent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Suivant</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-<%# fin carousel avis client %>
--->
