@@ -7,17 +7,27 @@
       <% if reservation.status == "confirmée" %>
         <div class="col">
           <div class="card h-100 bg-white shadow-sm border-0 rounded-4 position-relative">
-            <div class="position-absolute top-0 start-0 ">
+            <div class="position-absolute top-0 end-0 ">
               <%= link_to '❌', [reservation.property, reservation], method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette réservation?' }, class: 'btn btn-link text-danger btn-sm text-decoration-none' %>
             </div>
             <div class="card-header border-0 pb-0 text-center">
               <h5 class="text-primary"><%= reservation.property.title %></h5>
+              <p class="text-muted"> <%= reservation.property.address %> </p>
             </div>
             <div class="card-body">
               <ul class="list-unstyled mb-4">
                 <li><i class="bi bi-calendar-check me-2"></i> <%= "#{reservation.start_date} / #{reservation.end_date}" %></li>
                 <li><i class="bi bi-person-circle me-2"></i> <%= "#{reservation.first_name} #{reservation.last_name}" %></li>
                 <li><i class="bi bi-telephone-fill me-2"></i> <%= reservation.phone %></li>
+                <li><i class="bi bi-envelope-fill me-2"></i> <%= reservation.email %></li>
+                <li> <i class="bi bi-people-fill me-2"></i> <%= "#{reservation.number_of_guests} voyageurs" %></li>
+                <li>
+                <% if reservation.add_cleaning? %>
+                            <p><i class="bi bi-check-circle-fill me-2"></i> Ménage inclus : <%= reservation.property.square_meters * reservation.property.cleaning_price %> € </p>
+                          <% else %>
+                            <p><i class="bi bi-x-circle-fill me-2"></i> Ménage non inclus</p>
+                          <% end %>
+                </li>
               </ul>
             </div>
             <div class="card-footer text-center">
@@ -73,9 +83,8 @@
                           <p><i class="bi bi-envelope me-2"></i><%= "Email : #{reservation.email}" %></p>
                           <p><i class="bi bi-people me-2"></i><%= "Nombre de voyageurs : #{reservation.number_of_guests}" %></p>
                           <p><i class="bi bi-person me-2"></i><%= "Présentation : #{reservation.message} " %></p>
-                          <%= reservation.add_cleaning %>
                           <% if reservation.add_cleaning? %>
-                            <p><i class="bi bi-check-circle-fill me-2"></i> Ménage inclus</p>
+                            <p><i class="bi bi-check-circle-fill me-2"></i> Ménage inclus : <%= reservation.property.square_meters * reservation.property.cleaning_price %> € </p>
                           <% else %>
                             <p><i class="bi bi-x-circle-fill me-2"></i> Ménage non inclus</p>
                           <% end %>
@@ -105,7 +114,10 @@
   </div>
   <!-- Section: Mes annonces -->
 <div class="container bg-white py-4">
-  <h3 class="text-primary my-4">Gestion des propriétés</h3>
+  <div class="d-flex justify-content-between mb-4">
+  <h3 class="text-primary">Gestion des propriétés</h3>
+    <%= link_to 'Ajouter une nouvelle propriété', new_property_path, class: 'btn btn-primary' %>
+  </div>
 
   <table class="table table-striped table-responsive">
     <thead>
@@ -133,7 +145,5 @@
     </tbody>
   </table>
 
-  <div class="d-flex justify-content-end">
-    <%= link_to 'Ajouter une nouvelle propriété', new_property_path, class: 'btn btn-primary' %>
-  </div>
+
 </div>

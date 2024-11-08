@@ -10,6 +10,17 @@ class PropertiesController < ApplicationController
         lng: property.longitude,
       }
     end
+    if params[:start_date].present? && params[:end_date].present?
+      start_date = Date.parse(params[:start_date])
+      end_date = Date.parse(params[:end_date])
+
+      # On filtre les propriétés dont la date de réservation ne chevauche pas la plage demandée
+      @properties = @properties.reject do |property|
+        property.reservations.any? do |reservation|
+          reservation.start_date < end_date && reservation.end_date > start_date
+        end
+      end
+    end
   end
 
   def edit
@@ -78,7 +89,7 @@ class PropertiesController < ApplicationController
 
 
   def property_params
-    params.require(:property).permit(:title, :address, :description, :price_per_night, :capacity, :bedrooms, :bathrooms, :image, :square_meters, :cleaning_price, equipments: [], photos: [])
+    params.require(:property).permit(:title, :address, :description, :price_per_night, :capacity, :bedrooms, :bathrooms, :first_image, :square_meters, :cleaning_price, equipments: [], photos: [])
   end
 
 

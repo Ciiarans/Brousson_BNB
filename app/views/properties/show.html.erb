@@ -29,9 +29,9 @@ Image gallery START -->
       <!-- Image de profil (grande image à gauche) -->
       <div class="col-md-6">
         <% if @property.first_image.attached? %>
-          <%= cl_image_tag @property.first_image.key, width: 600, height: 800, crop: :fill, class: "w-100 h-auto rounded-5" %>
+          <%= cl_image_tag @property.first_image.key, width: 600, height: 600, crop: :fill, class: "w-100 h-auto rounded-5 cursor-pointer", data: { toggle: "modal", target: "#galleryModal" } %>
         <% else %>
-          <%= image_tag 'fallback-image.png', alt: 'Aucune image de profil disponible', class: 'w-100 h-auto rounded-5' %>
+          <%= image_tag 'fallback-image.png', alt: 'Aucune image de profil disponible', class: 'w-100 h-auto rounded-5 cursor-pointer' %>
         <% end %>
       </div>
 
@@ -41,19 +41,21 @@ Image gallery START -->
           <% (0..3).each do |index| %> <!-- Affiche jusqu'à 4 images -->
             <div class="col-6 mb-2 position-relative">
               <% if @property.photos.attached? && @property.photos[index].present? %>
-                <%= cl_image_tag @property.photos[index].key, class: 'w-100 h-auto rounded-5' %>
+                <%= cl_image_tag @property.photos[index].key, class: 'w-100 h-auto rounded-5 cursor-pointer', data: { toggle: "modal", target: "#galleryModal" } %>
               <% else %>
-                <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'w-100 h-auto rounded-5' %>
+                <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'w-100 h-auto rounded-5 cursor-pointer' %>
               <% end %>
 
-              <!-- Bouton sur la 4ème image -->
-              <% if index == 3 %>
+                <% if index == 3 %> <!-- 4ème image -->
+                <!-- Superposition pour opacité -->
+                <div class="overlay-show position-absolute rounded-5 top-0 start-0 w-100 h-auto"></div>
+                <!-- Bouton "Voir la galerie complète" -->
                 <div class="position-absolute bottom-0 end-0 m-4">
                   <button type="button" class="btn btn-outline-light border border-light rounded-pill px-4 py-2 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                    <i class="bi bi-images me-2"></i> Voir la galerie complète
+                  <i class="bi bi-images me-2"></i> Voir la galerie complète
                   </button>
                 </div>
-              <% end %>
+                <% end %>
             </div>
           <% end %>
         </div>
@@ -61,25 +63,39 @@ Image gallery START -->
     </div>
   </div>
 
-  <!-- Modale pour la galerie d'images -->
+  <!-- Modale pour la galerie d'images avec un carrousel -->
   <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="galleryModalLabel">Toute les photos</h5>
+          <h5 class="modal-title" id="galleryModalLabel">Toutes les photos</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <% @property.photos.each do |photo| %>
-              <div class="col-md-4 mb-2">
-                <% if photo.attached? %>
-                  <%= cl_image_tag photo.key, class: 'img-fluid rounded' %>
-                <% else %>
-                  <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'img-fluid rounded' %>
+          <!-- Carrousel -->
+          <div id="carouselGallery" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% if @property.photos.attached? %>
+                <% @property.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>">
+                    <%= cl_image_tag photo.key, class: 'd-block w-100 img-fluid rounded' %>
+                  </div>
                 <% end %>
-              </div>
-            <% end %>
+              <% else %>
+                <div class="carousel-item active">
+                  <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'd-block w-100 img-fluid rounded' %>
+                </div>
+              <% end %>
+            </div>
+            <!-- Contrôles du carrousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselGallery" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselGallery" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Suivant</span>
+            </button>
           </div>
         </div>
         <div class="modal-footer">
@@ -89,6 +105,8 @@ Image gallery START -->
     </div>
   </div>
 </section>
+
+
 <!-- =======================
 Image gallery END -->
 
@@ -223,9 +241,9 @@ About hotel START -->
                   </div>
                 </div>
                 <%= f.input :add_cleaning,
-                as: :boolean,
-                label: "Ajouter le ménage pour le logement ?",
-                input_html: { data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice" } } %>
+                  as: :boolean,
+                  label: "Ajouter le ménage pour le logement ?(+ #{@cleaning} €)",
+                  input_html: {data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice change->total-price#cleaningStatus" } } %>
               </div>
               <!-- Aperçu du prix -->
               <ul class="list-group list-group-borderless mb-0">
@@ -237,19 +255,21 @@ About hotel START -->
 
               <!-- Prix total -->
               <div class="d-flex justify-content-end align-items-center">
-                <span class="h5 mb-0 title-font text-danger me-3">Prix total (hors taxe de séjour*):</span>
+                <span class="h5 mb-0 title-font text-danger me-3">Prix total (hors taxe de séjour**):</span>
                 <h5 class="mb-0 title-font text-danger" data-total-price-target="totalPrice"></h5>
               </div>
+                <p class="text-muted justify-content-end d-flex">**5€/personnes et par jours 3.50€ - 5 ans.</p>
               <!-- Prix de ménage en tant que donnée dans un div caché -->
 
               <!-- Boutons d'action -->
               <div class="d-grid gap-2 mt-3">
-                <button type="button" class="btn btn-success rounded-4 text-light" data-bs-toggle="modal"
+                <button id="buttonmodal" class="btn btn-success rounded-4 text-light btn-disabled" disabled data-bs-toggle="modal"
                         data-bs-target="#reservationModal"
-                        data-action="click->modal#openModal">
+                        data-action="click->modal#openModal"
+                        >
                   Je réserve mon séjour
                 </button>
-                <%= link_to 'Choisir un autre gîte', "#{properties_path}#section-target", class: 'btn btn-primary rounded-4 custom-font-btn-show-2 text-light' %>
+                <%= link_to 'Choisir un autre logement', "#{properties_path}#section-target", class: 'btn btn-primary rounded-4 custom-font-btn-show-2 text-light' %>
               </div>
             <% end %>
           </div>
@@ -284,10 +304,15 @@ About hotel START -->
                   </div>
 
                   <div class="form-group mb-4">
-                    <h6 class="fs-5">Prix total (hors taxe de séjour )</h6>
+                    <h6 class="fs-5">Prix total (hors taxe de séjour)</h6>
                     <p id="modalTotalPrice" class="fs-5 text-danger">0.00 €</p>
                     <input type="hidden" id="hiddenTotalPrice" name="total_price" value="0.00">
                   </div>
+                  <div >
+                    <p id="modalAddCleaning"></p>
+                      <input type="hidden" id="hiddenAddCleaning" name="reservation[add_cleaning]" value="">
+                  </div>
+
                   <!-- Formulaire de réservation -->
                   <div class="form-group mb-3">
                     <div class="d-flex">

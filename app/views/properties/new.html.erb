@@ -86,15 +86,14 @@
     </div>
 
 <hr class="separator">
-
- <div class="form-group mb-3">
+<div class="form-group mb-3">
   <%= f.label :first_image, "Ajouter l'image principale" %>
-  <%= f.file_field :first_image, accept: 'image/*', class: "form-control" %>
+  <%= f.file_field :first_image, accept: 'image/*', class: "form-control", data: { cloudinary_field: true } %>
 </div>
 
 <div class="form-group">
   <%= f.label :photos, "Ajouter d'autres photos" %>
-  <%= f.file_field :photos, multiple: true, accept: 'image/*', class: "form-control" %>
+  <%= f.file_field :photos, multiple: true, accept: 'image/*', class: "form-control", data: { cloudinary_field: true } %>
 </div>
 
     <div class="actions pt-5 d-flex justify-content-end pb-5">
