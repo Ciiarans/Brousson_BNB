@@ -13,11 +13,11 @@ export default class extends Controller {
 
   initFlatpickr() {
     const options = {
-      dateFormat: "d-m-Y",
+      dateFormat: "d-m-Y", // format d'affichage
       mode: "range",
       minDate: "today",
       longhandCurrentMonth: true,
-      disable: this.reservedRangesValue,
+      disable: this.formatReservedRanges(this.reservedRangesValue), // Appliquer les dates réservées
       onChange: this.handleDateChange.bind(this),
       locale: {
         firstDayOfWeek: 1,
@@ -39,16 +39,41 @@ export default class extends Controller {
   formatReservedRanges(reservedRanges) {
     // Formate les plages réservées pour le format attendu par Flatpickr
     return reservedRanges.map(range => {
-      return { from: range.from, to: range.to }; // Assurez-vous que 'from' et 'to' existent
+      // Assurez-vous que les dates sont au format "Y-m-d" (année-mois-jour)
+      return {
+        from: flatpickr.parseDate(range.from, "Y-m-d"),
+        to: flatpickr.parseDate(range.to, "Y-m-d")
+      };
     });
+  }
+
+  handleCalendarReady(selectedDates) {
+    this.setInitialDates(selectedDates);
+  }
+
+  setInitialDates(selectedDates) {
+    if (selectedDates.length === 2) {
+      const startDate = flatpickr.formatDate(selectedDates[0], "d-m-Y");
+      const endDate = flatpickr.formatDate(selectedDates[1], "d-m-Y");
+
+      this.startInputTarget.value = startDate;
+      this.endInputTarget.value = endDate;
+
+      // Mettre à jour les éléments de la modale avec les dates
+      const modalStartDate = document.getElementById("modalStartDate");
+      const modalEndDate = document.getElementById("modalEndDate");
+
+      modalStartDate.textContent = startDate;
+      modalEndDate.textContent = endDate;
+    }
   }
 
   handleDateChange(selectedDates) {
     if (selectedDates.length === 2) {
-      const startDate = selectedDates[0].toLocaleDateString();
-      const endDate = selectedDates[1].toLocaleDateString();
-      console.log("Start date:", startDate);
-      console.log("End date:", endDate);
+      const startDate = flatpickr.formatDate(selectedDates[0], "d-m-Y");
+      const endDate = flatpickr.formatDate(selectedDates[1], "d-m-Y");
+      console.log("Start date calendrier:", startDate);
+      console.log("End date calendrier:", endDate);
 
       this.startInputTarget.value = startDate;
       this.endInputTarget.value = endDate;
@@ -69,27 +94,6 @@ export default class extends Controller {
       // Déclencher l'événement change manuellement
       this.startInputTarget.dispatchEvent(new Event('change'));
       this.endInputTarget.dispatchEvent(new Event('change'));
-    }
-  }
-
-  handleCalendarReady(selectedDates, dateStr, instance) {
-    this.setInitialDates(selectedDates);
-  }
-
-  setInitialDates(selectedDates) {
-    if (selectedDates.length === 2) {
-      const startDate = selectedDates[0].toLocaleDateString();
-      const endDate = selectedDates[1].toLocaleDateString();
-
-      this.startInputTarget.value = startDate;
-      this.endInputTarget.value = endDate;
-
-      // Mettre à jour les éléments de la modale avec les dates
-      const modalStartDate = document.getElementById("modalStartDate");
-      const modalEndDate = document.getElementById("modalEndDate");
-
-      modalStartDate.textContent = startDate;
-      modalEndDate.textContent = endDate;
     }
   }
 
