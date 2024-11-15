@@ -18,7 +18,7 @@ export default class extends Controller {
     if (mediaQuery.matches) {
       this.logoTarget.src = "/assets/logo-bleu-st.svg";
     } else {
-      this.logoTarget.src = "/assets/text-logo.svg";
+      this.logoTarget.src = "/assets/texte-logo.svg";
     }
     console.log("ChangeLogo");
   }
