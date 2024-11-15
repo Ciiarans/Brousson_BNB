@@ -1,12 +1,11 @@
 .banner {
-  position: relative;
   height: 100vh; /* Prend toute la hauteur de la fenêtre */
   overflow: hidden; /* Masque tout débordement */
   margin-top: -80px; /* Ajuste la position selon tes préférences */
 }
 @media screen and (max-width: 768px) {
   .banner {
-    margin-top: -93px; /* Ajuste la position selon tes préférences */
+    margin-top: -130px; /* Ajuste la position selon tes préférences */
   }
 
 }
@@ -15,8 +14,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw; /* Prend toute la largeur de la fenêtre */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  width: 100%; /* Prend toute la largeur de la fenêtre */
+  height: 100%; /* Prend toute la hauteur de la fenêtre */
   object-fit: cover; /* S'assure que la vidéo couvre toute la bannière */
   transform: translate(-50%, -50%); /* Centre la vidéo */
   z-index: 1; /* Pour que la vidéo soit en arrière-plan */

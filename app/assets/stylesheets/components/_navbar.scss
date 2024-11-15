@@ -1,6 +1,6 @@
 .navbar-sticky {
   position: sticky;
-  top: -100px; /* Cache la navbar lors du scroll vers le bas */
+  top: -130px; /* Cache la navbar lors du scroll vers le bas */
   transition: top 0.3s;
   z-index: 1030;
 }
@@ -51,8 +51,11 @@
     transform: scale(1.1);
   }
 
-  .dropdown-text a {
+  #dropdown-text a {
     color: $primary-blue !important;
+  }
+  #nav-home {
+    flex-wrap: wrap;
   }
 }
 
