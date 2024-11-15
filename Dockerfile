@@ -14,7 +14,6 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 
-RUN echo "SECRET_KEY_BASE=$SECRET_KEY_BASE"
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -33,7 +32,7 @@ RUN bundle install && \
 COPY . .
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN RAILS_ENV=production ./bin/rails assets:precompile
+RUN ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
