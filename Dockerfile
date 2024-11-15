@@ -13,6 +13,9 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
+
+RUN echo "SECRET_KEY_BASE=$SECRET_KEY_BASE"
+
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
