@@ -11,12 +11,12 @@
 
 // NAVBAR CLASSIC
 .navbar {
-  height: 60px; /* Ajustez selon vos préférences */
   background: $white-shell; /* Couleur de fond de la navbar */
   transition: background-color 0.3s, color 0.3s;
   color: $primary-blue; /* Couleur du texte */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une petite ombre */
-  h4, a {
+  h4, a, p {
+    font-size: 1.5rem; /* Taille de la police */
     transition: transform 0.3s;
   }
 
@@ -37,28 +37,74 @@
 
 // NAVBAR DE LA PAGE D'ACCUEIL
 .navbar-home {
-  height: 60px; /* Ajustez selon vos préférences */
+  min-height: 80px; /* Hauteur minimale de la navbar */
   background: none;
   transition: background-color 0.3s, color 0.3s;
+  z-index: 1040;
 
-  h4, a {
+  h4, a, p {
+    font-size: 1.5rem; /* Taille de la police */
     transition: transform 0.3s;
   }
 
   h4:hover, a:hover {
     transform: scale(1.1);
   }
-  .dropdown-text a{
-  color: $primary-blue !important;
+
+  .dropdown-text a {
+    color: $primary-blue !important;
+  }
 }
-}
+
 .navbar-home h4, .navbar-home a {
   color: $white-shell !important; /* Couleur du texte par défaut */
 }
+
 .navbar-home.scrolled {
   background-color: white; /* Changez selon la couleur de fond souhaitée */
 }
 
 .navbar-home.scrolled h4, .navbar-home.scrolled a {
-  color: $primary-blue !important;/* Couleur du texte après le scroll */
+  color: $primary-blue !important; /* Couleur du texte après le scroll */
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-home {
+    max-width: 100vw;
+    min-height: 60px;
+    overflow: hidden;
+    text-align: center; /* Center the text */
+    img, svg {
+      max-width: 100%; /* Adjust the size of the SVG */
+      height: auto;
+    }
+    h4, a,  p {
+      height: auto;
+      max-width: 100%;
+      font-size: 0.875rem !important; /* Adjust the font size */
+    }
+  }
+
+  .navbar {
+    max-width: 100vw;
+    min-height: 60px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    text-align: center; /* Center the text */
+    img, svg {
+      max-width: 75px; /* Adjust the size of the SVG */
+      height: auto;
+    }
+    h4, a {
+      font-size: 0.875rem; /* Adjust the font size */
+    }
+  }
+
+  .navbar h4, .navbar a {
+    font-size: 0.875rem; /* Ensure consistent font size */
+  }
+
+  .navbar h4, .navbar a {
+    color: $primary-blue !important;
+  }
 }
