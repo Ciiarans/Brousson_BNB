@@ -4,6 +4,12 @@
   overflow: hidden; /* Masque tout débordement */
   margin-top: -80px; /* Ajuste la position selon tes préférences */
 }
+@media screen and (max-width: 768px) {
+  .banner {
+    margin-top: -93px; /* Ajuste la position selon tes préférences */
+  }
+
+}
 
 .video-background {
   position: absolute;
