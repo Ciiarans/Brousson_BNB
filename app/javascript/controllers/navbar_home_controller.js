@@ -13,26 +13,47 @@ export default class extends Controller {
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
 
+  ChangeLogo() {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    if (mediaQuery.matches) {
+      this.logoTarget.src = "/assets/logo-blanc-st.svg";
+    } else {
+      this.logoTarget.src = "/assets/logo-blanc.svg";
+    }
+  }
+  initialize() {
+    this.ChangeLogo();
+  }
+
   handleScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-        // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
-        if (scrollTop > 30) {
-          this.navbarTarget.classList.add("scrolled");
-          this.logoTarget.src = "/assets/texte-logo.svg"
+      // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
+      if (scrollTop > 30) {
+        this.navbarTarget.classList.add("scrolled");
+        if (mediaQuery.matches) {
+          this.logoTarget.src = "/assets/logo-bleu-st.svg";
         } else {
-          this.navbarTarget.classList.remove("scrolled");
-          this.logoTarget.src = "/assets/logo-blanc.svg"
+          this.logoTarget.src = "/assets/texte-logo.svg";
         }
-
-        if (scrollTop > this.lastScrollTop) {
-          // Scroll vers le bas, on cache la navbar
-          this.navbarTarget.classList.remove("navbar-visible");
+      } else {
+        this.navbarTarget.classList.remove("scrolled");
+        if (mediaQuery.matches) {
+          this.logoTarget.src = "/assets/logo-blanc-st.svg";
         } else {
-          // Scroll vers le haut, on affiche la navbar
-          this.navbarTarget.classList.add("navbar-visible");
+          this.logoTarget.src = "/assets/logo-blanc.svg";
         }
-
-        this.lastScrollTop = scrollTop;
       }
+
+      if (scrollTop > this.lastScrollTop) {
+        // Scroll vers le bas, on cache la navbar
+        this.navbarTarget.classList.remove("navbar-visible");
+      } else {
+        // Scroll vers le haut, on affiche la navbar
+        this.navbarTarget.classList.add("navbar-visible");
+      }
+
+      this.lastScrollTop = scrollTop;
+    }
 }
