@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["navbar"]
+  static targets = ["navbar", "logo"]
 
   connect() {
     this.lastScrollTop = 0;
@@ -13,8 +13,21 @@ export default class extends Controller {
     window.removeEventListener("scroll", this.handleScroll.bind(this));
   }
 
+  ChangeLogo() {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    if (mediaQuery.matches) {
+      this.logoTarget.src = "/assets/logo-bleu-st.svg";
+    } else {
+      this.logoTarget.src = "/assets/text-logo.svg";
+    }
+    console.log("ChangeLogo");
+  }
+  initialize() {
+    this.ChangeLogo();
+  }
+
   handleScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
         // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
         if (scrollTop > 30) {
