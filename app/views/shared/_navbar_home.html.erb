@@ -9,9 +9,10 @@
       <% end %>
 
       <!-- Logo au centre avec marge autour -->
-      <%= link_to root_path, class: "text-decoration-none  d-flex align-items-center mx-5" do %>
-        <%= image_tag 'logo-blanc.svg', alt: 'Logo Immobilier', class: 'mb-0', data: { navbar_home_target: "logo" } %>
-      <% end %>
+<%= link_to root_path, class: "text-decoration-none  d-flex align-items-center mx-5" do %>
+  <%= image_tag asset_path('logo-blanc.svg'), alt: 'Logo Immobilier', class: 'mb-0', data: { navbar_home_target: "logo" } %>
+<% end %>
+
 
       <!-- Lien vers formulaire de contact -->
       <%= link_to '#form-contact', class: "text-decoration-none d-flex align-items-center" do %>
