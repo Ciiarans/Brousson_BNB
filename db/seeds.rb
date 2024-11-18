@@ -7,8 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-require 'faker'
-
 # Vider les tables pour éviter les doublons lors des re-seeds
 Property.destroy_all
 Reservation.destroy_all
