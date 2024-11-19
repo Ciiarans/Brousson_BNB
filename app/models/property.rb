@@ -15,6 +15,5 @@ class Property < ApplicationRecord
   validates :square_meters, presence: true, numericality: { greater_than: 0 }
   validates :cleaning_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   # validates :description , length: { minimum: 20 }
-  validates :address, uniqueness: true
 
 end
