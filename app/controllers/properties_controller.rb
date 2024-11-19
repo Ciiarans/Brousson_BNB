@@ -73,17 +73,17 @@ class PropertiesController < ApplicationController
 
   def load_equipment_categories
     @equipment_categories = {"Chambre et linge" => ["Sèche-cheveux","Lave-linge (Gratuit) dans le logement", "Sèche-linge (Gratuit)", "Équipements de base (Serviettes, draps, savon et papier toilette)", "Cintres", "Oreillers et couvertures supplémentaires","Fer à repasser", "Étendoir à linge", "Espace de rangement pour les vêtements : dressing"],
-        "Divertissement" => ["Télévision", "Livres et de quoi lire"],
+        "Divertissement" => ["Téléviseur", "Livres"],
         "Famille" => ["Lit pour bébé", "Standard (1,3 m de long sur 70 cm de large)", "Lit parapluie : disponible sur demande"],
         "Chauffage et climatisation" => ["Chauffage central", "Climatisation"],
-        "Sécurité à la maison" => ["Détecteur de fumée", "Extincteur", "Kit de premiers secours","Coffre-fort", "Serrure numérique","caméra de surveillance"],
-        "Internet et bureau" => ["Wifi", "Espace de travail dédié", "Dans un espace commun"],
-        "Cuisine et salle à manger" => ["Cuisine", "Espace où les voyageurs peuvent cuisiner", "Four à micro-ondes", "Équipements de cuisine de base", "Casseroles et poêles, huile, sel et poivre", "Vaisselle et couverts", "Congélateur", "Lave-vaisselle", "Four en acier inoxydable", "Bouilloire électrique", "Cafetière", "Verres à vin", "Grille-pain", "Plaque de cuisson", "Blender", "Table à manger"],
-        "Caractéristiques de l'emplacement" => ["Les voyageurs peuvent profiter d'une plage à proximité"],
-        "Extérieur" => ["Privé : patio ou balcon", "Mobilier d'extérieur", "Espace repas en plein air"],
+        "Sécurité du logement" => ["Détecteur de fumée", "Extincteur","Coffre-fort", "Serrure numérique","Caméra de surveillance","Accés handicapé"],
+        "Internet et bureau" => ["Wifi", "Espace de travail dédié"],
+        "Cuisine et salle à manger" => ["Cuisine","Condiments de base", "Espace pour cuisiner", "Four à micro-ondes", "Casseroles et poêles", "Vaisselle et couverts", "Congélateur", "Lave-vaisselle", "Four en acier inoxydable", "Bouilloire électrique", "Cafetière à filtre","Cafetière à capsules", "Verres à vin", "Grille-pain", "Plaque de cuisson", "Blender", "Table à manger"],
+        "Caractéristiques de l'emplacement" => ["Golf","Piscine","Parc","Centre-ville","Plage","transports en commun","Aéroport","Gare","Commerces et restaurants à proximité"],
+        "Extérieur" => ["Privé : patio ou balcon", "Mobilier d'extérieur", "Espace repas en plein air","Barbecue","Plancha","Jacuzzi","Salon d'été","Jardin ou arrière-cour","Piscine privée"],
         "Parking et installations" => ["Parking gratuit sur place", "Parking gratuit dans la rue", "Ascenseur", "Logement de plain-pied", "Pas d'escaliers dans le logement"],
-        "Services" => ["Ménage disponible pendant le séjour"],
-        "Non inclus" => ["Caméras de surveillance", "Détecteur de monoxyde de carbone","climatisation"]
+        "Services" => ["Ménage disponible pendant le séjour à la demande"],
+        "Non inclus" => ["Caméras de surveillance", "Détecteur de monoxyde de carbone","climatisation", "Kit de premiers secours","Accés handicapé","Coffre-fort"]
       }
   end
 
