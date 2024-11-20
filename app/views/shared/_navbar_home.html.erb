@@ -9,8 +9,8 @@
       <% end %>
 
 <!-- Logo au centre avec marge autour -->
-<%= link_to root_path, class: "text-decoration-none  d-flex align-items-center mx-5" do %>
-  <%= image_tag asset_path('logo-blanc.svg'), alt: 'Logo Immobilier', class: 'mb-0', data: { navbar_home_target: "logo" } %>
+<%= link_to root_path, class: "text-decoration-none  d-flex align-items-center mx-5 " do %>
+  <%= cl_image_tag '', alt: "Logo Pat'immo", class: 'mb-0', data: { navbar_home_target: "logo" } %>
 <% end %>
 
 
