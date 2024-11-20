@@ -10,12 +10,12 @@
 
       <!-- Logo au centre avec marge autour -->
       <%= link_to root_path, class: "text-decoration-none d-flex align-items-center mx-5" do %>
-        <%= image_tag asset_path("texte-logo.svg"), alt: "Logo Immobilier", class: "mb-0", data: { navbar_target: "logo" } %>
+        <%= cl_image_tag '', alt: "Logo Immobilier", class: "mb-0", data: { navbar_target: "logo" } %>
       <% end %>
 
       <!-- Lien vers formulaire de contact -->
       <%= link_to "#{root_path}#form-contact", class: "text-decoration-none d-flex align-items-center" do %>
-        <p class="mb-0">Nous Contacter</p>
+        <p class="mb-0">Nous contacter</p>
       <% end %>
     </div>
 

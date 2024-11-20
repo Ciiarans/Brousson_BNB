@@ -16,7 +16,7 @@
 
     <div class="content">
       <h1 class="text-light">Vivez un <strong>séjour de rêve</strong> sur la Côte Basque</h1>
-      <p class="text-light">Des logements uniques, des expériences mémorables, et un service personnalisé à votre disposition.</p>
+      <p class="text-light">Des logements uniques, des expériences mémorables et un service personnalisé à votre disposition.</p>
       <div class="text-center">
         <a href="#locations" class="scroll-down btn btn-outline-light p-3 rounded-4">
           <p>Explorez nos locations</p>
@@ -102,37 +102,105 @@
   <section class="contact-section py-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 contact-info">
-          <h2>Contactez-nous :</h2>
-          <p>Pour toute question ou demande, n'hésitez pas à nous joindre :</p>
-          <ul class="contact-details list-unstyled">
-            <li><i class="fa fa-phone"></i> <a href="tel:+33 6 12 34 56 7" class="text-decoration-none text-light">+33 6 23 81 82 03</a></li>
-            <li><i class="fa fa-envelope"></i> <a href="mailto:contact.pat.immo@gmail.com?subject=Demande%20de%20renseignements&body=Votre%20message%20ici" class="text-decoration-none text-light">contact.pat.immo@gmail.com</a></li>
-          </ul>
-          <div class="logo mt-4">
-            <%= image_tag 'logo.svg', alt: 'Logo', class: 'img-fluid' %>
+        <div class="col-md-6 contact-info d-flex flex-column justify-content-between">
+          <div>
+        <h2>Contactez-nous :</h2>
+        <p>Pour toute question ou demande, n'hésitez pas à nous joindre :</p>
+        <ul class="contact-details list-unstyled">
+          <li><i class="fa fa-phone"></i> <a href="tel:+33 6 12 34 56 7" class="text-decoration-none text-light">+33 6 23 81 82 03</a></li>
+          <li><i class="fa fa-envelope"></i> <a href="mailto:contact.pat.immo@gmail.com?subject=Demande%20de%20renseignements&body=Votre%20message%20ici" class="text-decoration-none text-light">contact.pat.immo@gmail.com</a></li>
+        </ul>
+          </div>
+          <div class="text-center">
+        <%= cl_image_tag 'logo-complet_fke80k', alt: 'Logo', style: 'max-width: 15rem; transform: scale(1.3);' %>
           </div>
         </div>
         <div class="col-md-6" id="form-contact">
-          <div class="contact-form card p-4 shadow-sm rounded-4">
-            <%= form_with(url: contact_path, method: :post, local: true) do |form| %>
-              <div class="mb-3">
-                <%= form.label :name, 'Nom', class: 'form-label' %>
-                <%= form.text_field :name, class: 'form-control rounded-3', required: true %>
-              </div>
-              <div class="mb-3">
-                <%= form.label :email, 'Email', class: 'form-label' %>
-                <%= form.email_field :email, class: 'form-control rounded-3', required: true %>
-              </div>
-              <div class="mb-3">
-                <%= form.label :message, 'Message', class: 'form-label' %>
-                <%= form.text_area :message, rows: 5, class: 'form-control rounded-3', required: true %>
-              </div>
-              <%= form.submit 'Envoyer', class: 'btn btn-primary btn-block rounded-3' %>
-            <% end %>
+          <div class="contact-form card p-4 shadow-sm rounded-4 h-100 d-flex flex-column">
+        <%= form_with(url: contact_path, method: :post, local: true) do |form| %>
+          <div class="mb-3">
+            <%= form.label :name, 'Nom', class: 'form-label' %>
+            <%= form.text_field :name, class: 'form-control rounded-3', required: true %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :email, 'Email', class: 'form-label' %>
+            <%= form.email_field :email, class: 'form-control rounded-3', required: true %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :message, 'Message', class: 'form-label' %>
+            <%= form.text_area :message, rows: 5, class: 'form-control rounded-3', required: true %>
+          </div>
+          <div class="mt-auto">
+            <%= form.submit 'Envoyer', class: 'btn btn-primary btn-block rounded-3' %>
+          </div>
+        <% end %>
           </div>
         </div>
       </div>
     </div>
   </section>
+<section>
+  <div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="text-center p-4">Avis de nos super clients ♥</h2>
+      <div class="mb-3">
+        <%= link_to 'Ajouter un avis', new_review_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+
+    <div id="review-carousel" class="carousel slide my-4" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% if @reviews.nil? || @reviews.empty? %>
+          <div class="carousel-item active">
+            <div class="review-card text-center">
+              <strong>Pas d'avis pour le moment</strong>
+            </div>
+          </div>
+        <% else %>
+          <% @reviews.each_slice(3).with_index do |review_group, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <div class="row justify-content-center">
+                <% review_group.each do |review| %>
+                  <% if review.rating >= 0 %>
+                    <div class="col-md-4 mb-4">
+                      <div class="card p-4 border rounded shadow-sm">
+                        <strong class="d-block mb-2"><%= review.reviewer_name %> — Note : <%= review.rating %>/5</strong>
+                        <p class="mb-3" id="short-comment-<%= review.id %>">
+                          <span id="visible-text-<%= review.id %>">
+                            <%= review.comment.length > 100 ? review.comment[0..100] : review.comment %>
+                          </span>
+                          <span class="collapse" id="full-text-<%= review.id %>">
+                            <%= review.comment[101..-1] %>
+                          </span>
+                        </p>
+                        <% if review.comment.length > 100 %>
+                          <button class="btn btn-link p-0" data-bs-toggle="collapse" data-bs-target="#full-text-<%= review.id %>" aria-expanded="false" aria-controls="full-text-<%= review.id %>">
+                            Voir plus
+                          </button>
+                        <% end %>
+                        <em><%= review.property.title %></em>
+                        <% if user_signed_in? %>
+                          <%= link_to 'Supprimer', review_path(review), method: :delete, data: { turbo_confirm: 'Êtes-vous sûr de vouloir supprimer cet avis ?' }, class: 'btn btn-danger mt-2' %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#review-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-primary rounded-4" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#review-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-primary rounded-4" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+  </div>
+</section>
+
 </div>

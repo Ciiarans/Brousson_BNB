@@ -3,6 +3,7 @@ class PropertiesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   require 'json'
   def index
+    @reviews = Review.all
     @properties = Property.all
     @markers = @properties.geocoded.map do |property|
       {

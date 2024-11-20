@@ -88,4 +88,22 @@ body {
       transform: scale(1.05); /* Effet de survol pour agrandir légèrement */
     }
   }
+  .review-card {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    background-color: $white-shell;
+
+    strong {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    em {
+      color: $primary-blue;
+      font-size: 0.9rem;
+    }
+  }
 }
