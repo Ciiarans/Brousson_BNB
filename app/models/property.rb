@@ -1,6 +1,7 @@
 class Property < ApplicationRecord
   has_one_attached :first_image
   has_many_attached :photos
+  has_many :reviews, dependent: :destroy
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 

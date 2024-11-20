@@ -1,0 +1,22 @@
+<div class="container">
+<h1>Ajouter un Avis</h1>
+<%= simple_form_for @review do |f| %>
+  <div class="form-group">
+    <%= f.input :reviewer_name, label: "Votre nom" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :property_id, collection: @properties.map { |p| [p.title, p.id] }, label: "Logement", include_blank: "Sélectionner un logement" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :rating, label: "Note", as: :radio_buttons, collection: (1..5).to_a %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :comment, label: "Commentaire", as: :text, input_html: { rows: 4 } %>
+  </div>
+
+  <%= f.button :submit, "Ajouter Avis", class: "btn btn-primary" %>
+<% end %>
+</div>
