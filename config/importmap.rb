@@ -11,4 +11,3 @@ pin "mapbox-gl" # @3.1.2
 pin "process" # @2.0.1
 pin "@rails/ujs", to: "rails-ujs.js"
 pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"
-pin "config", to: "config.js"
