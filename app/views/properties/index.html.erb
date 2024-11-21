@@ -56,7 +56,7 @@
   <div id="locations" class="row g-4">
     <% @properties.each do |property| %>
       <div class="col-md-4 mb-4">
-        <div class="card rounded-5 mt-4 border-1 p-2 h-100 card-img-top" style="border: 1px solid #ddd;">
+        <div class="card rounded-5 mt-4 border-1 p-2 h-100 card-img-top align-items-stretch" style="border: 1px solid #ddd;">
           <%= link_to property_path(property) do %>
             <%= property.first_image.attached? ? cl_image_tag(property.first_image.key,
               class: "img-fluid rounded-5 ",
