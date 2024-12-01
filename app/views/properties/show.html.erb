@@ -256,6 +256,9 @@ About hotel START -->
                   as: :boolean,
                   label: "Ajouter le ménage pour le logement ?(+ #{@cleaning} €)",
                   input_html: {data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice change->total-price#cleaningStatus" } } %>
+                            as: :boolean,
+                            label: "Ajouter le ménage pour le logement:#{@cleaning}€",
+                            input_html: { data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice" } } %>
               </div>
               <!-- Aperçu du prix -->
               <ul class="list-group list-group-borderless mb-0">
