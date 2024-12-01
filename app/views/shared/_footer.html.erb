@@ -1,17 +1,16 @@
-<footer class="footer text-center pt-2" style="background-color: #333333; color: #F8F9F9;">
+<footer class="footer text-center pt-2 bg-primary text-light border-top border-1 border-primary">
   <div class="container d-flex justify-content-between align-items-center">
     <div>
-      <img src="<%= asset_path('logo.svg') %>" alt="Logo" class="img-fluid mb-2">
+      <%= cl_image_tag('logo-blanc-st_lfsacg', alt: 'Logo complet', class: 'img-fluid mb-2', style: 'max-width: 6rem;') %>
     </div>
     <div>
-      <p>&copy; <span id="currentYear"></span> Ossau Design. Tous droits réservés. | <a href="#mentionsLegalesModal" class="text-white" data-bs-toggle="modal">Mentions Légales</a></p>
+      <p>&copy; <span id="currentYear"></span> Ossau Design. Tous droits réservés. | <a href="#mentionsLegalesModal" class="text-light" data-bs-toggle="modal">Mentions Légales</a></p>
     </div>
     <div>
-      <a href="<%= new_user_session_path %>" class="text-white" title="Connexion Admin">
+      <a href="<%= new_user_session_path %>" class="text-light" title="Connexion Admin">
         <i class="fa fa-user-circle fa-lg"></i>
       </a>
     </div>
-  </div>
   </div>
 </footer>
 <!-- Modale pour afficher les mentions légales -->
@@ -19,7 +18,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="mentionsLegalesLabel">Mentions Légales</h5>
+        <h5 class="modal-title text-primary" id="mentionsLegalesLabel">Mentions Légales</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

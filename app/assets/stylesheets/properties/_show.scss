@@ -1,0 +1,67 @@
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; // Ensures the image adapts without distortion
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fourth-image {
+  position: relative; // Sets the position relative to its normal position
+}
+
+.overlay-show {
+  position: absolute; // Positions the overlay absolutely within its container
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // Adjusts the opacity as needed
+  border-radius: 5px; // Matches the rounded corners
+}
+
+/* Style pour la modale de la galerie d'images */
+#galleryModal .modal-dialog {
+  max-width: 600px; // Largeur maximale de la modale
+  width: 100%; // Prendre toute la largeur disponible
+  height: 90vh; // Limiter la hauteur à 90% de la hauteur de la fenêtre
+  display: flex;
+  flex-direction: column; // Disposition verticale
+  align-items: center; // Centrer le contenu horizontalement
+  justify-content: center; // Centrer le contenu verticalement
+}
+
+#galleryModal .modal-content {
+  height: 100%; // Utiliser toute la hauteur de la modale
+  display: flex;
+  flex-direction: column; // Disposer les éléments en colonne
+  justify-content: space-between; // Espacer le contenu dans la modale
+}
+
+#galleryModal #carouselGallery {
+  flex-grow: 1; // Laisser le carrousel occuper toute la hauteur disponible
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#galleryModal #carouselGallery .carousel-item img {
+  max-height: 80vh; // Limiter la hauteur de l'image à 80% de la hauteur de la fenêtre
+  width: auto; // Garder le ratio d'aspect de l'image
+  object-fit: contain; // Eviter que l'image soit déformée
+}
+
+/* Pour les petits écrans (tablettes, téléphones) */
+@media (max-width: 768px) {
+  #galleryModal .modal-dialog {
+    height: 80vh; // Réduire la hauteur de la modale pour les petits écrans
+  }
+
+  #galleryModal #carouselGallery .carousel-item img {
+    max-height: 60vh; // Réduire la taille des images sur les petits écrans
+  }
+
+}

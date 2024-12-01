@@ -4,31 +4,31 @@
     <!-- Conteneur central avec liens et logo -->
     <div class="d-flex flex-column flex-sm-row flex-grow-1 justify-content-center align-items-center text-center text-sm-start">
       <!-- Lien vers les appartements -->
-      <%= link_to "#{root_path}#locations", class: "text-decoration-none mx-3 d-flex align-items-center my-2 my-sm-0" do %>
-        <p class="mb-0 fs-5">Nos logements</p>
+      <%= link_to "#{root_path}#locations", class: "text-decoration-none d-flex align-items-center" do %>
+        <p class="mb-0">Nos logements</p>
       <% end %>
 
       <!-- Logo au centre avec marge autour -->
-      <%= link_to root_path, class: "text-decoration-none fw-bold d-flex align-items-center mx-5 my-2 my-sm-0" do %>
-        <%= image_tag "texte-logo.svg", alt: "Logo Immobilier", class: "mb-0" %>
+      <%= link_to root_path, class: "text-decoration-none d-flex align-items-center mx-5" do %>
+        <%= cl_image_tag '', alt: "Logo Immobilier", class: "mb-0", data: { navbar_target: "logo" } %>
       <% end %>
 
       <!-- Lien vers formulaire de contact -->
-      <%= link_to "#{root_path}#form-contact", class: "text-decoration-none mx-3 d-flex align-items-center my-2 my-sm-0" do %>
-        <p class="mb-0 fs-5">Contactez nous</p>
+      <%= link_to "#{root_path}#form-contact", class: "text-decoration-none d-flex align-items-center" do %>
+        <p class="mb-0">Nous contacter</p>
       <% end %>
     </div>
 
     <!-- Espaceur pour aligner le bouton à droite -->
     <div class="dropdown d-flex align-items-center my-2 my-sm-0">
       <% if user_signed_in? %>
-        <% if current_user.email == 'user1@exemple.com' %>
+        <% if current_user.email == ENV['SITE_KEY'] %>
           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <%= "Bonjour Pat'" %>
           </button>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
             <li>
-              <%= link_to "Mes réservations", profile_path, class: "dropdown-item text-decoration-none" %>
+              <%= link_to "Tableau de bord", profile_path, class: "dropdown-item text-decoration-none" %>
             </li>
             <li>
               <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
@@ -37,5 +37,6 @@
         <% end %>
       <% end %>
     </div>
+
   </div>
 </nav>

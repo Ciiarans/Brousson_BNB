@@ -10,11 +10,18 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    @cleaning = @property.cleaning_price * @property.square_meters
     @property = Property.find(params[:property_id]) # Assurez-vous que vous avez accès à @property
     @reservation = Reservation.new(reservation_params)
     @reservation.property = @property
-    @reservation.start_date = Date.strptime(params[:start_date], '%Y-%m-%d') rescue nil
-    @reservation.end_date = Date.strptime(params[:end_date], '%Y-%m-%d') rescue nil
+    @reservation.start_date = Date.strptime(params[:start_date], '%d-%m-%Y') rescue nil
+    @reservation.end_date = Date.strptime(params[:end_date], '%d-%m-%Y') rescue nil
+    if @reservation.add_cleaning == 1
+      @reservation.add_cleaning = true
+    else
+      @reservation.add_cleaning = false
+    end
+
 
     # Gestion du ménage
     if params[:reservation][:add_cleaning] == '1' # '1' si coché

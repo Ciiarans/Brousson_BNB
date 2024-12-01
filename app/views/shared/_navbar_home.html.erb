@@ -1,39 +1,40 @@
-<nav data-controller="navbar-home" data-navbar-home-target="navbar" class="navbar-home navbar-expand-sm navbar-light pb-3 navbar-sticky">
-  <div class="container d-flex justify-content-between align-items-center">
+<nav data-controller="navbar-home" data-navbar-home-target="navbar" class="navbar-home navbar-expand-sm navbar-light py-2 navbar-sticky">
+  <div class="container d-flex justify-content-between align-items-center h-100" id="nav-home">
 
     <!-- Conteneur central avec liens et logo -->
     <div class="d-flex flex-grow-1 justify-content-center align-items-center">
       <!-- Lien vers les appartements -->
-      <%= link_to '#locations', class: "text-decoration-none mx-3" do %>
+      <%= link_to '#locations', class: "text-decoration-none d-flex align-items-center" do %>
         <p class="mb-0">Nos logements</p>
       <% end %>
 
-      <!-- Logo au centre avec marge autour -->
-      <%= link_to root_path, class: "text-decoration-none fw-bold d-flex mx-5" do %>
-        <%= image_tag 'logo-blanc.svg', alt: 'Logo Immobilier', class: 'mb-0', data: { navbar_home_target: "logo" } %>
-      <% end %>
+<!-- Logo au centre avec marge autour -->
+<%= link_to root_path, class: "text-decoration-none  d-flex align-items-center mx-5 " do %>
+  <%= cl_image_tag '', alt: "Logo Pat'immo", class: 'mb-0', data: { navbar_home_target: "logo" } %>
+<% end %>
+
 
       <!-- Lien vers formulaire de contact -->
-      <%= link_to '#form-contact', class: "text-decoration-none mx-3 d-flex align-items-center" do %>
-        <p class="mb-0">Contactez nous</p>
+      <%= link_to '#form-contact', class: "text-decoration-none d-flex align-items-center" do %>
+        <p class="mb-0">Nous contacter</p>
       <% end %>
     </div>
 
     <!-- Espaceur pour aligner le bouton à droite -->
-    <div class="dropdown dropdown-text align-items-center">
+    <div class="dropdown d-flex align-items-center">
       <% if user_signed_in? %>
-        <% if current_user.email == 'user1@exemple.com' %>
+        <% if current_user.email == ENV['SITE_KEY'] %>
           <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <%= "Bonjour Pat'" %>
           </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1" style="z-index: 1050;" id="dropdown-text">
             <li>
-              <%= link_to "Mes réservations", profile_path, class: "dropdown-item text-decoration-none" %>
+              <%= link_to "Tableau de bord", profile_path, class: "dropdown-item text-decoration-none" %>
             </li>
             <li>
               <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
             </li>
-          </ul>
+            </ul>
         <% end %>
       <% end %>
     </div>

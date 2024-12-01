@@ -1,38 +1,72 @@
-// app/javascript/controllers/navbar_controller.js
+// app/javascript/controllers/logo_controller.js
+
 import { Controller } from "@hotwired/stimulus";
 
+const LOGOS = {
+  blue: "texte-logo_eprlpa",
+  white: "logo-blanc_ynmgli",
+  whiteSmall: "logo-blanc-st_lfsacg",
+  blueSmall: "logo-bleu-st_bkrb3i",
+  blueComplete: "logo-bleu_d1bth1",
+  whiteComplete: "logo-complet_fke80k",
+};
+
 export default class extends Controller {
-  static targets = ["navbar", "logo"]
+  static targets = ["logo", "navbar"];
+
+  initialize() {
+    this.updateLogo(); // Met à jour le logo lors de l'initialisation
+  }
 
   connect() {
-    this.lastScrollTop = 0;
     window.addEventListener("scroll", this.handleScroll.bind(this));
+    window.addEventListener("resize", this.updateLogo.bind(this)); // Met à jour le logo sur redimensionnement
   }
 
   disconnect() {
     window.removeEventListener("scroll", this.handleScroll.bind(this));
+    window.removeEventListener("resize", this.updateLogo.bind(this));
+  }
+
+  updateLogo() {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    // Met à jour le logo selon la largeur de l'écran
+    const logoId = mediaQuery.matches ? LOGOS.whiteSmall : LOGOS.white;
+    this.logoTarget.src = this.buildCloudinaryUrl(logoId);
   }
 
   handleScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-        // Ajouter ou retirer la classe 'scrolled' selon la position du scroll
-        if (scrollTop > 30) {
-          this.navbarTarget.classList.add("scrolled");
-          this.logoTarget.src = "/assets/texte-logo.svg"
-        } else {
-          this.navbarTarget.classList.remove("scrolled");
-          this.logoTarget.src = "/assets/logo-blanc.svg"
-        }
+    if (scrollTop > 30) {
+      // Ajoute la classe 'scrolled' au navbar
+      this.navbarTarget.classList.add("scrolled");
 
-        if (scrollTop > this.lastScrollTop) {
-          // Scroll vers le bas, on cache la navbar
-          this.navbarTarget.classList.remove("navbar-visible");
-        } else {
-          // Scroll vers le haut, on affiche la navbar
-          this.navbarTarget.classList.add("navbar-visible");
-        }
+      // Change le logo pour la version scrolée
+      const logoId = mediaQuery.matches ? LOGOS.blueSmall : LOGOS.blue;
+      this.logoTarget.src = this.buildCloudinaryUrl(logoId);
+    } else {
+      // Retire la classe 'scrolled' au navbar
+      this.navbarTarget.classList.remove("scrolled");
 
-        this.lastScrollTop = scrollTop;
-      }
+      // Change le logo pour la version par défaut
+      const logoId = mediaQuery.matches ? LOGOS.whiteSmall : LOGOS.white;
+      this.logoTarget.src = this.buildCloudinaryUrl(logoId);
+    }
+
+    if (scrollTop > this.lastScrollTop) {
+      // Scroll vers le bas, on cache la navbar
+      this.navbarTarget.classList.remove("navbar-visible");
+    } else {
+      // Scroll vers le haut, on affiche la navbar
+      this.navbarTarget.classList.add("navbar-visible");
+    }
+    this.lastScrollTop = scrollTop;
+  }
+
+  buildCloudinaryUrl(publicId) {
+    return `https://res.cloudinary.com/dqdlonijq/image/upload/${publicId}.svg`;
+  }
 }

@@ -8,7 +8,6 @@ class Reservation < ApplicationRecord
 
 
 
-
   # validate :end_date_after_start_date
   # validate :start_date_not_in_past
   # validate :end_date_not_in_past

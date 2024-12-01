@@ -1,6 +1,7 @@
 class Property < ApplicationRecord
   has_one_attached :first_image
   has_many_attached :photos
+  has_many :reviews, dependent: :destroy
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
@@ -15,6 +16,5 @@ class Property < ApplicationRecord
   validates :square_meters, presence: true, numericality: { greater_than: 0 }
   validates :cleaning_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   # validates :description , length: { minimum: 20 }
-  validates :address, uniqueness: true
 
 end

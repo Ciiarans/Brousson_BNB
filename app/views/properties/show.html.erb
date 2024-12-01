@@ -27,31 +27,45 @@ Image gallery START -->
   <div class="container">
     <div class="row g-2">
       <!-- Image de profil (grande image à gauche) -->
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-stretch">
         <% if @property.first_image.attached? %>
-          <%= cl_image_tag @property.first_image.key, width: 600, height: 800, crop: :fill, class: "w-100 h-auto rounded-5" %>
+          <%= cl_image_tag @property.first_image.key,
+            class: "img-fluid w-100 rounded-5",
+            style: "aspect-ratio: 1/1; object-fit: cover;",
+            data: { toggle: "modal", target: "#galleryModal" } %>
         <% else %>
-          <%= image_tag 'fallback-image.png', alt: 'Aucune image de profil disponible', class: 'w-100 h-auto rounded-5' %>
+          <%= image_tag 'fallback-image.png', alt: 'Aucune image de profil disponible',
+            class: "img-fluid w-100 rounded-5",
+            style: "aspect-ratio: 1/1; object-fit: cover;" %>
         <% end %>
       </div>
 
       <!-- Section des petites images à droite (2x2) -->
-      <div class="col-md-6">
-        <div class="row">
-          <% (0..3).each do |index| %> <!-- Affiche jusqu'à 4 images -->
-            <div class="col-6 mb-2 position-relative">
+      <div class="col-md-6 d-flex flex-column justify-content-between">
+        <div class="row g-2 h-100">
+          <% (0..3).each do |index| %>
+            <div class="col-6 d-flex align-items-stretch">
               <% if @property.photos.attached? && @property.photos[index].present? %>
-                <%= cl_image_tag @property.photos[index].key, class: 'w-100 h-auto rounded-5' %>
+                <%= cl_image_tag @property.photos[index].key,
+                  class: "img-fluid w-100 rounded-5",
+                  style: "aspect-ratio: 1/1; object-fit: cover;",
+                  data: { toggle: "modal", target: "#galleryModal" } %>
               <% else %>
-                <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'w-100 h-auto rounded-5' %>
+                <%= image_tag 'fallback-image.png', alt: 'Image de fallback',
+                  class: "img-fluid w-100 rounded-5",
+                  style: "aspect-ratio: 1/1; object-fit: cover;" %>
               <% end %>
 
-              <!-- Bouton sur la 4ème image -->
               <% if index == 3 %>
-                <div class="position-absolute bottom-0 end-0 m-4">
-                  <button type="button" class="btn btn-outline-light border border-light rounded-pill px-4 py-2 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                    <i class="bi bi-images me-2"></i> Voir la galerie complète
-                  </button>
+                <!-- Overlay sur la 4ème image -->
+                <div class="position-relative w-100 h-100">
+                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 rounded-5"></div>
+                  <!-- Bouton "Voir la galerie complète" -->
+                  <div class="position-absolute bottom-0 end-0 m-4">
+                    <button type="button" class="btn btn-outline-light border rounded-pill px-4 py-2 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                      <i class="bi bi-images me-2"></i> Voir la galerie complète
+                    </button>
+                  </div>
                 </div>
               <% end %>
             </div>
@@ -61,25 +75,39 @@ Image gallery START -->
     </div>
   </div>
 
-  <!-- Modale pour la galerie d'images -->
+  <!-- Modale pour la galerie d'images avec un carrousel -->
   <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="galleryModalLabel">Toute les photos</h5>
+          <h5 class="modal-title" id="galleryModalLabel">Toutes les photos</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <% @property.photos.each do |photo| %>
-              <div class="col-md-4 mb-2">
-                <% if photo.attached? %>
-                  <%= cl_image_tag photo.key, class: 'img-fluid rounded' %>
-                <% else %>
-                  <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'img-fluid rounded' %>
+          <!-- Carrousel -->
+          <div id="carouselGallery" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% if @property.photos.attached? %>
+                <% @property.photos.each_with_index do |photo, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>">
+                    <%= cl_image_tag photo.key, class: 'd-block w-100 img-fluid rounded' %>
+                  </div>
                 <% end %>
-              </div>
-            <% end %>
+              <% else %>
+                <div class="carousel-item active">
+                  <%= image_tag 'fallback-image.png', alt: 'Image de fallback', class: 'd-block w-100 img-fluid rounded' %>
+                </div>
+              <% end %>
+            </div>
+            <!-- Contrôles du carrousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselGallery" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselGallery" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Suivant</span>
+            </button>
           </div>
         </div>
         <div class="modal-footer">
@@ -89,6 +117,8 @@ Image gallery START -->
     </div>
   </div>
 </section>
+
+
 <!-- =======================
 Image gallery END -->
 
@@ -164,9 +194,9 @@ About hotel START -->
             <!-- Card body END -->
           </div>
           <!-- Amenities END -->
-          <div class="google-map-frame">
+            <div class="google-map-frame">
             <iframe class="rounded-5"
-              width="auto"
+              width="100%"
               height="450"
               style="border:0"
               loading="lazy"
@@ -174,7 +204,7 @@ About hotel START -->
               referrerpolicy="no-referrer-when-downgrade"
               src="https://maps.google.com/maps?q=<%= CGI.escape(@address) %>&output=embed">
             </iframe>
-          </div>
+            </div>
 
           <!-- Hotel Policies START -->
           <div class="card bg-transparent border-0">
@@ -199,7 +229,7 @@ About hotel START -->
           <!-- Card header START -->
           <div class="card-header bg-transparent border-bottom">
             <!-- Title -->
-            <h5 class="card-title mb-2 mt-2 title-font text-red">Vérification des disponibilitées</h5>
+            <h5 class="card-title mb-2 mt-2 title-font text-red">Vérification des disponibilités</h5>
           </div>
           <!-- Card body START -->
           <div class="card-body">
@@ -219,15 +249,17 @@ About hotel START -->
                     <h5 class="fw-light small mb-1">
                       <i class="fa-solid fa-calendar-check me-2" style="color: #7dc0a3;"></i> Départ
                     </h5>
-                    <%= f.input :end_date, label: false,placeholder:"selectionnez une date", as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "endInput", total_price_target: "endDate", action: 'change->total-price#calculPrice' } } %>
+                    <%= f.input :end_date, label: false, placeholder:"selectionnez une date", as: :string, input_html: { type: 'date', class: 'rounded-5 mt-3', data: { datepicker_target: "endInput", total_price_target: "endDate", action: 'change->total-price#calculPrice' } } %>
                   </div>
                 </div>
                 <%= f.input :add_cleaning,
+                  as: :boolean,
+                  label: "Ajouter le ménage pour le logement ?(+ #{@cleaning} €)",
+                  input_html: {data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice change->total-price#cleaningStatus" } } %>
                             as: :boolean,
                             label: "Ajouter le ménage pour le logement:#{@cleaning}€",
                             input_html: { data: { 'total-price-target' => "addCleaning", action: "change->total-price#calculPrice" } } %>
               </div>
-
               <!-- Aperçu du prix -->
               <ul class="list-group list-group-borderless mb-0">
                 <li class="list-group-item px-2 d-flex border-0 justify-content-between">
@@ -238,19 +270,21 @@ About hotel START -->
 
               <!-- Prix total -->
               <div class="d-flex justify-content-end align-items-center">
-                <span class="h5 mb-0 title-font text-danger me-3">Prix total (hors taxe de séjour*):</span>
+                <span class="h5 mb-0 title-font text-danger me-3">Prix total (hors taxe de séjour**):</span>
                 <h5 class="mb-0 title-font text-danger" data-total-price-target="totalPrice"></h5>
               </div>
+                <p class="text-muted justify-content-end d-flex">**5€/personnes et par jours 3.50€ - 5 ans.</p>
               <!-- Prix de ménage en tant que donnée dans un div caché -->
 
               <!-- Boutons d'action -->
               <div class="d-grid gap-2 mt-3">
-                <button type="button" class="btn btn-success rounded-4 text-light" data-bs-toggle="modal"
+                <button id="buttonmodal" class="btn btn-success rounded-4 text-light btn-disabled" disabled data-bs-toggle="modal"
                         data-bs-target="#reservationModal"
-                        data-action="click->modal#openModal">
+                        data-action="click->modal#openModal"
+                        >
                   Je réserve mon séjour
                 </button>
-                <%= link_to 'Choisir un autre gîte', "#{properties_path}#section-target", class: 'btn btn-primary rounded-4 custom-font-btn-show-2 text-light' %>
+                <%= link_to 'Choisir un autre logement', "#{properties_path}#section-target", class: 'btn btn-primary rounded-4 custom-font-btn-show-2 text-light' %>
               </div>
             <% end %>
           </div>
@@ -285,17 +319,22 @@ About hotel START -->
                   </div>
 
                   <div class="form-group mb-4">
-                    <h6 class="fs-5">Prix total (hors taxe de séjour & frais de ménages)</h6>
+                    <h6 class="fs-5">Prix total (hors taxe de séjour)</h6>
                     <p id="modalTotalPrice" class="fs-5 text-danger">0.00 €</p>
                     <input type="hidden" id="hiddenTotalPrice" name="total_price" value="0.00">
                   </div>
+                  <div >
+                    <p id="modalAddCleaning"></p>
+                      <input type="hidden" id="hiddenAddCleaning" name="reservation[add_cleaning]" value="">
+                  </div>
+
                   <!-- Formulaire de réservation -->
                   <div class="form-group mb-3">
                     <div class="d-flex">
 
 
                     </div>
-                    <%= f.input :civility, collection: ['M', 'Mme', 'Mlle'], label: false, input_html: { class: 'form-select' } %>
+                    <%= f.input :civility, collection: ['Mr', 'Mme', 'Mlle'], label: 'Civilitées (Mr,Mme,Mlle)', input_html: { class: 'form-select' } %>
                   </div>
                   <div class="form-group mb-3">
 
@@ -338,26 +377,26 @@ About hotel START -->
 <!-- Fin du formulaire de réservation -->
   <hr class="separator">
 <section>
-  <div class="reglement-section p-4 rounded shadow-sm bg-primary text-light">
+  <div class="reglement-section p-4 rounded shadow-sm bg-light">
     <!-- Titre de la section -->
-    <h3 class="mb-4 text-light" style="font-weight: 600;">Règlement de la propriété</h3>
+    <h3 class="mb-4 text-primary" style="font-weight: 600;">Règlement de la propriété</h3>
 
     <!-- Contenu du règlement -->
-    <div class="row gy-4">
+    <div class="row gy-4 mb-4">
 
       <!-- Conditions générales -->
       <div class="col-lg-4 col-md-6">
-        <div class="p-4 border rounded-4 bg-primary text-center shadow-sm">
-          <i class="fas fa-file-contract fa-2x mb-3 text-light"></i>
-          <h5 class="mb-3 text-light">Conditions générales</h5>
-          <ul class="list-unstyled text-light">
+        <div class="p-4 border rounded-4 bg-light text-center shadow-sm">
+          <i class="fas fa-file-contract fa-2x mb-3 text-primary"></i>
+          <h5 class="mb-3 text-primary">Conditions générales</h5>
+          <ul class="list-unstyled text-primary">
         <div class="row">
           <div class="col-6">
-            <li class="d-flex align-items-center"><i class="fas fa-paw me-2 text-light"></i>Animaux non autorisés</li>
-            <li class="d-flex align-items-center"><i class="fas fa-smoking-ban me-2 text-light"></i>Interdiction de fumer</li>
+            <li class="d-flex align-items-center"><i class="fas fa-paw me-2 text-primary"></i>Animaux non autorisés</li>
+            <li class="d-flex align-items-center"><i class="fas fa-smoking-ban me-2 text-primary"></i>Interdiction de fumer</li>
           </div>
           <div class="col-6">
-            <li class="d-flex align-items-center"><i class="fas fa-volume-up me-2 text-light"></i>Bruit limité après 22h00</li>
+            <li class="d-flex align-items-center"><i class="fas fa-volume-up me-2 text-primary"></i>Bruit limité après 22h00</li>
           </div>
         </div>
           </ul>
@@ -366,37 +405,27 @@ About hotel START -->
 
       <!-- Politique d'annulation -->
       <div class="col-lg-4 col-md-6">
-        <div class="p-4 border rounded-4 bg-primary text-center shadow-sm">
-          <i class="fas fa-calendar-times fa-2x mb-3 text-light"></i>
-          <h5 class="mb-3 text-light">Politique d'annulation</h5>
-          <ul class="list-unstyled text-light">
-            <li class="d-flex align-items-center"><i class="fas fa-times-circle me-2 text-light"></i>Annulation gratuite jusqu'à 7 jours</li>
-            <li class="d-flex align-items-center"><i class="fas fa-exclamation-triangle me-2 text-light"></i>Frais de 50% pour annulation tardive</li>
+        <div class="p-4 border rounded-4 bg-light text-center shadow-sm">
+          <i class="fas fa-calendar-times fa-2x mb-3 text-primary"></i>
+          <h5 class="mb-3 text-primary">Politique d'annulation</h5>
+          <ul class="list-unstyled text-primary">
+            <li class="d-flex align-items-center"><i class="fas fa-times-circle me-2 text-primary"></i>Annulation gratuite jusqu'à 7 jours</li>
+            <li class="d-flex align-items-center"><i class="fas fa-exclamation-triangle me-2 text-primary"></i>Frais de 50% pour annulation tardive</li>
           </ul>
         </div>
       </div>
 
       <!-- Arrivée et départ -->
       <div class="col-lg-4 col-md-6">
-        <div class="p-4 border rounded-4 bg-primary text-center shadow-sm">
-          <i class="fas fa-clock fa-2x mb-3 text-light"></i>
-          <h5 class="mb-3 text-light">Arrivée et départ</h5>
-          <ul class="list-unstyled text-light">
-            <li class="d-flex align-items-center"><i class="fas fa-door-open me-2 text-light"></i>Arrivée : à partir de 15h00</li>
-            <li class="d-flex align-items-center"><i class="fas fa-door-closed me-2 text-light"></i>Départ : avant 11h00</li>
+        <div class="p-4 border rounded-4 bg-light text-center shadow-sm">
+          <i class="fas fa-clock fa-2x mb-3 text-primary"></i>
+          <h5 class="mb-3 text-primary">Arrivée et départ</h5>
+          <ul class="list-unstyled text-primary">
+            <li class="d-flex align-items-center"><i class="fas fa-door-open me-2 text-primary"></i>Arrivée : à partir de 15h00</li>
+            <li class="d-flex align-items-center"><i class="fas fa-door-closed me-2 text-primary"></i>Départ : avant 11h00</li>
           </ul>
         </div>
       </div>
-
-      <!-- Dépôt de garantie -->
-      <div class="col-lg-12">
-        <div class="p-4 border rounded-4 bg-primary text-center shadow-sm">
-          <i class="fas fa-money-bill-wave fa-2x mb-3 text-light"></i>
-          <h5 class="mb-3 text-light">Dépôt de garantie</h5>
-          <p class="mb-0 text-light">Un dépôt de garantie de 200 € est requis à l'arrivée, remboursé après vérification.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
