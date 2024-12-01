@@ -16,7 +16,7 @@ export default class extends Controller {
       dateFormat: "Y-m-d",
       mode: "range",
       minDate: "today",
-      monthSelectorType: "short",
+      shorthandCurrentMonth: true,
       disable: this.reservedRangesValue,
       onChange: this.handleDateChange.bind(this)
     };
@@ -34,8 +34,8 @@ export default class extends Controller {
 
   handleDateChange(selectedDates) {
     if (selectedDates.length === 2) {
-      const startDate = selectedDates[0].toISOString().split('T')[0];
-      const endDate = selectedDates[1].toISOString().split('T')[0];
+      const startDate = selectedDates[0].toLocaleDateString();
+      const endDate = selectedDates[1].toLocaleDateString();
 
       this.startInputTarget.value = startDate;
       this.endInputTarget.value = endDate;

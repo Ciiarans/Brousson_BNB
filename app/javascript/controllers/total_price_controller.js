@@ -12,10 +12,14 @@ export default class extends Controller {
 
   calculPrice() {
     const startDate = new Date(this.startDateTarget.value);
+    console.log("Start date:", startDate);
+
     const endDate = new Date(this.endDateTarget.value);
+    console.log("End date:", endDate);
 
     if (!isNaN(startDate) && !isNaN(endDate) && startDate < endDate) {
-      const diffDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+      const diffDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 60 * 24));
+      console.log("Diff days:", diffDays);
       const pricePerDay = this.priceperdayValue;
       const cleaningPrice = this.addCleaningTarget.checked ? this.cleaningprice : 0; // Utiliser this.cleaningPrice ici
       const totalPrice = (diffDays * pricePerDay) + cleaningPrice;
